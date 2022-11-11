@@ -1,0 +1,20 @@
+select
+		smn_cobranzas.smn_relacion_cobranza.smn_modulo_rf,
+	smn_cobranzas.smn_relacion_cobranza.smn_doc_orig_rf,
+	smn_cobranzas.smn_relacion_cobranza.smn_num_doc_orig,
+	smn_cobranzas.smn_relacion_cobranza.smn_documento_id,
+	smn_cobranzas.smn_relacion_cobranza.rco_numero_documento,
+	smn_cobranzas.smn_relacion_cobranza.smn_cliente_rf,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_bruto_cob_ml,
+	smn_cobranzas.smn_relacion_cobranza.smn_moneda_rf,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_bruto_cob_ma,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_desc_ret_cob_ml,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_desc_ret_cob_ma,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_neto_cob_ml,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_neto_cob_ma,
+	smn_cobranzas.smn_relacion_cobranza.rco_estatus_proceso,
+	smn_cobranzas.smn_relacion_cobranza.rco_fecha_registro
+from
+	smn_cobranzas.smn_relacion_cobranza 
+where
+	smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id = ${fld:id}

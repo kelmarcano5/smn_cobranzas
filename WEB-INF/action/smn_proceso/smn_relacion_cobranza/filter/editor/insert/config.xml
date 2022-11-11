@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Insertar registro 
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_modulo_rf</colname>
+			<colname>smn_doc_orig_rf</colname>
+			<colname>smn_num_doc_orig</colname>
+			<colname>smn_documento_id</colname>
+			<colname>rco_numero_documento</colname>
+			<colname>smn_cliente_rf</colname>
+			<colname>rco_monto_bruto_cob_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>rco_monto_bruto_cob_ma</colname>
+			<colname>rco_monto_desc_ret_cob_ml</colname>
+			<colname>rco_monto_desc_ret_cob_ma</colname>
+			<colname>rco_monto_neto_cob_ml</colname>
+			<colname>rco_monto_neto_cob_ma</colname>
+			<colname>rco_estatus_proceso</colname>
+			<colname>smn_empresa_rf</colname>
+			<colname>smn_sucursal_rf</colname>
+		
+		</cols>
+		<table>smn_cobranzas.smn_relacion_cobranza</table>
+		<oper>AÑADIR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>select ${seq:currval@smn_cobranzas.seq_smn_relacion_cobranza} as id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="nextval.sql" source="sql" scope="transaction" />
+		<recordset id="query-smn_mov_documento_cob_detalle.sql" source="request" scope="transaction" />
+	</transaction>
+
+	<query>insert.sql</query>
+	 <query params="query-smn_mov_documento_cob_detalle.sql">insert-query-smn_rel_cob_documento.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript</content-type>
+		<expiration>0</expiration>
+		<print mode="form" recordset="_request" />
+		<print mode="form" recordset="nextval.sql" />
+	</output>
+	
+	<!-- Envio de email declarativo -->
+	<mail enabled="false">
+		<subject>Subject</subject>
+		<mail-to>martin.cordova@gmail.com</mail-to>
+		<body>body.txt</body>
+	</mail>
+
+</config>

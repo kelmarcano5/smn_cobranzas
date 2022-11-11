@@ -1,0 +1,47 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+	<col width='3%'/>
+	<col width='20%'/>
+	<col width='20%'/>
+	<col width='35%'/>
+	<col width='33%'/>
+	<col width='35%'/>
+	<col width='35%'/>
+	<col width='35%'/>
+	<!--toolbar-->
+	<tr>
+		<th colspan="8" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th class='sortable' onclick='sortBy("mdc_numero_factura","query-smnrelrelacionenviodocumento.sql")'>${lbl:b_bill}</th>
+		<th class='sortable' onclick='sortBy("mdc_fecha_documento","query-smnrelrelacionenviodocumento.sql")'>${lbl:b_document_date}</th>
+		<th class='sortable' onclick='sortBy("aux_rif","query-smnrelrelacionenviodocumento.sql")'>${lbl:b_tax_id}</th>
+		<th class='sortable' onclick='sortBy("aux_apellidos","query-smnrelrelacionenviodocumento.sql")'>${lbl:s_profile_lname}</th>
+		<th class='sortable' onclick='sortBy("aux_nombres","query-smnrelrelacionenviodocumento.sql")'>${lbl:s_profile_fname}</th>
+		<th class='sortable' onclick='sortBy("dpd_numero_autorizacion","query-smnrelrelacionenviodocumento.sql")'>${lbl:b_authorization_number}</th>		
+		<th class='sortable' onclick='sortBy("mdc_monto_ml","query-smnrelrelacionenviodocumento.sql")'>${lbl:b_amount_ml}</th>
+		
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png" onclick="openPDF_factura_cab('${fld:smn_pedido_cabecera_id}');"></td>
+		<td>${fld:mdc_numero_factura}</td>
+		<td>${fld:mdc_fecha_documento}</td>
+		<td>${fld:aux_rif}</td>
+		<td>${fld:aux_apellidos}</td>
+		<td>${fld:aux_nombres}</td>
+		<td>${fld:dpd_numero_autorizacion}</td>
+		<td>${fld:mdc_monto_ml}</td>		
+		
+	</tr>
+	</rows>
+
+</table>

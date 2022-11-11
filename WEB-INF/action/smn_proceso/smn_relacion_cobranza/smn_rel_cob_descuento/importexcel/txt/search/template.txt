@@ -1,0 +1,3 @@
+<rows>
+rcd_fecha_registro="${fld:rcd_fecha_registro}"    rcd_monto_descuento_ma="${fld:rcd_monto_descuento_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    rcd_monto_descuento_ml="${fld:rcd_monto_descuento_ml}"    smn_codigo_descuento_rf="${fld:smn_codigo_descuento_rf}"    smn_relacion_cobranza_id="${fld:smn_relacion_cobranza_id}"    
+</rows>

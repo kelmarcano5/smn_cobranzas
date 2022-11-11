@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='true' label='${lbl:b_colletion_relationship}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+	<parameter id='rci_monto_base' type='double' required='true' label='${lbl:b_base_amount}' maxlen='17'/>
+	<parameter id='smn_porcentaje_impuesto_rf' type='integer' required='false' label='${lbl:b_base_percentage}' maxlen='10'/>
+	<parameter id='rci_sustraendo_rf' type='double' required='false' label='${lbl:b_subtrahend}' maxlen='17'/>
+	<parameter id='rci_tipo_movimiento' type='varchar' required='true' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='rci_monto_impuesto_ml' type='double' required='true' label='${lbl:b_tax_amount_ml}' maxlen='17'/>
+	<parameter id='smn_moneda' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='smn_tasa' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='rci_monto_impuesto_ma' type='double' required='false' label='${lbl:b_tax_amount_ma}' maxlen='17'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_tax_collection_relationship_id}' maxlen='10'/>
+
+
+</validator>

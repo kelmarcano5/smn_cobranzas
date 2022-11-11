@@ -1,0 +1,19 @@
+<rows>
+	if('${fld:smn_modulo_origen_rf}'!="")
+	{
+		$("#check-${fld:smn_mov_documento_cob_cab_id}").prop("checked",true);
+		$("#check-${fld:smn_mov_documento_cob_cab_id}").prop("disabled",true);
+		ajaxCall(httpMethod="GET", 
+					 	uri="${def:actionroot}/setMontoBruto?id=${fld:smn_mov_documento_cob_cab_id}&id2=${fld:smn_relacion_cobranza_id}", 
+						divResponse=null, 
+						divProgress="status", 
+						formName=null, 
+						afterResponseFn=null, 
+						onErrorFn=null);
+	}
+	else
+	{
+		$("#check-${fld:smn_mov_documento_cob_cab_id}").prop("checked",false);
+		$("#check-${fld:smn_mov_documento_cob_cab_id}").prop("disabled",false);
+	}
+</rows>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-logo scale="60" url="/images/logo-simone-pdf.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_collection_left}"/>
+	
+	<excel 
+		recordset='query-logo scale="60" url="/images/logo-simone-pdf.sql' 
+		sheetname='${lbl:b_collection_left}' 
+		filename='${lbl:b_collection_left}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='cco_codigo' label='${lbl:b_code}' />
+		<col id='cco_descripcion' label='${lbl:b_description}' />
+		<col id='smn_rol_id_combo' label='${lbl:b_role}' />
+		<col id='smn_auxiliar_id_combo' label='${lbl:b_auxiliary}' />
+		<col id='rol_estatus' label='${lbl:b_status}' />
+		<col id='rol_idioma' label='${lbl:s_profile_lang}' />
+		<col id='rol_usuario' label='${lbl:b_users}' />
+		<col id='rol_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='rol_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

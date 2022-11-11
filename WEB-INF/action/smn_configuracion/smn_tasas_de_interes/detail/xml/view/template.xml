@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_tasas_de_interes>
+	<detail>
+		<rows>		
+		<record rol_fecha_registro="${fld:rol_fecha_registro}"    rol_vigencia="${fld:rol_vigencia}"    rol_estatus="${fld:rol_estatus}"    tai_porcentaje="${fld:tai_porcentaje}"    tai_descripcion="${fld:tai_descripcion}"    tai_codigo="${fld:tai_codigo}"    />
+		</rows>
+	</detail>
+</smn_tasas_de_interes>

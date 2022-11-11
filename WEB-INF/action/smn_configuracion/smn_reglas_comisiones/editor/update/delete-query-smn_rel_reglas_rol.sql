@@ -1,0 +1,1 @@
+delete from smn_cobranza.smn_rel_reglas_rol WHERE smn_reglas_comisiones_id= ${fld:id}

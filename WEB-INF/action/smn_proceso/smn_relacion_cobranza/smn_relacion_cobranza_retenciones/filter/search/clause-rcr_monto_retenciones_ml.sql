@@ -1,0 +1,2 @@
+ and
+ 	smn_cobranzas.smn_relacion_cobranza_retenciones.rcr_monto_retenciones_ml>${fld:rcr_monto_retenciones_ml}

@@ -1,0 +1,12 @@
+select
+		smn_cobranzas.smn_relacion_cobranza_retenciones.smn_clave_aprobacion_pedido,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_relacion_cobranza_id,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_codigo_retenciones_rf,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.rcr_monto_retenciones_ml,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_moneda_rf,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.rcr_monto_retenciones_ma,
+	smn_cobranzas.smn_relacion_cobranza_retenciones.rcr_fecha_registro
+from
+	smn_cobranzas.smn_relacion_cobranza_retenciones 
+where
+	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_relacion_cobranza_retenciones_id = ${fld:id}

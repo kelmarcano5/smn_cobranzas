@@ -1,0 +1,13 @@
+SELECT
+	mdc_estatus_financiero,
+	smn_entidad_rf,
+	smn_sucursal_rf,
+	smn_documento_id,
+	smn_cliente_rf,
+	smn_moneda_rf,
+	mdc_numero_doc_origen,
+	smn_documento_rf
+FROM
+	smn_cobranzas.smn_mov_documento_cob_cab
+WHERE
+	smn_mov_documento_cob_cab_id=${fld:smn_mov_documento_cob_cab_id}

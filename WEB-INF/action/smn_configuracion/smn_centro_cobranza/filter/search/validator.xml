@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='cco_codigo' type='varchar' required='false' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='cco_descripcion' type='varchar' required='false' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='smn_rol_id' type='integer' required='false' label='${lbl:b_role}' maxlen='10'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='false' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='rol_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='rol_fecha_registro_desde' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@{${def:date}} mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@{${def:date}} menor o igual que].' date1='rol_fecha_registro_desde' date2='rol_fecha_registro_hasta' id='rol_fecha_registro_desde' />
+	<parameter id='rol_fecha_registro_hasta' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+</validator>

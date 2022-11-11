@@ -1,0 +1,3 @@
+<rows>
+rco_fecha_registro="${fld:rco_fecha_registro}"    rco_vigencia="${fld:rco_vigencia}"    rco_estatus="${fld:rco_estatus}"    rco_porcentaje="${fld:rco_porcentaje}"    smn_auxiliar_rf="${fld:smn_auxiliar_rf}"    smn_clase_auxiliar_rf="${fld:smn_clase_auxiliar_rf}"    smn_documento_id="${fld:smn_documento_id}"    smn_tipo_documento_id="${fld:smn_tipo_documento_id}"    
+</rows>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<validator onerror="/action/error/validation/alert">
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='true' label='ID ${lbl:b_doc_mov_head_charg}' maxlen='10' />
+	<parameter id='mdc_estatus_financiero' type='integer' required='false' label='${lbl:b_finance_status}' maxlen='10' />
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='ID ${lbl:b_entities}' maxlen='10' />
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='ID ${lbl:b_subsidiary}' maxlen='10' />
+	<parameter id='smn_documento_id' type='integer' required='false' label='ID ${lbl:b_document}' maxlen='10' />
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='ID ${lbl:b_client}' maxlen='10' />
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='ID ${lbl:b_coin}' maxlen='10' />
+	<parameter id='mdc_numero_doc_origen' type='integer' required='false' label='${lbl:b_number_document_origen}' maxlen='10' />
+	<parameter id='smn_documento_rf' type='integer' required='false' label='ID ${lbl:b_document}' maxlen='10' />
+	<parameter id='fca_numero_documento' type='integer' required='false' label='Secuencia' maxlen='10' />
+	<parameter id='aux_rif' type='varchar' required='false' label='Rif Cliente' maxlen='16' />
+	<parameter id='smn_auxiliar_id' type='integer' required='false' label='ID ${lbl:b_auxiliary}' maxlen='10' />
+	<parameter id='dir_direccion' type='varchar' required='false' label='Direccion Cliente' maxlen='1000' />
+	<parameter id='fca_monto_factura_ml' type='double' required='false' label='Monto Factura ml' maxlen='20' />
+	<parameter id='fca_monto_factura_ma' type='double' required='false' label='Monto Factura ma' maxlen='20' />
+	<parameter id='smn_documento_id_cme' type='integer' required='false' label='ID ${lbl:b_document}' maxlen='10' />
+	<parameter id='fca_numero_control_fiscal' type='integer' required='false' label='Numero control fiscal' maxlen='10' />
+	<parameter id='smn_control_serie_fiscal_id' type='varchar' required='false' label='serie control fiscal' maxlen='3' />
+	<parameter id='total_monto_impuesto_ml' type='double' required='false' label='${lbl:b_tax_amount_ml}' maxlen='20' />
+	<parameter id='total_monto_impuesto_ma' type='double' required='false' label='${lbl:b_tax_amount_ma}' maxlen='20' />
+	<parameter id='fca_monto_neto_ml' type='double' required='false' label='${lbl:b_net_amount_ml}' maxlen='20' />
+	<parameter id='fca_monto_neto_ma' type='double' required='false' label='${lbl:b_net_amount_ma}' maxlen='20' />
+	<parameter id='smn_factura_cabecera_id' type='integer' required='false' label='ID Factura Cabecera' maxlen='10' />
+	<parameter id='smn_pedido_cabecera_id' type='integer' required='false' label='ID Pedido Cabecera' maxlen='10' />
+	<parameter id='smn_pedido_detalle_id' type='integer' required='false' label='ID Pedido Detalle' maxlen='10' />
+	<parameter id='smn_servicios_rf' type='integer' required='false' label='ID ${lbl:b_services}' maxlen='10' />
+	<parameter id='smn_item_rf' type='integer' required='false' label='ID Item' maxlen='10' />
+	<parameter id='mdd_diferencia_cambiario' type='double' required='false' label='monto dif camb ml' maxlen='20' />
+	<parameter id='fco_monto_dif_camb_impuesto_ml' type='double' required='false' label='monto dif camb imp ml' maxlen='20' />
+</validator>

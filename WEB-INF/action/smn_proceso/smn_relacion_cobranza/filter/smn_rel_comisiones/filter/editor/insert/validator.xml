@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_relacion_cobranza_id_name' type='varchar' required='true' label='${lbl:b_collection_relations}'/>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='false' label='${lbl:b_collection_relations}' maxlen='10'/>
+	<parameter id='smn_reglas_comisiones_id_name' type='varchar' required='true' label='${lbl:b_commission_rules}'/>
+	<parameter id='smn_reglas_comisiones_id' type='integer' required='false' label='${lbl:b_commission_rules}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_cliente}' maxlen='10'/>
+	<parameter id='smn_rol_id_name' type='varchar' required='true' label='${lbl:b_role}'/>
+	<parameter id='smn_rol_id' type='integer' required='false' label='${lbl:b_role}' maxlen='10'/>
+	<parameter id='com_monto_relacion_ml' type='double' required='true' label='${lbl:b_relation_amount}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='com_monto_relacion_ma' type='double' required='false' label='${lbl:b_com_amount_ma}' maxlen='10'/>
+	<parameter id='com_porcentaje' type='double' required='true' label='${lbl:b_percentage}' maxlen='10'/>
+	<parameter id='com_monto_comision_ml' type='double' required='true' label='${lbl:b_comission_amount_ml}' maxlen='10'/>
+	<parameter id='com_monto_comision_ma' type='double' required='false' label='${lbl:b_comission_amount_ma}' maxlen='10'/>
+	<parameter id='com_estatus_proceso' type='varchar' required='true' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='com_estatus_financiero' type='varchar' required='false' label='${lbl:b_financial_status}' maxlen='2'/>
+	<parameter id='com_motivo_rechazo' type='varchar' required='true' label='${lbl:b_rejection_reason}' maxlen='10'/>
+
+
+</validator>

@@ -1,0 +1,42 @@
+INSERT INTO smn_cobranzas.smn_rel_comisiones
+(
+	smn_rel_comisiones_id,
+	smn_relacion_cobranza_id,
+	smn_reglas_comisiones_id,
+	smn_cliente_rf,
+	smn_rol_id,
+	com_monto_relacion_ml,
+	smn_moneda_rf,
+	com_monto_relacion_ma,
+	com_porcentaje,
+	com_monto_comision_ml,
+	com_monto_comision_ma,
+	com_estatus_proceso,
+	com_estatus_financiero,
+	com_motivo_rechazo,
+	com_idioma,
+	com_usuario,
+	com_fecha_registro,
+	com_hora
+)
+VALUES
+(
+	${seq:currval@smn_cobranzas.seq_smn_rel_comisiones},
+	${fld:smn_relacion_cobranza_id},
+	${fld:smn_reglas_comisiones_id},
+	${fld:smn_cliente_rf},
+	${fld:smn_rol_id},
+	${fld:com_monto_relacion_ml},
+	${fld:smn_moneda_rf},
+	${fld:com_monto_relacion_ma},
+	${fld:com_porcentaje},
+	${fld:com_monto_comision_ml},
+	${fld:com_monto_comision_ma},
+	${fld:com_estatus_proceso},
+	${fld:com_estatus_financiero},
+	${fld:com_motivo_rechazo},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

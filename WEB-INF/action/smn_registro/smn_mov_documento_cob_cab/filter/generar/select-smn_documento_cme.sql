@@ -1,0 +1,12 @@
+SELECT
+	smn_comercial.smn_documento.smn_documento_id
+FROM
+	smn_cobranzas.smn_documento
+	INNER JOIN
+	smn_comercial.smn_documento ON smn_comercial.smn_documento.smn_documentos_generales_rf=smn_cobranzas.smn_documento.smn_documento_general_rf
+	INNER JOIN
+	smn_comercial.smn_tipo_documentos_fact ON smn_comercial.smn_tipo_documentos_fact.smn_tipo_documentos_fact_id=smn_comercial.smn_documento.smn_tipo_documentos_fact_id
+WHERE
+	smn_cobranzas.smn_documento.smn_documento_id=${fld:smn_documento_id}
+	AND
+	smn_comercial.smn_tipo_documentos_fact.tdf_naturaleza='FC'

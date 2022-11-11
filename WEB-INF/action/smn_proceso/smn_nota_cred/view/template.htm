@@ -1,0 +1,56 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+	<col width='10%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_cliente_rf","query-smnmovdocumentocobcab.sql")'>${lbl:b_client}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnmovdocumentocobcab.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("mdc_numero_doc_origen","query-smnmovdocumentocobcab.sql")'>${lbl:b_origin_doc_num}</th>
+		<th class='sortable' onclick='sortBy("mdc_saldo_doc_ml","query-smnmovdocumentocobcab.sql")'>${lbl:b_balance_doc_ml}</th>
+		<th class='sortable' onclick='sortBy("smn_tipo_documento_id","query-smnmovdocumentocobcab.sql")'>${lbl:b_document_type}</th>
+		<th class='sortable' onclick='sortBy("mdd_numero_documento","query-smnmovdocumentocobcab.sql")'>${lbl:b_document_number}</th>
+		<th class='sortable' onclick='sortBy("mdd_monto_ml","query-smnmovdocumentocobcab.sql")'>${lbl:b_net_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("mdd_estatus","query-smnmovdocumentocobcab.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("mdd_fecha_registro","query-smnmovdocumentocobcab.sql")'>${lbl:b_store_date}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_mov_documento_cob_det_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/accept.png"  onclick="aprobar('${fld:smn_mov_documento_cob_det_id}','${fld:smn_mov_documento_cob_cab_id}','${fld:mdd_estatus}')" title="${lbl:b_pass}"></td>
+		<td>${fld:smn_cliente_rf_combo}</td>
+		<td>${fld:smn_documento_id_combo}</td>
+		<td>${fld:mdc_numero_doc_origen}</td>
+		<td align='right'>${fld:mdc_saldo_doc_ml@#,###,##0.00}</td>
+		<td>${fld:smn_tipo_documento_id_combo}</td>
+		<td>${fld:mdd_numero_documento}</td>
+		<td align='right'>${fld:mdd_monto_ml@#,###,##0.00}</td>
+		<td align='left'>${fld:mdd_estatus_combo}</td>
+		<td>${fld:mdd_fecha_registro@dd-MM-yyyy}</td>
+	</tr>
+	</rows>
+
+</table>

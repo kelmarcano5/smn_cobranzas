@@ -1,0 +1,36 @@
+INSERT INTO smn_cobranzas.smn_rel_comisiones
+(
+	smn_rel_comisiones_id,
+	smn_relacion_cobranza_id,
+	smn_reglas_comisiones_id,
+	smn_cliente_rf,
+	smn_rol_id,
+	com_monto_relacion_ml,
+	smn_moneda_rf,
+	com_monto_relacion_ma,
+	com_porcentaje,
+	com_monto_comision_ml,
+	com_monto_comision_ma,
+	com_estatus_proceso,
+	com_estatus_financiero,
+	com_motivo_rechazo,
+	com_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_cobranzas.seq_smn_rel_comisiones},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

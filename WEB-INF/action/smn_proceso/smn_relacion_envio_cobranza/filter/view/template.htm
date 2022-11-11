@@ -1,0 +1,61 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+	<col width='14%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="13" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_entidad_rf_combo","query-smnrelacionenviocobranza.sql")'>${lbl:b_entity}</th>
+		<th class='sortable' onclick='sortBy("rec_numero","query-smnrelacionenviocobranza.sql")'>${lbl:b_number}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_rf_combo","query-smnrelacionenviocobranza.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("rec_monto_ml","query-smnrelacionenviocobranza.sql")'>${lbl:b_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("rec_monto_ma","query-smnrelacionenviocobranza.sql")'>${lbl:b_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("rec_estatus","query-smnrelacionenviocobranza.sql")'>${lbl:b_status}</th>
+		<th class='sortable' onclick='sortBy("rec_fecha_registro","query-smnrelacionenviocobranza.sql")'>${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_relacion_envio_cobranza_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_relacion_envio_cobranza_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_relacion_envio_cobranza_id}','${fld:rec_estatus}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png"  onclick="generar('${fld:smn_relacion_envio_cobranza_id}')" title="${lbl:b_generate}"></td>
+		<td><img src="${def:context}/images/email.png"  onclick="entregar('${fld:smn_relacion_envio_cobranza_id}')" title="${lbl:b_deliver}"></td>
+		<td>${fld:smn_entidad_rf_combo}</td>
+		<td>${fld:rec_numero}</td>
+		<td>${fld:smn_cliente_rf_combo}</td>
+		<td align='right'>${fld:rec_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:rec_monto_ma@#,###,##0.00}</td>
+		<td>${fld:rec_estatus_combo}</td>
+		<td>${fld:rec_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

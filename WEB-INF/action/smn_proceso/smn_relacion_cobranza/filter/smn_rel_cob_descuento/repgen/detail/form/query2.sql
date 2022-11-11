@@ -1,0 +1,11 @@
+select
+		smn_cobranzas.smn_rel_cob_descuento.smn_relacion_cobranza_id,
+	smn_cobranzas.smn_rel_cob_descuento.smn_codigo_descuento_rf,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_monto_descuento_ml,
+	smn_cobranzas.smn_rel_cob_descuento.smn_moneda_rf,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_monto_descuento_ma,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_fecha_registro
+from
+	smn_cobranzas.smn_rel_cob_descuento 
+where
+	smn_cobranzas.smn_rel_cob_descuento.smn_rel_cob_descuento_id = ${fld:id}

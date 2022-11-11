@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Actualiza valores de un formulario en una tabla
+	</summary>
+
+	<log>false</log>
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_modulo_origen_rf</colname>
+			<colname>smn_documento_rf</colname>
+			<colname>mdc_numero_doc_origen</colname>
+			<colname>smn_cliente_rf</colname>
+			<colname>mdc_fecha_documento</colname>
+			<colname>mdc_fecha_vencimiento</colname>
+			<colname>mdc_monto_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>mdc_monto_ma</colname>
+			<colname>mdc_saldo_doc_ml</colname>
+			<colname>mdc_saldo_doc_ma</colname>
+			<colname>mdc_estatus_proceso</colname>
+			<colname>mdc_estatus_financiero</colname>
+		
+		</cols>
+		<table>smn_cobranzas.smn_mov_documento_cob_cab</table>
+		<oper>ACTUALIZAR</oper>
+		<area>Carga de datos</area>
+		<!--
+			query para obtener el ID generado o nombre de 
+			la columna que contiene el pkey, si es query, 
+			el alias del campo debe ser "id"
+		-->
+		<pkey>id</pkey>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableTransaction</classname>
+		<validator>true</validator>
+		<transaction>true</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+
+	<query>update.sql</query>
+
+	<output>
+		<classname>dinamica.GenericOutput</classname>
+		<template>script.js</template>
+		<set-http-headers>true</set-http-headers>
+		<content-type>text/javascript; charset=iso-8859-1</content-type>
+		<expiration>0</expiration>
+	</output>
+
+</config>

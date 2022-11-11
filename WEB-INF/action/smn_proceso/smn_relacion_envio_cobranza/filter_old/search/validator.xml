@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='smn_relacion_envio_cobranza_id' type='integer' required='false' label='${lbl:b_shipping_colletion_relationship}' maxlen='10'/>
+	<parameter id='rec_fecha_generacion' type='date' required='false' label='${lbl:b_generation_date}' maxlen='10'/>
+	<parameter id='rec_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='rec_estatus' rule='like' />
+</validator>

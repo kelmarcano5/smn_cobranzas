@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_modulo_rf' type='integer' required='false' label='${lbl:b_module}' maxlen='10'/>
+	<parameter id='smn_doc_orig_rf' type='integer' required='false' label='${lbl:b_document_origen}' maxlen='10'/>
+	<parameter id='smn_num_doc_orig' type='integer' required='false' label='${lbl:b_number_document_origen}' maxlen='10'/>
+	<parameter id='smn_documento_id_name' type='varchar' required='false' label='${lbl:b_document}'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='rco_estatus_proceso' type='varchar' required='false' label='${lbl:b_status_process}' maxlen='2'/>
+	<custom-validator classname='dinamica.validators.SQLPatternTransformer' parameter='rco_estatus_proceso' rule='like' />
+	<parameter id='rco_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date} mayor o igual que] no puede ser mayor que [${lbl:b_store_date} menor o igual que].' date1='rco_fecha_registro_ini' date2='rco_fecha_registro_fin' id='rco_fecha_registro_ini' />
+	<parameter id='rco_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}' maxlen='10'/>
+
+	<parameter id='smn_empresa_rf' type='integer' required='false' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiary}' maxlen='10'/>
+
+</validator>

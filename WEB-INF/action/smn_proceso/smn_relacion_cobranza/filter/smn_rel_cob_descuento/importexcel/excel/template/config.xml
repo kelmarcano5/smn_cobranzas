@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelcobdescuento.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_discount_collection_relations}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_discount_collection_relations}">
+				<col id='smn_relacion_cobranza_id' label='${lbl:b_collection_relations}' />
+		<col id='smn_codigo_descuento_rf' label='${lbl:b_discount_code}' />
+		<col id='rcd_monto_descuento_ml' label='${lbl:b_discount_amount_ml}' />
+		<col id='smn_moneda_rf' label='${lbl:b_currency}' />
+		<col id='rcd_monto_descuento_ma' label='${lbl:b_discount_amount_ma}' />
+		<col id='rcd_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

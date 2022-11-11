@@ -1,0 +1,19 @@
+select
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id,
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_modulo_origen_rf as smn_modulo_origen_rf_pl0,
+	smn_cobranzas.smn_tipo_documento.smn_tipo_documento_id,
+	smn_cobranzas.smn_tipo_documento.tdo_codigo as tdo_codigo_pl1,
+	smn_cobranzas.smn_documento.smn_documento_id,
+	smn_cobranzas.smn_documento.doc_codigo as doc_codigo_pl2,
+	smn_cobranzas.smn_mov_documento_cob_detalle.*
+from
+	smn_cobranzas.smn_mov_documento_cob_cab,
+	smn_cobranzas.smn_tipo_documento,
+	smn_cobranzas.smn_documento,
+	smn_cobranzas.smn_mov_documento_cob_detalle
+where
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id=smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_cab_id and
+	smn_cobranzas.smn_tipo_documento.smn_tipo_documento_id=smn_cobranzas.smn_mov_documento_cob_detalle.smn_tipo_documento_id and
+	smn_cobranzas.smn_documento.smn_documento_id=smn_cobranzas.smn_mov_documento_cob_detalle.smn_documento_id
+	and
+	smn_mov_documento_cob_det_id = ${fld:id}

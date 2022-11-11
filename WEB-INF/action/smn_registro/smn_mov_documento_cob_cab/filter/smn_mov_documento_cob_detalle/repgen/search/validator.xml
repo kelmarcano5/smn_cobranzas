@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_mov_documento_cob_cab_id_name' type='varchar' required='false' label='${lbl:b_doc_mov_head_charg}'/>
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='false' label='${lbl:b_doc_mov_head_charg}' maxlen='10'/>
+	<parameter id='smn_tipo_documento_id_name' type='varchar' required='false' label='${lbl:b_document_type}'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='smn_documento_id_name' type='varchar' required='false' label='${lbl:b_document_type}'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='mdd_numero_documento' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' label='${lbl:b_cost_centers}' maxlen='10'/>
+	<parameter id='mdd_monto_ml' type='double' required='false' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='mdd_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdd_fecha_pago' type='date' required='false' label='${lbl:b_payment_date}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='mdd_diferencia_cambiario' type='double' required='false' label='${lbl:b_exchange_rate_difference}' maxlen='10'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_mov_documento_cob_cab_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_tipo_documento_id_name'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_documento_id_name'
+		rule='contains' />
+
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

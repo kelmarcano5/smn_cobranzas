@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/alert'>
+	<parameter id="id" type="integer" required="true" label="ID ${lbl:b_movement_document_collection_detail}" maxlen="10"/>
+	<parameter id="id2" type="integer" required="true" label="ID ${lbl:b_doc_mov_head_charg}" maxlen="10"/>
+	<parameter id="mdc_saldo_doc_ml" type="double" required="false" label="${lbl:b_amount_ml}" maxlen="20"/>
+	<parameter id="mdc_saldo_doc_ma" type="double" required="false" label="${lbl:b_amount_ma}" maxlen="20"/>
+</validator>

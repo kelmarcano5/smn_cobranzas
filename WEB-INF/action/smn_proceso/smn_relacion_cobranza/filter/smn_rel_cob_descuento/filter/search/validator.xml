@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='filter.params' onerror='/action/error/validation/ajax'>
+	<parameter id='smn_codigo_descuento_rf' type='integer' required='false' label='${lbl:b_discount_code}' maxlen='10'/>
+	<parameter id='rcd_monto_descuento_ml' type='double' required='false' label='${lbl:b_discount_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='rcd_fecha_registro_ini' type='date' required='false' label='${lbl:b_store_date}@ inicial' maxlen='10'/>
+	<custom-validator classname='dinamica.validators.DateRangeValidator' on-error-label='[${lbl:b_store_date}@ inicial mayor o igual que] no puede ser mayor que [${lbl:b_store_date}@ final menor o igual que].' date1='rcd_fecha_registro_ini' date2='rcd_fecha_registro_fin' id='rcd_fecha_registro_ini' />
+	<parameter id='rcd_fecha_registro_fin' type='date' required='false' label='${lbl:b_store_date}@ final' maxlen='10'/>
+</validator>

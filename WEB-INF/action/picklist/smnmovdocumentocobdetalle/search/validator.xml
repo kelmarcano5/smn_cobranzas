@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/crud'>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document_type}' maxlen='10'/>
+	<parameter id='mdd_numero_documento' type='integer' required='false' label='${lbl:b_document_number}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='${lbl:b_customer}' maxlen='10'/>
+</validator>

@@ -1,0 +1,1 @@
+select smn_base.smn_perfil.smn_perfil_id as id, smn_base.smn_perfil.prf_codigo || ' - ' || smn_base.smn_perfil.prf_descripcion as item from smn_base.smn_perfil

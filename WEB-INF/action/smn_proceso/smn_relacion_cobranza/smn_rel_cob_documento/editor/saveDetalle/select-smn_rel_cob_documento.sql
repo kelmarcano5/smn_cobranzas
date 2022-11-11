@@ -1,0 +1,6 @@
+SELECT
+	smn_mov_documento_cob_cab_id
+FROM
+	smn_cobranzas.smn_rel_cob_documento
+WHERE
+	smn_relacion_cobranza_id=${fld:smn_relacion_cobranza_id}

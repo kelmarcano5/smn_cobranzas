@@ -1,0 +1,3 @@
+<rows>
+mds_fecha_registro="${fld:mds_fecha_registro}"    mds_monto_descuento_ma="${fld:mds_monto_descuento_ma}"    smn_tasa_rf="${fld:smn_tasa_rf}"    smn_moneda_rf="${fld:smn_moneda_rf}"    mds_monto_descuento_ml="${fld:mds_monto_descuento_ml}"    mds_base="${fld:mds_base}"    mds_porcentaje="${fld:mds_porcentaje}"    smn_codigo_descuento_id="${fld:smn_codigo_descuento_id}"    smn_mov_documento_cob_det_id="${fld:smn_mov_documento_cob_det_id}"    
+</rows>

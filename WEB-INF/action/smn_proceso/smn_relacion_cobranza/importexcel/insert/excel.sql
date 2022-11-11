@@ -1,0 +1,38 @@
+INSERT INTO smn_cobranzas.smn_relacion_cobranza
+(
+	smn_relacion_cobranza_id,
+	smn_modulo_rf,
+	smn_doc_orig_rf,
+	smn_num_doc_orig,
+	smn_documento_id,
+	rco_numero_documento,
+	smn_cliente_rf,
+	rco_monto_bruto_cob_ml,
+	smn_moneda_rf,
+	rco_monto_bruto_cob_ma,
+	rco_monto_desc_ret_cob_ml,
+	rco_monto_desc_ret_cob_ma,
+	rco_monto_neto_cob_ml,
+	rco_monto_neto_cob_ma,
+	rco_estatus_proceso,
+	rco_fecha_registro
+)
+VALUES
+(
+	${seq:nextval@smn_cobranzas.seq_smn_relacion_cobranza},
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	?,
+	{d '${def:date}'}
+)

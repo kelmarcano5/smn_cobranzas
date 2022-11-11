@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_mov_documento_cob_detalle>
+	<detail>
+		<rows>		
+		<record mdd_fecha_registro="${fld:mdd_fecha_registro}"    mdd_diferencia_cambiario="${fld:mdd_diferencia_cambiario}"    smn_tasa_rf="${fld:smn_tasa_rf}"    mdd_fecha_pago="${fld:mdd_fecha_pago}"    mdd_monto_ma="${fld:mdd_monto_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    mdd_monto_ml="${fld:mdd_monto_ml}"    smn_centro_costo_rf="${fld:smn_centro_costo_rf}"    smn_cliente_rf="${fld:smn_cliente_rf}"    mdd_numero_documento="${fld:mdd_numero_documento}"    smn_documento_id="${fld:smn_documento_id}"    smn_tipo_documento_id="${fld:smn_tipo_documento_id}"    smn_mov_documento_cob_cab_id="${fld:smn_mov_documento_cob_cab_id}"    smn_mov_documento_cob_det_id="${fld:smn_mov_documento_cob_det_id}"    />
+		</rows>
+	</detail>
+</smn_mov_documento_cob_detalle>

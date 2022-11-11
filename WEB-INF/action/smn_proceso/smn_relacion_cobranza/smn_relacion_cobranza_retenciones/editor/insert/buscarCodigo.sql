@@ -1,0 +1,6 @@
+select
+		smn_cobranzas.smn_relacion_cobranza_retenciones.smn_codigo_retenciones_rf
+from
+		smn_cobranzas.smn_relacion_cobranza_retenciones
+where
+		smn_cobranzas.smn_relacion_cobranza_retenciones.smn_codigo_retenciones_rf = ${fld:smn_codigo_retenciones_rf}

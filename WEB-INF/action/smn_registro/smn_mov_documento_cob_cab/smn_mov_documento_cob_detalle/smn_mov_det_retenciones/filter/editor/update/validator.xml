@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_mov_documento_cob_det_id' type='integer' required='true' label='${lbl:b_movement_document_collection_detail}' maxlen='10'/>
+	<parameter id='smn_codigo_impuesto_id' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+	<parameter id='mdr_porcentaje' type='double' required='false' label='${lbl:b_percentage}' maxlen='10'/>
+	<parameter id='mdr_base' type='double' required='false' label='${lbl:b_base}' maxlen='10'/>
+	<parameter id='mdr_monto_retenciones_ml' type='double' required='true' label='${lbl:b_retentions_amount_ml}' maxlen='36'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='mdr_monto_retenciones_ma' type='double' required='false' label='${lbl:b_retentions_amount_ma}' maxlen='36'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_det_retention_mov}' maxlen='10'/>
+
+
+</validator>

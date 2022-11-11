@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+	<col width='13%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="10" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_codigos_impuestos_rf_combo','query-smnrelcobimpuesto.sql')" >${lbl:b_tax_code}</th>
+		<th class='sortable' onclick="sortBy('rci_monto_base','query-smnrelcobimpuesto.sql')" >${lbl:b_base_amount}</th>
+		<th class='sortable' onclick="sortBy('smn_porcentaje_impuesto_rf','query-smnrelcobimpuesto.sql')" >${lbl:b_calculation_percentage}</th>
+		<th class='sortable' onclick="sortBy('rci_tipo_movimiento','query-smnrelcobimpuesto.sql')" >${lbl:b_movement_type}</th>
+		<th class='sortable' onclick="sortBy('rci_monto_impuesto_ml','query-smnrelcobimpuesto.sql')" >${lbl:b_tax_amount_ml}</th>
+		<th class='sortable' onclick="sortBy('rci_monto_impuesto_ma','query-smnrelcobimpuesto.sql')" >${lbl:b_tax_amount_ma}</th>
+		<th class='sortable' onclick="sortBy('rci_fecha_registro','query-smnrelcobimpuesto.sql')" >${lbl:b_store_date}</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_rel_cob_impuesto_id}')" title="${lbl:b_view_detail}"></td>
+		<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_rel_cob_impuesto_id}')" title="${lbl:b_delete_button}"></td>
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_rel_cob_impuesto_id}')" title="${lbl:b_edit_button}"></td>
+		<td align="center">${fld:smn_codigos_impuestos_rf_combo}</td>
+		<td align="right">${fld:rci_monto_base@#,###,##0.00}</td>
+		<td align="center">${fld:smn_porcentaje_impuesto_rf} %</td>
+		<td align="center">${fld:rci_tipo_movimiento}</td>
+		<td align="right">${fld:rci_monto_impuesto_ml@#,###,##0.00}</td>
+		<td align="right">${fld:rci_monto_impuesto_ma@#,###,##0.00}</td>
+		<td align="center">${fld:rci_fecha_registro@dd-MM-yyyy}</td>
+
+	</tr>
+	</rows>
+
+</table>

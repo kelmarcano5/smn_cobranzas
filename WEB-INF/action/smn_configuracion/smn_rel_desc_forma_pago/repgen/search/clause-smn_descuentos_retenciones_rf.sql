@@ -1,0 +1,2 @@
+ and
+ 	smn_cobranzas.smn_rel_desc_forma_pago.smn_descuentos_retenciones_rf=${fld:smn_descuentos_retenciones_rf}

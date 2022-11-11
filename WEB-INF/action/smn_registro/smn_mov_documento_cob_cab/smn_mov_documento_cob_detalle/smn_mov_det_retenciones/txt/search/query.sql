@@ -1,0 +1,14 @@
+select
+		smn_cobranzas.smn_mov_det_retenciones.smn_mov_det_retenciones_id,
+	smn_cobranzas.smn_mov_det_retenciones.smn_mov_documento_cob_det_id,
+	smn_cobranzas.smn_mov_det_retenciones.smn_codigo_impuesto_id,
+	smn_cobranzas.smn_mov_det_retenciones.mdr_porcentaje,
+	smn_cobranzas.smn_mov_det_retenciones.mdr_base,
+	smn_cobranzas.smn_mov_det_retenciones.mdr_monto_retenciones_ml,
+	smn_cobranzas.smn_mov_det_retenciones.smn_moneda_rf,
+	smn_cobranzas.smn_mov_det_retenciones.smn_tasa_rf,
+	smn_cobranzas.smn_mov_det_retenciones.mdr_monto_retenciones_ma,
+	smn_cobranzas.smn_mov_det_retenciones.mdr_fecha_registro
+	
+from
+	smn_cobranzas.smn_mov_det_retenciones

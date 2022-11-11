@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelcomisiones.sql" source="session" scope="transaction" />
+		<recordset id="filter.params" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_commission_relations}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
+	<pdf-file-name>${lbl:b_commission_relations}.pdf</pdf-file-name>
+
+	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
+		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
+			<col name='smn_cliente_rf' title='${lbl:b_cliente}'  format='######' align='left' />
+			<col name='smn_rol_id_name' title='${lbl:b_role}'  align='left' />
+			<col name='com_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='com_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+
+		</record>
+		<record recordset='query-smnrelcomisiones.sql' width='100' spacingBefore='10'>
+			<col name='smn_relacion_cobranza_id' title='${lbl:b_collection_relations}' width='5' align='left' format='######' />
+			<col name='smn_reglas_comisiones_id' title='${lbl:b_commission_rules}' width='5' align='left' format='######' />
+			<col name='smn_cliente_rf' title='${lbl:b_cliente}' width='5' align='left' format='######' />
+			<col name='rol_tipo_pl3' title='${lbl:b_role}' width='5' align='left' />
+			<col name='com_monto_relacion_ml' title='${lbl:b_relation_amount}' width='5' align='left' format='#,###,##0.00' />
+			<col name='smn_moneda_rf' title='${lbl:b_currency}' width='5' align='left' format='######' />
+			<col name='com_monto_relacion_ma' title='${lbl:b_com_amount_ma}' width='5' align='left' format='#,###,##0.00' />
+			<col name='com_porcentaje' title='${lbl:b_percentage}' width='5' align='left' format='#,###,##0.00' />
+			<col name='com_monto_comision_ml' title='${lbl:b_comission_amount_ml}' width='5' align='left' format='#,###,##0.00' />
+			<col name='com_monto_comision_ma' title='${lbl:b_comission_amount_ma}' width='5' align='left' format='#,###,##0.00' />
+			<col name='com_estatus_proceso' title='${lbl:b_process_status}' width='5' align='left' />
+			<col name='com_estatus_financiero' title='${lbl:b_financial_status}' width='5' align='left' />
+			<col name='com_motivo_rechazo' title='${lbl:b_rejection_reason}' width='5' align='left' />
+			<col name='com_idioma' title='${lbl:s_profile_lang}' width='5' align='left' />
+			<col name='com_usuario' title='${lbl:b_users}' width='5' align='left' />
+			<col name='com_fecha_registro' title='${lbl:b_store_date}' width='5' align='left' format='dd-MM-yyyy' />
+			<col name='com_hora' title='${lbl:s_loginhist_col2}' width='5' align='left' />
+
+		</record>
+
+	</pdf-report>
+</config>

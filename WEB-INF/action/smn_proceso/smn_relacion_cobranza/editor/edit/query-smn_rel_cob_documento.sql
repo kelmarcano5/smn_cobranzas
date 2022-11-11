@@ -1,0 +1,11 @@
+select	
+	smn_cobranzas.smn_tipo_documento.tdo_descripcion AS smn_tipo_documento_id,
+	smn_cobranzas.smn_documento.doc_descripcion AS smn_documento_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_det_id
+from 
+	smn_cobranzas.smn_rel_cob_documento
+	inner join smn_cobranzas.smn_mov_documento_cob_detalle on smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_det_id = smn_cobranzas.smn_rel_cob_documento.smn_mov_documento_cob_det_id
+	inner join smn_cobranzas.smn_documento ON smn_cobranzas.smn_documento.smn_documento_id = smn_cobranzas.smn_mov_documento_cob_detalle.smn_documento_id
+	inner join smn_cobranzas.smn_tipo_documento ON smn_cobranzas.smn_tipo_documento.smn_tipo_documento_id = smn_cobranzas.smn_mov_documento_cob_detalle.smn_tipo_documento_id
+where 
+	smn_cobranzas.smn_rel_cob_documento.smn_relacion_cobranza_id = ${fld:id}

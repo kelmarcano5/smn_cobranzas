@@ -1,0 +1,17 @@
+select
+		smn_cobranzas.smn_relacion_envio_cobranza.smn_entidad_rf,
+	smn_cobranzas.smn_relacion_envio_cobranza.smn_sucursal_rf,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_numero,
+	smn_cobranzas.smn_relacion_envio_cobranza.smn_cliente_rf,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_fecha_generacion,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_fecha_entrega,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_ejecutivo_recibe,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_monto_ml,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_monto_ma,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_cantidad_documento,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_estatus,
+	smn_cobranzas.smn_relacion_envio_cobranza.rec_fecha_registro
+from
+	smn_cobranzas.smn_relacion_envio_cobranza 
+where
+	smn_cobranzas.smn_relacion_envio_cobranza.smn_relacion_envio_cobranza_id = ${fld:id}

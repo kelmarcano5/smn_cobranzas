@@ -1,0 +1,16 @@
+select
+		smn_cobranzas.smn_rel_cob_impuesto.smn_relacion_cobranza_id,
+	smn_cobranzas.smn_rel_cob_impuesto.smn_codigos_impuestos_rf,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_monto_base,
+	smn_cobranzas.smn_rel_cob_impuesto.smn_porcentaje_impuesto_rf,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_sustraendo_rf,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_tipo_movimiento,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_monto_impuesto_ml,
+	smn_cobranzas.smn_rel_cob_impuesto.smn_moneda,
+	smn_cobranzas.smn_rel_cob_impuesto.smn_tasa,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_monto_impuesto_ma,
+	smn_cobranzas.smn_rel_cob_impuesto.rci_fecha_registro
+from
+	smn_cobranzas.smn_rel_cob_impuesto 
+where
+	smn_cobranzas.smn_rel_cob_impuesto.smn_rel_cob_impuesto_id = ${fld:id}

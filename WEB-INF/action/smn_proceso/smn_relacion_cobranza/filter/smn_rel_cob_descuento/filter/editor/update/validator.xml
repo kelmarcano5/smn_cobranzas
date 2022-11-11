@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='true' label='${lbl:b_collection_relations}' maxlen='10'/>
+	<parameter id='smn_codigo_descuento_rf' type='integer' required='true' label='${lbl:b_discount_code}' maxlen='10'/>
+	<parameter id='rcd_monto_descuento_ml' type='double' required='true' label='${lbl:b_discount_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='rcd_monto_descuento_ma' type='double' required='false' label='${lbl:b_discount_amount_ma}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_discount_collection_relations}' maxlen='10'/>
+
+
+</validator>

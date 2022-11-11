@@ -1,0 +1,55 @@
+<!--data grid-->
+<table class="datagrid" style="width:90%;">
+
+	<col width='3%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+	<col width='9%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th class='sortable' onclick="sortBy('smn_relacion_cobranza_id_combo','query-smncomisiones.sql')" >${lbl:b_colletion_relationship}</th>
+		<th class='sortable' onclick="sortBy('smn_reglas_comisiones_id_combo','query-smncomisiones.sql')" >${lbl:b_commision_rules}</th>
+		<th class='sortable' onclick="sortBy('com_fecha_proceso','query-smncomisiones.sql')" >${lbl:b_process_date}</th>
+		<th class='sortable' onclick="sortBy('smn_cliente_rf_combo','query-smncomisiones.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('smn_entidad_rf_combo','query-smncomisiones.sql')" >${lbl:b_entity}</th>
+		<th class='sortable' onclick="sortBy('com_monto_relacion_ml','query-smncomisiones.sql')" >${lbl:b_relation_amount}</th>
+		<th class='sortable' onclick="sortBy('com_porcentaje','query-smncomisiones.sql')" >${lbl:b_percentage}</th>
+		<th class='sortable' onclick="sortBy('com_monto_comision_ml','query-smncomisiones.sql')" >${lbl:b_comission_amount_ml}</th>
+		<th class='sortable' onclick="sortBy('com_monto_comision_ma','query-smncomisiones.sql')" >${lbl:b_comission_amount_ma}</th>
+		<th class='sortable' onclick="sortBy('com_fecha_registro','query-smncomisiones.sql')" >${lbl:b_store_date}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_saldo_cliente_id}')" title="Ver detalle"></td>
+		<td align="center">${fld:smn_relacion_cobranza_id_combo}</td>
+		<td align="center">${fld:smn_reglas_comisiones_id_combo}</td>
+		<td align="center">${fld:com_fecha_proceso@dd-MM-yyyy}</td>
+		<td align="center">${fld:scl_fecha@dd-MM-yyyy}</td>
+		<td align="right">${fld:smn_cliente_rf_combo}</td>
+		<td align="left">${fld:smn_entidad_rf_combo}</td>
+		<td align="right">${fld:com_monto_relacion_ml@#,###,##0.00}</td>
+		<td align="right">${fld:com_monto_comision_ml@#,###,##0.00}</td>
+		<td align="right">${fld:com_monto_comision_ma@#,###,##0.00}</td>
+		<td align="center">${fld:com_fecha_registro@dd-MM-yyyy}</td>
+	</tr>
+	</rows>
+
+</table>

@@ -1,0 +1,1 @@
+select smn_comercial.smn_cliente.smn_cliente_id as id, smn_comercial.smn_cliente.cli_nacional_ext|| ' - ' || smn_comercial.smn_cliente.cli_usuario as item from smn_comercial.smn_cliente order by smn_comercial.smn_cliente.cli_usuario

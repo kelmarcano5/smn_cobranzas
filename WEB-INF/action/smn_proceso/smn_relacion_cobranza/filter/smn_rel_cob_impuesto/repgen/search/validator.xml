@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator id='repgen.filter' onerror='/action/error/validation/ajax'>
+
+	<parameter id='fdesde' type='date' required='false' label='Fecha desde'/>
+	<parameter id='fhasta' type='date' required='false' label='Fecha hasta'/>
+	
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='false' label='${lbl:b_colletion_relationship}' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' label='${lbl:b_tax_code}' maxlen='10'/>
+	<parameter id='rci_monto_base' type='double' required='false' label='${lbl:b_base_amount}' maxlen='17'/>
+	<parameter id='smn_porcentaje_impuesto_rf' type='integer' required='false' label='${lbl:b_base_percentage}' maxlen='10'/>
+	<parameter id='rci_sustraendo_rf' type='double' required='false' label='${lbl:b_subtrahend}' maxlen='17'/>
+	<parameter id='rci_tipo_movimiento' type='varchar' required='false' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='rci_monto_impuesto_ml' type='double' required='false' label='${lbl:b_tax_amount_ml}' maxlen='17'/>
+	<parameter id='smn_moneda' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='smn_tasa' type='integer' required='false' label='${lbl:b_rate}' maxlen='10'/>
+	<parameter id='rci_monto_impuesto_ma' type='double' required='false' label='${lbl:b_tax_amount_ma}' maxlen='17'/>
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='smn_codigos_impuestos_rf'
+		rule='contains' />
+
+	<custom-validator
+		classname='dinamica.validators.SQLPatternTransformer'
+		parameter='rci_tipo_movimiento'
+		rule='contains' />
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+	<custom-validator
+			classname='dinamica.validators.ArrayNotEmptyValidator'
+			on-error-label='Seleccione al menos un campo para la generación del reporte.'
+			parameter-name='field_id' 
+			id='field_id' />
+
+	<custom-validator 
+			classname='dinamica.validators.ArrayToRecordset'
+			paramName='field_id' 
+			recordsetId='fields' 
+			colName='field_id' 
+			colType='integer' />
+				
+</validator>

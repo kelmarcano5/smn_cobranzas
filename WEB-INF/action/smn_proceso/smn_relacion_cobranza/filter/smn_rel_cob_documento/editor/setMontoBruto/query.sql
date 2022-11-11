@@ -1,0 +1,8 @@
+SELECT 
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id AS id,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ml AS mdd_saldo_ml,
+	smn_cobranzas.smn_mov_documento_cob_cab.mdc_saldo_doc_ma AS mdd_saldo_ma
+FROM 
+	smn_cobranzas.smn_mov_documento_cob_cab
+WHERE
+	smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id=${fld:id}

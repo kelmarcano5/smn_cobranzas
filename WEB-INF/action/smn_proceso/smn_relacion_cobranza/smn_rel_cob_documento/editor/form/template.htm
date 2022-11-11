@@ -1,0 +1,667 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+	<script type="text/javascript" src="${def:context}/action/jquery">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_rel_cob_documento}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr>
+			<td>${lbl:b_colletion_relationship}*</td>
+			<td style="display: none;">
+				<input id="smn_relacion_cobranza_id" name="smn_relacion_cobranza_id" maxlength="10" class="numeric">
+			</td>
+			<td>
+				<input id="smn_relacion_cobranza_id_name" name="smn_relacion_cobranza_id_name" type="text" disabled>
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_pending_documents}</td>
+			<td>
+				<smn_mov_documento_cob_cab_id_rows>
+					<input class="smn_mov_documento_cob_cab_id" id="check-${fld:id}" name="check-${fld:id}" type="checkbox" value="${fld:id}" style="width:10px"> #${fld:item} = ${fld:mdc_saldo_doc_ml@#,###,##0.00} -> ${fld:mdc_saldo_doc_ma@#,###,##0.00} <br>
+				</smn_mov_documento_cob_cab_id_rows>
+			</td>
+		</tr>
+		<tr id="impuestos">
+			<td>${lbl:b_account_type_tax}</td>
+			<td>
+				<select id="impuesto" name="impuesto" size="5" style="width:95%;"></select>
+				<br>
+		 		<div style="float:right;margin-right:12px; padding-top:7px">
+		 			[<a href="javascript:pickImpuestos()" class="impuestos" title="Agregar impuestos a la lista">${lbl:b_add_button}</a>]
+		 			[<a href="javascript:removeImpuestos()" class="impuestos" title="Remover un impuesto de la lista">${lbl:b_delete_button}</a>]
+		 		</div>
+		 		<input type="hidden" name="impuestos_id" id="impuestos_id">
+	 		</td>
+		</tr>
+		<tr id="descuentos">
+			<td>${lbl:b_discounts}</td>
+			<td>
+				<select id="descuento" name="descuento" size="5" style="width:95%;"></select>
+				<br>
+		 		<div style="float:right;margin-right:12px; padding-top:7px">
+		 			[<a href="javascript:pickDescuentos()" class="descuentos" title="Agregar descuento a la lista">${lbl:b_add_button}</a>]
+		 			[<a href="javascript:removeDescuentos()" class="descuentos" title="Remover un descuento de la lista">${lbl:b_delete_button}</a>]
+		 		</div>
+		 		<input type="hidden" name="descuentos_id" id="descuentos_id">
+	 		</td>
+		</tr>
+		<tr id="monto_descuento">
+			<td>${lbl:b_free_discount_amount}*</td>
+			<td>
+				<input id="monto_descuento_libre" name="monto_descuento_libre" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="porc_base_descuento">
+			<td>${lbl:b_base_percentage}</td>
+			<td>
+				<input id="porc_base_descuento_libre" name="porc_base_descuento_libre" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="porc_descuento">
+			<td>${lbl:b_calculation_percentage}</td>
+			<td>
+				<input id="porc_descuento_libre" name="porc_descuento_libre" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_bruto_ml">
+			<td>${lbl:b_invoice_amount_local_currency}</td>
+			<td>
+				<input disabled id="rcd_monto_bruto_ml" name="rcd_monto_bruto_ml" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_bruto_ma">
+			<td>${lbl:b_alternate_currency_invoice_amount}</td>
+			<td>
+				<input disabled id="rcd_monto_bruto_ma" name="rcd_monto_bruto_ma" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_disminucion_ml">
+			<td>${lbl:b_decrease_amount_ml}</td>
+			<td>
+				<input disabled id="rcd_monto_disminucion_ml" name="rcd_monto_disminucion_ml" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_disminucion_ma">
+			<td>${lbl:b_decrease_amount_ma}</td>
+			<td>
+				<input disabled id="rcd_monto_disminucion_ma" name="rcd_monto_disminucion_ma" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_valor_agregado_ml">
+			<td>${lbl:b_agree_value_amount_ml}</td>
+			<td>
+				<input disabled id="rcd_monto_valor_agregado_ml" name="rcd_monto_valor_agregado_ml" type="text" maxlength="20" class="numeric" onchange="calcularmontonetoml();">
+			</td>
+		</tr>
+		<tr id="valor_agregado_ma">
+			<td>${lbl:b_agree_value_amount_ma}</td>
+			<td>
+				<input disabled id="rcd_monto_valor_agregado_ma" name="rcd_monto_valor_agregado_ma" type="text" maxlength="20" class="numeric" onchange="calcularmontonetoma();">
+			</td>
+		</tr>
+		<tr id="monto_neto_ml">
+			<td>${lbl:b_net_document_amount_ml}</td>
+			<td>
+				<input disabled id="rcd_monto_neto_ml" name="rcd_monto_neto_ml" type="text" maxlength="20" class="numeric">
+				<input disabled id="subtotal_monto_neto_ml" name="subtotal_monto_neto_ml" type="hidden" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_neto_ma">
+			<td>${lbl:b_net_document_amount_ma}</td>
+			<td>
+				<input disabled id="rcd_monto_neto_ma" name="rcd_monto_neto_ma" type="text" maxlength="20" class="numeric">
+				<input disabled id="subtotal_monto_neto_ma" name="subtotal_monto_neto_ma" type="hidden" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="monto_diferencial_cambiario">
+			<td>${lbl:b_exchange_differential_amount}</td>
+			<td>
+				<input disabled id="rco_monto_diferencial_cambiario" name="rco_monto_diferencial_cambiario" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="diferencial_ml">
+			<td>${lbl:b_local_currency_differential}</td>
+			<td>
+				<input disabled id="rco_diferencial_ml" name="rco_diferencial_ml" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+		<tr id="diferencial_ma">
+			<td>${lbl:b_alternate_currency_differential}</td>
+			<td>
+				<input disabled id="rco_diferencial_ma" name="rco_diferencial_ma" type="text" maxlength="20" class="numeric">
+			</td>
+		</tr>
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+	<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+
+		$('#smn_relacion_cobranza_id').val('${fld:id2}');
+		$('#smn_relacion_cobranza_id_name').val('#${fld:rco_numero_documento} = ${fld:rco_monto_bruto_cob_ml@#,###,##0.00} -> ${fld:rco_monto_bruto_cob_ma@#,###,##0.00}');
+		$("#rcd_monto_bruto_ml").val(0);
+		$("#rcd_monto_bruto_ma").val(0);
+		$("#monto_descuento").css("display","none");
+		$("#porc_base_descuento").css("display","none");
+		$("#porc_descuento").css("display","none");
+
+		$('.smn_mov_documento_cob_cab_id').each(function(){
+			documento_id=$(this).val();
+
+			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/validarDoc?smn_mov_documento_cob_cab_id=" + documento_id + "&smn_relacion_cobranza_id=${fld:id2}", 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+		});
+		
+		/*if (id!="")
+			edit(id);*/
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+		var contDoc = 0;
+		var cobranza_id = $('#smn_relacion_cobranza_id').val();
+		var documento_id;
+
+		$('.smn_mov_documento_cob_cab_id:checked').each(function() {
+			contDoc++;
+			documento_id=$(this).val();
+
+			if(!$(this).is(':disabled'))
+			{
+				ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/insert?smn_mov_documento_cob_cab_id="+documento_id+"&smn_relacion_cobranza_id="+cobranza_id, 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+			}
+			
+			if (contDoc==$(this).length) 
+        	{
+        	   	saveImpuestosDescuentos();
+        	}
+		});
+		
+		return false;
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+
+	//grabar el formulario
+	function save()
+	{
+		var rco_diferencial_ma = $("#rco_diferencial_ma").val();
+
+		if(rco_diferencial_ma>0)
+		{
+			listboxClear("impuesto");
+
+			$("#rcd_monto_valor_agregado_ml").val("");
+			$("#rcd_monto_valor_agregado_ma").val("");
+			$("#rcd_monto_disminucion_ml").val("");
+			$("#rcd_monto_disminucion_ma").val("");
+
+			$("#descuento option").each(function(){
+				descuento_id=$(this).val();
+				ajaxCall(httpMethod="GET", 
+						uri="${def:actionroot}/recalcularDescuentos?smn_codigos_descuentos_id=" + descuento_id +"&accion=AG&abono=SI", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+						onErrorFn=null);
+			});
+		}
+
+		//convertir los IDs de los items
+		//del listbox a una lista de valores separados por ";"
+		document.form1.impuestos_id.value = listboxGetItemValues("impuesto");
+		document.form1.descuentos_id.value = listboxGetItemValues("descuento");
+
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+			
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//desplegar picklist de seleccion multiple
+	function pickImpuestos()
+	{
+ 		var url = "${def:context}${def:actionroot}/picklist_impuesto/form";
+ 		pickOpen ('impuesto','impuestos_id',url,'600','300',true);
+ 	}
+	
+	//llamada por el picklist para añadir un item al listbox
+	function selectImpuestos(id, title, tipo_codigo, porcentaje_base, porcentaje_calculo, monto_sustraendo) 
+	{
+ 		var registro = listboxAddItem("impuesto", id, title);
+ 		
+ 		if (registro!=false)
+ 		{
+ 			calcularImpuestos(tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo,'AG');
+ 		}
+ 	}
+
+	//remover un item del listbox
+	function removeImpuestos() 
+	{
+ 		if (document.form1.impuesto.selectedIndex == -1) 
+ 		{
+ 			alertBox('Por favor seleccione el impuesto de la lista que desea remover.', 'Aceptar', null, null);
+ 			return;
+ 		}
+
+ 		listboxRemoveItem("impuesto");
+ 	}
+
+ 	//desplegar picklist de seleccion multiple
+	function pickDescuentos()
+	{
+ 		var url = "${def:context}${def:actionroot}/picklist_descuento/form?smn_relacion_cobranza_id=${fld:id2}";
+ 		pickOpen ('descuento','descuentos_id',url,'600','300',true);
+ 	}
+	
+	//llamada por el picklist para añadir un item al listbox
+	function selectDescuentos(id, title, porcentaje_base, porcentaje_descuento, dyr_apli_cant_precio, monto_descuento) 
+	{
+		if(dyr_apli_cant_precio=="TL")
+		{
+			$("#monto_descuento").css("display","");
+			$("#porc_base_descuento_libre").val(porcentaje_base);
+			$("#porc_descuento_libre").val(porcentaje_descuento);
+			$("#monto_descuento_libre").val(monto_descuento);
+		}
+
+ 		var registro = listboxAddItem("descuento", id, title);
+ 		if (registro!=false)
+ 		{
+ 			calcularDescuentos(porcentaje_base,porcentaje_descuento,'AG',"NO");
+ 		}
+ 	}
+
+	//remover un item del listbox
+	function removeDescuentos() 
+	{
+ 		if (document.form1.descuento.selectedIndex == -1) 
+ 		{
+ 			alertBox('Por favor seleccione el descuento de la lista que desea remover.', 'Aceptar', null, null);
+ 			return;
+ 		}
+
+ 		listboxRemoveItem("descuento");
+ 	}
+	
+	$(".smn_mov_documento_cob_cab_id").click(function() {
+		var id  = $(this).val();
+		var id2 = $("#smn_relacion_cobranza_id").val();
+
+		ajaxCall(httpMethod="GET", 
+				 	uri="${def:actionroot}/setMontoBruto?id=" + id + "&id2=" + id2, 
+					divResponse=null, 
+					divProgress="status", 
+					formName=null, 
+					afterResponseFn=null, 
+					onErrorFn=null);
+	});
+
+	function calcularImpuestos(tipo_codigo,porcentaje_base,porcentaje_calculo,monto_sustraendo,accion) 
+	{
+		var rcd_monto_bruto_ml=$("#rcd_monto_bruto_ml").val();
+		var rcd_monto_bruto_ma=$("#rcd_monto_bruto_ma").val();
+		var rcd_monto_disminucion_ml=$("#rcd_monto_disminucion_ml").val();
+		var rcd_monto_disminucion_ma=$("#rcd_monto_disminucion_ma").val();
+		var rcd_monto_valor_agregado_ml=$("#rcd_monto_valor_agregado_ml").val();
+		var rcd_monto_valor_agregado_ma=$("#rcd_monto_valor_agregado_ma").val();
+		var subtotal_monto_neto_ml=$("#subtotal_monto_neto_ml").val();
+		var subtotal_monto_neto_ma=$("#subtotal_monto_neto_ma").val();
+		var rcd_monto_neto_ml=$("#rcd_monto_neto_ml").val();
+		var rcd_monto_neto_ma=$("#rcd_monto_neto_ma").val();
+		var total_ml;
+		var total_ma;
+		var rco_monto_diferencial_cambiario;
+		var rco_diferencial_ml;
+		var rco_diferencial_ma;
+
+		if(rcd_monto_bruto_ml=="")
+			rcd_monto_bruto_ml=0;
+
+		if(rcd_monto_bruto_ma=="")
+			rcd_monto_bruto_ma=0;
+
+		if(rcd_monto_disminucion_ml=="")
+			rcd_monto_disminucion_ml=0;
+
+		if(rcd_monto_disminucion_ma=="")
+			rcd_monto_disminucion_ma=0;
+
+		if(rcd_monto_valor_agregado_ml=="")
+			rcd_monto_valor_agregado_ml=0;
+
+		if(rcd_monto_valor_agregado_ma=="")
+			rcd_monto_valor_agregado_ma=0;
+
+		if(rcd_monto_neto_ml=="")
+			rcd_monto_neto_ml=rcd_monto_bruto_ml;
+
+		if(rcd_monto_neto_ma=="")
+			rcd_monto_neto_ma=rcd_monto_bruto_ma;
+
+		if(subtotal_monto_neto_ml=="")
+			subtotal_monto_neto_ml=rcd_monto_bruto_ml;
+
+		if(subtotal_monto_neto_ma=="")
+			subtotal_monto_neto_ma=rcd_monto_bruto_ma;
+
+		if(porcentaje_base=="")
+			porcentaje_base=0;
+
+		if(porcentaje_calculo=="")
+			porcentaje_calculo=0;
+
+		if(monto_sustraendo=="")
+			monto_sustraendo=0;
+
+		total_ml = (subtotal_monto_neto_ml*porcentaje_base)/100;
+		total_ml = (total_ml*porcentaje_calculo)/100;
+		total_ml = parseFloat(total_ml) - parseFloat(monto_sustraendo);
+			
+		total_ma = (subtotal_monto_neto_ma*porcentaje_base)/100;
+		total_ma = (total_ma*porcentaje_calculo)/100;
+		total_ma = parseFloat(total_ma) - parseFloat(monto_sustraendo);	
+		
+		if(tipo_codigo == 'RE')
+		{
+			total_ml = total_ml*-1;
+			total_ma = total_ma*-1;
+		}
+
+		if(accion=='AG') //AG=AGREGAR
+		{
+			rcd_monto_valor_agregado_ml=parseFloat(rcd_monto_valor_agregado_ml)+total_ml;
+			rcd_monto_valor_agregado_ma=parseFloat(rcd_monto_valor_agregado_ma)+total_ma;
+		}
+		else
+		if(accion=='EL') //EL=ELIMINAR
+		{
+			mde_monto_valor_agregado_ml=parseFloat(mde_monto_valor_agregado_ml)-total_ml;
+			mde_monto_valor_agregado_ma=parseFloat(mde_monto_valor_agregado_ma)-total_ma;
+		}
+
+		rcd_monto_neto_ml=parseFloat(rcd_monto_bruto_ml)+rcd_monto_valor_agregado_ml-parseFloat(rcd_monto_disminucion_ml);
+		rcd_monto_neto_ma=parseFloat(rcd_monto_bruto_ma)+rcd_monto_valor_agregado_ma-parseFloat(rcd_monto_disminucion_ma);
+
+		rco_monto_diferencial_cambiario=parseFloat(${fld:rco_monto_bruto_cob_ml})-rcd_monto_neto_ml;
+		rco_diferencial_ml=rcd_monto_neto_ml+rco_monto_diferencial_cambiario;
+		rco_diferencial_ma=rcd_monto_neto_ma-${fld:rco_monto_bruto_cob_ma};
+
+		$("#rcd_monto_valor_agregado_ml").val(rcd_monto_valor_agregado_ml.toFixed(2));
+		$("#rcd_monto_valor_agregado_ma").val(rcd_monto_valor_agregado_ma.toFixed(2));
+		$("#rcd_monto_neto_ml").val(rcd_monto_neto_ml.toFixed(2));
+		$("#rcd_monto_neto_ma").val(rcd_monto_neto_ma.toFixed(2));
+		$("#rco_monto_diferencial_cambiario").val(rco_monto_diferencial_cambiario.toFixed(2));
+		$("#rco_diferencial_ml").val(rco_diferencial_ml.toFixed(2));
+		$("#rco_diferencial_ma").val(rco_diferencial_ma.toFixed(2));
+	}
+
+	function calcularDescuentos(porcentaje_base,porcentaje_descuento,accion,abono) 
+	{
+		var rcd_monto_bruto_ml=$("#rcd_monto_bruto_ml").val();
+		var rcd_monto_bruto_ma=$("#rcd_monto_bruto_ma").val();
+		var rcd_monto_disminucion_ml=$("#rcd_monto_disminucion_ml").val();
+		var rcd_monto_disminucion_ma=$("#rcd_monto_disminucion_ma").val();
+		var rcd_monto_neto_ml=$("#rcd_monto_neto_ml").val();
+		var rcd_monto_neto_ma=$("#rcd_monto_neto_ma").val();
+		var rco_monto_diferencial_cambiario;
+		var rco_diferencial_ml;
+		var rco_diferencial_ma;
+		var impuesto_id;
+		var total_ml;
+		var total_ma;
+
+		if(rcd_monto_bruto_ml=="")
+			rcd_monto_bruto_ml=0;
+
+		if(rcd_monto_bruto_ma=="")
+			rcd_monto_bruto_ma=0;
+
+		if(rcd_monto_disminucion_ml=="")
+			rcd_monto_disminucion_ml=0;
+
+		if(rcd_monto_disminucion_ma=="")
+			rcd_monto_disminucion_ma=0;
+
+		if(rcd_monto_neto_ml=="")
+			rcd_monto_neto_ml=rcd_monto_bruto_ml;
+
+		if(rcd_monto_neto_ma=="")
+			rcd_monto_neto_ma=rcd_monto_bruto_ma;
+
+		if(porcentaje_base=="")
+			porcentaje_base=0;
+
+		if(porcentaje_descuento=="")
+			porcentaje_descuento=0;
+
+		
+		if (abono=="SI") 
+		{
+			total_ml = (parseFloat(${fld:rco_monto_bruto_cob_ml})*porcentaje_base)/100;
+			total_ml = (total_ml*porcentaje_descuento)/100;
+
+			total_ma = (parseFloat(${fld:rco_monto_bruto_cob_ma})*porcentaje_base)/100;
+			total_ma = (total_ma*porcentaje_descuento)/100;
+		}
+		else
+		{
+			total_ml = (rcd_monto_bruto_ml*porcentaje_base)/100;
+			total_ml = (total_ml*porcentaje_descuento)/100;
+
+			total_ma = (rcd_monto_bruto_ma*porcentaje_base)/100;
+			total_ma = (total_ma*porcentaje_descuento)/100;
+		}
+
+		if(accion=='AG') //AG=AGREGAR
+		{
+			rcd_monto_disminucion_ml=parseFloat(rcd_monto_disminucion_ml)+total_ml;
+			rcd_monto_disminucion_ma=parseFloat(rcd_monto_disminucion_ma)+total_ma;
+		}
+		else
+		if(accion=='EL') //EL=ELIMINAR
+		{
+			rcd_monto_disminucion_ml=parseFloat(rcd_monto_disminucion_ml)-total_ml;
+			rcd_monto_disminucion_ma=parseFloat(rcd_monto_disminucion_ma)-total_ma;
+		}
+		
+		rcd_monto_neto_ml=parseFloat(rcd_monto_bruto_ml)-parseFloat(rcd_monto_disminucion_ml);
+		rcd_monto_neto_ma=parseFloat(rcd_monto_bruto_ma)-parseFloat(rcd_monto_disminucion_ma);
+		rco_monto_diferencial_cambiario=parseFloat(${fld:rco_monto_bruto_cob_ml})-rcd_monto_neto_ml;
+		rco_diferencial_ml=rcd_monto_neto_ml+rco_monto_diferencial_cambiario;
+		rco_diferencial_ma=rcd_monto_neto_ma-${fld:rco_monto_bruto_cob_ma};
+
+		$("#rcd_monto_disminucion_ml").val(rcd_monto_disminucion_ml.toFixed(2));
+		$("#rcd_monto_disminucion_ma").val(rcd_monto_disminucion_ma.toFixed(2));
+		$("#rcd_monto_neto_ml").val(rcd_monto_neto_ml.toFixed(2));
+		$("#rcd_monto_neto_ma").val(rcd_monto_neto_ma.toFixed(2));
+		$("#subtotal_monto_neto_ml").val(rcd_monto_neto_ml.toFixed(2));
+		$("#subtotal_monto_neto_ma").val(rcd_monto_neto_ma.toFixed(2));
+		$("#rco_monto_diferencial_cambiario").val(rco_monto_diferencial_cambiario.toFixed(2));
+		$("#rco_diferencial_ml").val(rco_diferencial_ml.toFixed(2));
+		$("#rco_diferencial_ma").val(rco_diferencial_ma.toFixed(2));
+
+		$("#rcd_monto_valor_agregado_ml").val(0);
+		$("#rcd_monto_valor_agregado_ma").val(0);
+
+		$("#impuesto option").each(function(){
+			impuesto_id=$(this).val();
+			ajaxCall(httpMethod="GET", 
+					uri="${def:actionroot}/recalcularImpuestos?smn_codigos_impuestos_id=" + impuesto_id +"&accion=AG", 
+					divResponse=null, 
+					divProgress="status", 
+					formName="form1", 
+					afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+					onErrorFn=null);
+		});
+	}
+
+	//Registra los impuestos y descuentos del detalle creado
+	function saveImpuestosDescuentos()
+	{
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/saveImpuestosDescuentos", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+
+	$("#monto_descuento_libre").blur(function() {
+		var monto_descuento_libre=$(this).val();
+		var porcentaje_base=$("#porc_base_descuento_libre").val();
+		var monto_base=$("#rcd_monto_bruto_ml").val();
+		var porcentaje_descuento=$("#porc_descuento_libre").val();
+
+		if(monto_descuento_libre!="" || monto_descuento_libre!=0)
+		{
+			porcentaje_descuento=(parseFloat(monto_descuento_libre)*100)/parseFloat(monto_base);
+			$("#porc_descuento_libre").val(porcentaje_descuento);
+
+			calcularDescuentos(porcentaje_base,porcentaje_descuento,"AG","NO");
+		}
+		else
+		{
+			calcularDescuentos(porcentaje_base,porcentaje_descuento,"EL","NO");
+			$("#porc_descuento_libre").val("");
+		}
+	});
+
+	//Registra detalles del movimiento.
+	function saveDetalle()
+	{
+		//llamada Ajax...
+		return ajaxCall(httpMethod="POST", 
+						uri="${def:actionroot}/saveDetalle", 
+						divResponse=null, 
+						divProgress="status", 
+						formName="form1", 
+						afterResponseFn=null, 
+						onErrorFn=retryAddnewOrEdit);
+	}
+	
+</script>	
+</body>
+</html>

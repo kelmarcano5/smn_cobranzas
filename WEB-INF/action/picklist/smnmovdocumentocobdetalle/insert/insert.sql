@@ -1,0 +1,40 @@
+INSERT INTO smn_cobranzas.smn_mov_documento_cob_detalle
+(
+	smn_mov_documento_cob_det_id,
+	smn_mov_documento_cob_cab_id,
+	smn_tipo_documento_id,
+	smn_documento_id,
+	mdd_numero_documento,
+	smn_cliente_rf,
+	smn_centro_costo_rf,
+	mdd_monto_ml,
+	smn_moneda_rf,
+	mdd_monto_ma,
+	mdd_fecha_pago,
+	smn_tasa_rf,
+	mdd_diferencia_cambiario,
+	mdd_idioma,
+	mdd_usuario,
+	mdd_fecha_registro,
+	mdd_hora
+)
+VALUES
+(
+	${seq:currval@smn_cobranzas.seq_smn_mov_documento_cob_detalle},
+	${fld:smn_mov_documento_cob_cab_id2},
+	${fld:smn_tipo_documento_id2},
+	${fld:smn_documento_id2},
+	${fld:mdd_numero_documento2},
+	${fld:smn_cliente_rf2},
+	${fld:smn_centro_costo_rf2},
+	${fld:mdd_monto_ml2},
+	${fld:smn_moneda_rf2},
+	${fld:mdd_monto_ma2},
+	${fld:mdd_fecha_pago2},
+	${fld:smn_tasa_rf2},
+	${fld:mdd_diferencia_cambiario2},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

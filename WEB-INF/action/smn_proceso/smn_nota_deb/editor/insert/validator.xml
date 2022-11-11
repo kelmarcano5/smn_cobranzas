@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_modulo_origen_rf' type='varchar' required='true' label='${lbl:b_origin_module}' maxlen='1'/>
+	<parameter id='smn_documento_rf' type='integer' required='true' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='mdc_numero_doc_origen' type='integer' required='true' label='${lbl:b_origin_doc_num}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='mdc_fecha_documento' type='date' required='true' label='${lbl:b_document_date}' maxlen='10'/>
+	<parameter id='mdc_fecha_vencimiento' type='date' required='true' label='${lbl:b_thru_date}' maxlen='10'/>
+	<parameter id='mdc_monto_ml' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_currency}' maxlen='10'/>
+	<parameter id='mdc_monto_ma' type='double' required='false' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ml' type='double' required='true' label='${lbl:b_balance_doc_ml}' maxlen='10'/>
+	<parameter id='mdc_saldo_doc_ma' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='10'/>
+	<parameter id='mdc_estatus_proceso' type='varchar' required='true' label='${lbl:b_process_status}' maxlen='2'/>
+	<parameter id='mdc_estatus_financiero' type='varchar' required='true' label='${lbl:b_finance_status}' maxlen='2'/>
+
+
+
+</validator>

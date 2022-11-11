@@ -1,0 +1,1 @@
+select smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id as id, smn_cobranzas.smn_mov_documento_cob_cab.smn_documento_rf as item from smn_cobranzas.smn_mov_documento_cob_cab

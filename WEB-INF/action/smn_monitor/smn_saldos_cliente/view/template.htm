@@ -1,0 +1,85 @@
+<!--data grid-->
+<table class="datagrid" style="width:90%;">
+
+	<col width='3%'/>
+	<!-- <col width='3%'/> -->
+	<!-- <col width='3%'/> -->
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+	<col width='5%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="19" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<!-- <th></th> -->
+		<!-- <th></th> -->
+		<th class='sortable' onclick="sortBy('smn_entidad_rf_combo','query-smnsaldocliente.sql')" >${lbl:b_entities}</th>
+		<th class='sortable' onclick="sortBy('smn_sucursal_rf_combo','query-smnsaldocliente.sql')" >${lbl:b_subsidiaries}</th>
+		<th class='sortable' onclick="sortBy('smn_cliente_rf_combo','query-smnsaldocliente.sql')" >${lbl:b_customer}</th>
+		<th class='sortable' onclick="sortBy('scl_fecha','query-smnsaldocliente.sql')" >${lbl:s_loginhist_col1}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_inicial_ml','query-smnsaldocliente.sql')" >${lbl:b_initial_balance_ml}</th>
+		<th class='sortable' onclick="sortBy('scl_debitos_ml','query-smnsaldocliente.sql')" >${lbl:b_debits}</th>
+		<th class='sortable' onclick="sortBy('scl_creditos_ml','query-smnsaldocliente.sql')" >${lbl:b_credits}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_final_ml','query-smnsaldocliente.sql')" >${lbl:b_final_balance}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_inicial_ma','query-smnsaldocliente.sql')" >${lbl:b_initial_balance_ma}</th>
+		<th class='sortable' onclick="sortBy('scl_debitos_ma','query-smnsaldocliente.sql')" >${lbl:b_debits_ma}</th>
+		<th class='sortable' onclick="sortBy('scl_creditos_ma','query-smnsaldocliente.sql')" >${lbl:b_credits_ma}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_final_ma','query-smnsaldocliente.sql')" >${lbl:b_final_balance_ma}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_vencido_ml','query-smnsaldocliente.sql')" >${lbl:b_balance_due}</th>
+		<th class='sortable' onclick="sortBy('scl_saldo_vencido_ma','query-smnsaldocliente.sql')" >${lbl:b_balance_due_ma}</th>
+		<th class='sortable' onclick="sortBy('scl_estatus_combo','query-smnsaldocliente.sql')" >${lbl:b_estatus}</th>
+		<th class='sortable' onclick="sortBy('scl_porcentaje_deuda_vencida','query-smnsaldocliente.sql')" >${lbl:b_percentage_of_overdue_debt}</th>
+		<th class='sortable' onclick="sortBy('scl_fecha_registro','query-smnsaldocliente.sql')" >${lbl:b_store_date}</th>
+		<th></th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_saldo_cliente_id}')" title="Ver detalle"></td>
+		<!-- <td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_saldo_cliente_id}')" title="Eliminar"></td> -->
+		<!-- <td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_saldo_cliente_id}')" title="Editar"></td> -->
+		<td align="center">${fld:smn_entidad_rf_combo}</td>
+		<td align="center">${fld:smn_sucursal_rf_combo}</td>
+		<td align="center">${fld:smn_cliente_rf_combo}</td>
+		<td align="center">${fld:scl_fecha@dd-MM-yyyy}</td>
+		<td align="right">${fld:scl_saldo_inicial_ml@#,###,##0.00}</td>
+		<td align="right">${fld:scl_debitos_ml@#,###,##0.00}</td>
+		<td align="right">${fld:scl_creditos_ml@#,###,##0.00}</td>
+		<td align="right">${fld:scl_saldo_final_ml@#,###,##0.00}</td>
+		<td align="right">${fld:scl_saldo_inicial_ma@#,###,##0.00}</td>
+		<td align="right">${fld:scl_debitos_ma@#,###,##0.00}</td>
+		<td align="right">${fld:scl_creditos_ma@#,###,##0.00}</td>
+		<td align="right">${fld:scl_saldo_final_ma@#,###,##0.00}</td>
+		<td align="right">${fld:scl_saldo_vencido_ml@#,###,##0.00}</td>
+		<td align="right">${fld:scl_saldo_vencido_ma@#,###,##0.00}</td>
+		<td align="left">${fld:scl_estatus_combo}</td>
+		<td align="right">${fld:scl_porcentaje_deuda_vencida@#,###,##0.00}</td>
+		<td align="center">${fld:scl_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="documentos_pendientes('${fld:smn_cliente_rf}')" title="${lbl:b_pending_documents}"></td> 
+	</tr>
+	</rows>
+
+</table>

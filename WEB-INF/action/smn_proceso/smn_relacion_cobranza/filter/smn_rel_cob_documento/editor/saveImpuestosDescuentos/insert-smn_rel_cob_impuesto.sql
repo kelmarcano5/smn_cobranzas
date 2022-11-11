@@ -1,0 +1,36 @@
+INSERT INTO smn_cobranzas.smn_rel_cob_impuesto
+(
+	smn_rel_cob_impuesto_id,
+	smn_relacion_cobranza_id,
+	smn_codigos_impuestos_rf,
+	rci_monto_base,
+	smn_porcentaje_impuesto_rf,
+	rci_sustraendo_rf,
+	rci_tipo_movimiento,
+	rci_monto_impuesto_ml,
+	smn_moneda,
+	smn_tasa,
+	rci_monto_impuesto_ma,
+	rci_idioma,
+	rci_usuario,
+	rci_fecha_registro,
+	rci_hora
+)
+VALUES
+(
+	nextval('smn_cobranzas.seq_smn_rel_cob_impuesto'),
+	${fld:smn_relacion_cobranza_id},
+	${fld:smn_codigos_impuestos_id},
+	${fld:subtotal_monto_neto_ml},
+	${fld:imp_porcentaje_calculo},
+	${fld:imp_monto_sustraendo},
+	${fld:imp_tipo_codigo},
+	${fld:total_impuesto_ml_redondeo},
+	${fld:smn_moneda_rf_detalle},
+	${fld:smn_tasa_rf_detalle},
+	${fld:total_impuesto_ma_redondeo},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+);

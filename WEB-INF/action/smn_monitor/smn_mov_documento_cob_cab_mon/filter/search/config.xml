@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ejecutar consulta y enrutar dependiendo de que un recordset
+		tenga o no registros
+	</summary>
+
+	<log>false</log>
+
+	<!--configura el control de paginacion-->
+	<set-request-attribute id="paging.recordset" value="query-smnmovdocumentocobcab.sql" />
+	<set-request-attribute id="paging.pagesize" value="10" />
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_empresa_rf</colname>
+			<colname>smn_sucursal_rf</colname>
+			<colname>smn_modulo_origen_rf</colname>
+			<colname>smn_documento_rf</colname>
+			<colname>mdc_numero_doc_origen</colname>
+			<colname>smn_cliente_rf</colname>
+			<colname>mdc_fecha_documento</colname>
+			<colname>mdc_fecha_vencimiento</colname>
+			<colname>mdc_monto_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>mdc_monto_ma</colname>
+			<colname>mdc_saldo_doc_ml</colname>
+			<colname>mdc_saldo_doc_ma</colname>
+			<colname>mdc_estatus_proceso</colname>
+			<colname>mdc_estatus_financiero</colname>
+			<colname>mdc_fecha_registro_ini</colname>
+			<colname>mdc_fecha_registro_fin</colname>
+		
+		</cols>
+		<table>smn_cobranzas.smn_mov_documento_cob_cab</table>
+		<oper>CONSULTA</oper>
+		<area>Consulta</area>
+		<!-- 
+ 			para auditoria de consulta permite obtener la cantidad de registro obtenidos
+ 			de la busqueda (opcional)
+ 		-->
+		<recordCount recordset="query-smnmovdocumentocobcab.sql"/>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableSearch</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+	
+	<searchCols>mdc_estatus_proceso;mdc_estatus_financiero;mdc_fecha_registro_ini;mdc_fecha_registro_fin;smn_modulo_origen_rf;smn_documento_rf;mdc_numero_doc_origen;smn_cliente_rf;mdc_fecha_documento;mdc_fecha_vencimiento;mdc_monto_ml;smn_moneda_rf;mdc_monto_ma;mdc_saldo_doc_ml;mdc_saldo_doc_ma;</searchCols>
+
+	<on-exit return-code="0" forward-to="/action/initview" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

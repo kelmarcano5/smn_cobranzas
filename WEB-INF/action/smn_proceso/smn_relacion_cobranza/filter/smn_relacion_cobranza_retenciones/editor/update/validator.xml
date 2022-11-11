@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_clave_aprobacion_pedido' type='integer' required='true' label='${lbl:b_key_order_approval}' maxlen='10'/>
+	<parameter id='smn_relacion_cobranza_id_name' type='varchar' required='true' label='${lbl:b_colletion_relationship}'/>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='false' label='${lbl:b_colletion_relationship}' maxlen='10'/>
+	<parameter id='smn_codigo_retenciones_rf' type='integer' required='true' label='${lbl:b_code_retentions}' maxlen='10'/>
+	<parameter id='rcr_monto_retenciones_ml' type='double' required='true' label='${lbl:b_withholding_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coin}' maxlen='10'/>
+	<parameter id='rcr_monto_retenciones_ma' type='double' required='false' label='${lbl:b_withholding_amount_ma}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_relationship_collection_retention}' maxlen='10'/>
+
+
+</validator>

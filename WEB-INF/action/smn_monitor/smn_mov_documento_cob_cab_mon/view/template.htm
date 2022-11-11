@@ -1,0 +1,60 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='7%'/>
+	<col width='3%'/>
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="12" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<th class='sortable' onclick='sortBy("smn_documento_rf","query-smnmovdocumentocobcab.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("mdc_numero_doc_origen","query-smnmovdocumentocobcab.sql")'>${lbl:b_origin_doc_num}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_rf","query-smnmovdocumentocobcab.sql")'>${lbl:b_client}</th>
+		<th class='sortable' onclick='sortBy("mdc_fecha_documento","query-smnmovdocumentocobcab.sql")'>${lbl:b_document_date}</th>
+		<th class='sortable' onclick='sortBy("mdc_fecha_vencimiento","query-smnmovdocumentocobcab.sql")'>${lbl:b_thru_date}</th>
+		<th class='sortable' onclick='sortBy("mdc_monto_ml","query-smnmovdocumentocobcab.sql")'>${lbl:b_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("mdc_saldo_doc_ml","query-smnmovdocumentocobcab.sql")'>${lbl:b_balance_doc_ml}</th>
+		<th class='sortable' onclick='sortBy("mdc_estatus_proceso","query-smnmovdocumentocobcab.sql")'>${lbl:b_process_status}</th>
+		<th class='sortable' onclick='sortBy("mdc_estatus_financiero","query-smnmovdocumentocobcab.sql")'>${lbl:b_finance_status}</th>
+		<th class='sortable' onclick='sortBy("mdc_fecha_registro","query-smnmovdocumentocobcab.sql")'>${lbl:b_store_date}</th>
+		<th>MDD</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_mov_documento_cob_cab_id}')" title="${lbl:b_view_detail}"></td>
+		<!-- <td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_mov_documento_cob_cab_id}')" title="${lbl:b_delete_button}"></td> -->
+		<!-- <td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_mov_documento_cob_cab_id}')" title="${lbl:b_edit_button}"></td> -->	
+		<td>${fld:smn_documento_rf}</td>
+		<td>${fld:mdc_numero_doc_origen}</td>
+		<td>${fld:smn_cliente_rf}</td>
+		<td>${fld:mdc_fecha_documento@dd-MM-yyyy}</td>
+		<td>${fld:mdc_fecha_vencimiento@dd-MM-yyyy}</td>
+		<td align='right'>${fld:mdc_monto_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:mdc_saldo_doc_ml@#,###,##0.00}</td>
+		<td align='left'>${fld:mdc_estatus_proceso}</td>
+		<td align='left'>${fld:mdc_estatus_financiero}</td>
+		<td>${fld:mdc_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion('${fld:smn_mov_documento_cob_cab_id}','${fld:cfc_nombre}','${fld:smn_cliente_id}')" title="${lbl:b_movement_document_collection_detail}"></td>
+	</tr>
+	</rows>
+
+</table>

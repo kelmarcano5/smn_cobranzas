@@ -1,0 +1,7 @@
+SELECT 
+
+smn_cobranzas.smn_relacion_envio_cobranza.smn_relacion_envio_cobranza_id as id
+
+from smn_cobranzas.smn_relacion_envio_cobranza 
+
+order by smn_relacion_envio_cobranza_id

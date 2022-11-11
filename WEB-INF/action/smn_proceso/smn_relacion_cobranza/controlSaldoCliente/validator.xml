@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<validator onerror="/action/error/validation/alert">
+	<parameter id='id' type='integer' required='true' label='ID ${lbl:b_colletion_relationship}' maxlen='10' />
+	<parameter id='smn_entidad_rf' type='integer' required='false' label='ID ${lbl:b_entity}' maxlen='10' />
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='ID ${lbl:b_subsidiary}' maxlen='10' />
+	<parameter id='smn_cliente_rf' type='integer' required='false' label='ID ${lbl:b_customer}' maxlen='10' />
+	<parameter id='tdo_tipo_movimiento' type='varchar' required='false' label='${lbl:b_accounting_movement_type}' maxlen='2' />
+	<parameter id='mdd_saldo_ml' type='double' required='false' label='${lbl:b_balance_doc_ml}' maxlen='20' />
+	<parameter id='mdd_saldo_ma' type='double' required='false' label='${lbl:b_balance_doc_ma}' maxlen='20' />
+	<parameter id='mdc_estatus_financiero' type='varchar' required='false' label='${lbl:b_finance_status}' maxlen='2' />
+	<parameter id='mdc_dias_vencidos' type='integer' required='false' label='ID ${lbl:b_days_overdue}' maxlen='10' />
+	<parameter id='scl_saldo_inicial_ml' type='double' required='false' label='${lbl:b_initial_balance_local_currency}' maxlen='20' />
+	<parameter id='scl_saldo_inicial_ma' type='double' required='false' label='${lbl:b_initial_balance_alternate_currency}' maxlen='20' />
+	<parameter id='scl_saldo_final_ml' type='double' required='false' label='${lbl:b_final_balance_local_currency}' maxlen='20' />
+	<parameter id='scl_saldo_final_ma' type='double' required='false' label='${lbl:b_final_balance_alternate_currency}' maxlen='20' />
+	<parameter id='scl_creditos_ml' type='double' required='false' label='${lbl:b_local_currency_credits}' maxlen='20' />
+	<parameter id='scl_creditos_ma' type='double' required='false' label='${lbl:b_foreign_currency_credits}' maxlen='20' />
+	<parameter id='scl_debitos_ml' type='double' required='false' label='${lbl:b_local_currency_debt}' maxlen='20' />
+	<parameter id='scl_debitos_ma' type='double' required='false' label='${lbl:b_alternate_currency_debt}' maxlen='20' />
+	<parameter id='scl_saldo_vencido_ml' type='double' required='false' label='${lbl:b_balance_due_local_currency}' maxlen='20' />
+	<parameter id='scl_saldo_vencido_ma' type='double' required='false' label='${lbl:b_balance_due_alternate_currency}' maxlen='20' />
+	<parameter id='scl_porcentaje_deuda_vencida' type='double' required='false' label='${lbl:b_percentage_past_due_debt}' maxlen='20' />
+	<parameter id='smn_saldo_cliente_id' type='integer' required='false' label='${lbl:b_customer_balance}' maxlen='10' />
+	<parameter id='cfi_limite_credito' type='double' required='false' label='${lbl:b_credit_limit}' maxlen='20' />
+	<parameter id='rco_monto_bruto_cob_ml' type='double' required='false' label='${lbl:b_brut_amount_ml}' maxlen='20' />
+	<parameter id='rco_monto_bruto_cob_ma' type='double' required='false' label='${lbl:b_brut_amount_ma}' maxlen='20' />
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='ID ${lbl:b_coin}' maxlen='10' />
+	<parameter id='smn_rol_id' type='integer' required='false' label='ID ${lbl:b_role}' maxlen='10' />
+	<parameter id='smn_reglas_comisiones_id' type='integer' required='false' label='ID ${lbl:b_commision_rules}' maxlen='10' />
+	<parameter id='smn_documento_id_rco' type='integer' required='false' label='ID ${lbl:b_document_id}' maxlen='10' />
+	<parameter id='smn_documento_id_mdc' type='integer' required='false' label='ID ${lbl:b_document_id}' maxlen='10' />
+	<parameter id='rco_porcentaje' type='double' required='false' label='${lbl:b_percentage}' maxlen='20' />
+	<parameter id='com_monto_comision_ml' type='double' required='false' label='${lbl:b_comission_amount_ml}' maxlen='20' />
+	<parameter id='com_monto_comision_ma' type='double' required='false' label='${lbl:b_comission_amount_ma}' maxlen='20' />
+	<parameter id='smn_tipo_documento_id_mdc' type='integer' required='false' label='ID ${lbl:b_document_type}' maxlen='10' />
+	<parameter id='smn_promotor_rf' type='integer' required='false' label='ID promotor' maxlen='10' />
+	<parameter id='smn_rol_id' type='integer' required='false' label='ID ${lbl:b_role}' maxlen='10' />
+	<parameter id='com_numero_documento' type='integer' required='false' label='secuencia' maxlen='10' />
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='false' label='ID ${lbl:b_doc_mov_head_charg}' maxlen='10' />
+</validator>

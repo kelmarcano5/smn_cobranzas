@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_codigos_impuestos_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='rci_monto_base' type='double' required='true' maxlen='17'/>
+	<parameter id='smn_porcentaje_impuesto_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='rci_sustraendo_rf' type='double' required='false' maxlen='17'/>
+	<parameter id='rci_tipo_movimiento' type='varchar' required='true' maxlen='2'/>
+	<parameter id='rci_monto_impuesto_ml' type='double' required='true' maxlen='17'/>
+	<parameter id='smn_moneda' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tasa' type='integer' required='false' maxlen='10'/>
+	<parameter id='rci_monto_impuesto_ma' type='double' required='false' maxlen='17'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigos_impuestos_rf'/>
+
+
+</validator>

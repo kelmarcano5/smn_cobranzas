@@ -1,0 +1,2 @@
+ and
+ 	smn_cobranzas.smn_rel_desc_forma_pago.rdf_estatus=${fld:rdf_estatus}

@@ -1,0 +1,3 @@
+<rows>
+rec_fecha_registro="${fld:rec_fecha_registro}"    rec_estatus="${fld:rec_estatus}"    rec_cantidad_documento="${fld:rec_cantidad_documento}"    rec_monto_ma="${fld:rec_monto_ma}"    rec_monto_ml="${fld:rec_monto_ml}"    rec_ejecutivo_recibe="${fld:rec_ejecutivo_recibe}"    rec_fecha_entrega="${fld:rec_fecha_entrega}"    rec_fecha_generacion="${fld:rec_fecha_generacion}"    smn_cliente_rf="${fld:smn_cliente_rf}"    rec_numero="${fld:rec_numero}"    smn_sucursal_rf="${fld:smn_sucursal_rf}"    smn_entidad_rf="${fld:smn_entidad_rf}"    
+</rows>

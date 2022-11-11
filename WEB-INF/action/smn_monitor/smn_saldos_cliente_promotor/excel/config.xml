@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnsaldocliente.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+	
+	<excel recordset='query-smnsaldocliente.sql' sheetname='${lbl:b_customer_balance}' filename='smn_saldos_cliente.xls'>
+		<col id='smn_entidad_rf_combo' label='${lbl:b_entities}' />
+		<col id='smn_sucursal_rf_combo' label='${lbl:b_subsidiaries}' />
+		<col id='smn_cliente_rf_combo' label='${lbl:b_customer}' />
+		<col id='scl_fecha' label='${lbl:s_loginhist_col1}' />
+		<col id='scl_saldo_inicial_ml' label='${lbl:b_initial_balance_ml}' />
+		<col id='scl_debitos_ml' label='${lbl:b_debits}' />
+		<col id='scl_creditos_ml' label='${lbl:b_credits}' />
+		<col id='scl_saldo_final_ml' label='${lbl:b_final_balance}' />
+		<col id='scl_saldo_inicial_ma' label='${lbl:b_initial_balance_ma}' />
+		<col id='scl_debitos_ma' label='${lbl:b_debits_ma}' />
+		<col id='scl_creditos_ma' label='${lbl:b_credits_ma}' />
+		<col id='scl_saldo_final_ma' label='${lbl:b_final_balance_ma}' />
+		<col id='scl_saldo_vencido_ml' label='${lbl:b_balance_due}' />
+		<col id='scl_saldo_vencido_ma' label='${lbl:b_balance_due_ma}' />
+		<col id='scl_estatus_combo' label='${lbl:b_estatus}' />
+		<col id='scl_porcentaje_deuda_vencida' label='${lbl:b_percentage_of_overdue_debt}' />
+		<col id='scl_fecha_registro' label='${lbl:b_store_date}' />
+	</excel>
+
+</config>

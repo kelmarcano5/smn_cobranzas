@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndocumento.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_document}"/>
+	
+	<excel 
+		recordset='query-smndocumento.sql' 
+		sheetname='${lbl:b_document}' 
+		filename='${lbl:b_document}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_tipo_documento_id' label='${lbl:document_type}' />
+		<col id='doc_codigo' label='${lbl:b_code}' />
+		<col id='doc_descripcion' label='${lbl:b_description}' />
+		<col id='doc_afec_documento' label='${lbl:b_document_afec}' />
+		<col id='doc_usa_moneda_alterna' label='${lbl:b_use_altern_coin}' />
+		<col id='doc_estatus' label='${lbl:b_estatus}' />
+		<col id='doc_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>

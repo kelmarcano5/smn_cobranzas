@@ -1,0 +1,16 @@
+select
+		smn_cobranzas.smn_mov_det_descuento.smn_mov_det_descuento_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_det_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_idioma as mdd_idioma_pl0,
+	smn_cobranzas.smn_mov_det_descuento.smn_mov_documento_cob_det_id,
+	smn_cobranzas.smn_mov_det_descuento.smn_codigo_descuento_id,
+	smn_cobranzas.smn_mov_det_descuento.mds_porcentaje,
+	smn_cobranzas.smn_mov_det_descuento.mds_base,
+	smn_cobranzas.smn_mov_det_descuento.mds_monto_descuento_ml,
+	smn_cobranzas.smn_mov_det_descuento.mds_fecha_registro
+	
+from
+	smn_cobranzas.smn_mov_documento_cob_detalle,
+	smn_cobranzas.smn_mov_det_descuento
+where
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_det_id=smn_cobranzas.smn_mov_det_descuento.smn_mov_documento_cob_det_id

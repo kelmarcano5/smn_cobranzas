@@ -1,0 +1,47 @@
+<!--data grid-->
+<table class="datagrid rowhover oneCellRow" style="width:90%;">
+
+	<col width='100%'/>
+
+
+	<!--toolbar-->
+	<tr>
+		<th colspan="11">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th onclick="sortBy('smn_usuario_rf','query-smnrol.sql')" class="sortable">${lbl:b_user}</th>
+		<th onclick="sortBy('smn_perfil_rf','query-smnrol.sql')" class="sortable">${lbl:b_profile}</th>
+		<th onclick="sortBy('smn_clase_auxiliar_rf','query-smnrol.sql')" class="sortable">${lbl:b_auxiliary_class}</th>
+		<th onclick="sortBy('smn_auxiliar_rf','query-smnrol.sql')" class="sortable">${lbl:b_auxiliary}</th>
+		<th onclick="sortBy('rol_tipo','query-smnrol.sql')" class="sortable">${lbl:b_role_type}</th>
+		<th onclick="sortBy('smn_corporacion_rf','query-smnrol.sql')" class="sortable">${lbl:b_corporation}</th>
+		<th onclick="sortBy('smn_entidad_rf','query-smnrol.sql')" class="sortable">${lbl:b_entity}</th>
+		<th onclick="sortBy('smn_sucursal_rf','query-smnrol.sql')" class="sortable">${lbl:b_subsidiary}</th>
+		<th onclick="sortBy('rol_posicion_estructura_rf','query-smnrol.sql')" class="sortable">${lbl:b_structure_configuration}</th>
+		<th onclick="sortBy('rol_estatus','query-smnrol.sql')" class="sortable">${lbl:b_status}</th>
+		<th onclick="sortBy('rol_vigencia','query-smnrol.sql')" class="sortable">${lbl:b_effectivity_date}</th>
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr onclick="selectItem('${fld:smn_rol_id}')" >
+		<td align="center"><span id="${fld:smn_rol_id}">${fld:smn_usuario_rf}</span></td>
+		<td align="center">${fld:smn_perfil_rf}</td>
+		<td align="center">${fld:smn_clase_auxiliar_rf}</td>
+		<td align="center">${fld:smn_auxiliar_rf}</td>
+		<td align="center">${fld:rol_tipo}</td>
+		<td align="center">${fld:smn_corporacion_rf}</td>
+		<td align="center">${fld:smn_entidad_rf}</td>
+		<td align="center">${fld:smn_sucursal_rf}</td>
+		<td align="center">${fld:rol_posicion_estructura_rf}</td>
+		<td align="center">${fld:rol_estatus}</td>
+		<td align="center">${fld:rol_vigencia@dd-MM-yyyy}</td>
+	</tr>
+	</rows>
+
+</table>
+

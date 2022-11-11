@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax" id='smn_relacion'>
+	<parameter id="id" type="varchar" required="false" label="ID ${lbl:b_document}" />
+	<parameter id="id3" type="double" required="false" label="ID3" maxlen="50" />
+	<parameter id="base" type="integer" required="false" label="ID ${lbl:b_document}" />
+	<parameter id="descporc" type="integer" required="false" label="ID ${lbl:b_document}" />
+</validator>

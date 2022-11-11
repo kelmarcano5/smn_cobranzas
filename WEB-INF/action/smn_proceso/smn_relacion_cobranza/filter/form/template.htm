@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+	<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+<script type="text/javascript" src="${def:context}/action/jquery">
+</script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="banner" id="encabezado_tabla">
+	${lbl:b_colletion_relationship}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario de filtro-->
+<form name="form1" onsubmit="return search()" style="width:650px;">
+
+	<!--titulo-->
+	<h1>${lbl:b_filter_find}</h1>
+
+	<table>
+	
+	<!--ancho de la columna de etiquetas-->
+	<col style="width:40%">
+
+	<!--campos-->
+		<tr>
+		<td>Empresa Destino</td>
+		<td>
+			<select name="smn_empresa_rf" id="smn_empresa_rf" class="js-example-basic-single" onchange="chgCombo5(smn_empresa_rf.options[smn_empresa_rf.selectedIndex].text,'smn_empresa_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_empresa_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_empresa_rf_rows>
+			</select> 
+			<input id="smn_empresa_rf_name" name="smn_empresa_rf_name" type="hidden">
+		</td>
+		</tr>
+		<tr>
+			<td>Sucursal Destino</td>
+			<td>
+				<select name="smn_sucursal_rf" id="smn_sucursal_rf" class="js-example-basic-single" onchange="chgCombo(smn_sucursal_rf.options[smn_sucursal_rf.selectedIndex].text,'smn_sucursal_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_sucursal_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+
+					</smn_sucursal_rf_rows>
+				</select> 
+				<input id="smn_sucursal_rf_name" name="smn_sucursal_rf_name" type="hidden">
+			</td>
+		</tr>
+
+		<!-- <tr>
+		<td>${lbl:b_module}</td>
+		<td>
+			<select name="smn_modulo_rf" id="smn_modulo_rf" class="js-example-basic-single" onchange="chgCombo(smn_modulo_rf.options[smn_modulo_rf.selectedIndex].text,'smn_modulo_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_modulo_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_modulo_rf_rows>
+			</select> 
+			<input id="smn_modulo_rf_name" name="smn_modulo_rf_name" type="hidden">
+		</td>
+	</tr> -->
+	<tr>
+		<td>${lbl:b_document_origen}</td>
+		<td>
+			<select name="smn_doc_orig_rf" id="smn_doc_orig_rf" class="js-example-basic-single" onchange="chgCombo(smn_doc_orig_rf.options[smn_doc_orig_rf.selectedIndex].text,'smn_doc_orig_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_doc_orig_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_doc_orig_rf_rows>
+			</select> 
+			<input id="smn_doc_orig_rf_name" name="smn_doc_orig_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_number_document_origen}</td>
+		<td>
+			<input id="smn_num_doc_orig" name="smn_num_doc_orig" type="text" maxlength="10" class="numeric">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_document}</td>
+		<td>
+			<select name="smn_documento_id" id="smn_documento_id" class="js-example-basic-single" onchange="chgCombo(smn_documento_id.options[smn_documento_id.selectedIndex].text,'smn_documento_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_id_rows>
+			</select> 
+			<input id="smn_documento_id_name" name="smn_documento_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_customer}</td>
+		<td>
+			<select name="smn_cliente_rf" id="smn_cliente_rf" class="js-example-basic-single" onchange="chgCombo(smn_cliente_rf.options[smn_cliente_rf.selectedIndex].text,'smn_cliente_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_cliente_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_cliente_rf_rows>
+			</select> 
+			<input id="smn_cliente_rf_name" name="smn_cliente_rf_name" type="hidden">
+		</td>
+	</tr>
+<!-- 	<tr>
+		<td>${lbl:b_status_process}</td>
+		<td>
+			<select name="rco_estatus_proceso" class="js-example-basic-single" id="rco_estatus_proceso">
+				<option value="">[Cualquiera]</option>
+				<option value="RE">${lbl:b_registrated}</option>
+				<option value="GE">${lbl:b_generated}</option>
+				<option value="CO">${lbl:b_contabilited} </option>
+
+			</select> 
+		</td>
+	</tr> -->
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="rco_fecha_registro_ini" name="rco_fecha_registro_ini" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('rco_fecha_registro_ini')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_store_date}</td>
+		<td>
+			<input id="rco_fecha_registro_fin" name="rco_fecha_registro_fin" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="${lbl:b_deploy_calendar}" onclick="calendarOpen('rco_fecha_registro_fin')">
+		</td>
+	</tr>
+
+	
+	</table>
+
+	
+	<!--botones-->	
+	<input type="submit" value="${lbl:b_find_button}" class="button">
+	<!-- <input id="grabar" type="submit" value="${lbl:b_add_button}"  onclick="showEditor()" class="button"> -->
+	<input type="button" value="${lbl:b_clean_button}" class="button" onclick="clearForm('form1')">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">
+	
+</form>
+
+<!--panel de respuesta AJAX #1-->
+<div id="response" style="display:none; width:100%; margin-top:10px;"></div>
+	
+</body>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	//inicializacion de la pagina cuando carga
+	onload = function()
+	{ 
+		showFilter();
+
+		$(document).ready(function() {	
+		    $('.js-example-basic-single').select2();
+		});
+
+		document.form1.rco_fecha_registro_ini.onkeypress = keypressDate;
+		document.form1.rco_fecha_registro_fin.onkeypress = keypressDate;
+
+		search();
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+		
+	//mostrar filtro de busqueda
+	function showFilter()
+	{
+		document.getElementById("response").style.display='none';
+		setFocusOnForm("form1");
+	}
+	
+	//ejecutar consulta
+	function search()
+	{
+		var url = "${def:actionroot}/search";
+		
+		//determina si refresca y se para en la pagina actual o en la pagina 1
+		if (currentPage > 0)
+			url = "${def:actionroot}/search?currentpage=" + currentPage;
+
+		//definir funcion goBack()
+		_goBackFn = showFilter;
+		
+		clearErrorMessages();
+
+		//llamada Ajax...
+		return ajaxCall(	httpMethod="POST", 
+							uri=url, 
+							divResponse="response", 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=showFilter);
+
+	}
+
+	//mostrar una pagina del grid
+	function viewPage()
+	{
+		var url = "${def:actionroot}/view";
+		//llama a la funcion para ir a la pagina indicada 
+		gotoPage(url);
+	}		
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//invoca la generacion de un PDF en un popup
+	function openPDF()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/pdf?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+
+	//invoca la generacion de un Excel en un popup
+	function openExcel()
+	{
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/excel?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//exportar a xml
+	function openXml() {
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/xml/search?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//exportar a texto
+	function openTxt() {
+		var features = "height=500,width=800,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes";
+		var url = "${def:context}${def:actionroot}/txt/search?random=" + Math.random();
+		var w = window.open(url, null, features);
+	}
+	
+	//envio de emails
+	function openEmails() {
+		var uri = "${def:context}${def:actionroot}/email/form";					
+		openDialog("editor0", uri, 950, 600);	
+	}
+	
+	//mostrar el detalle de un registro
+	function getDetail(id)
+	{
+//		//alert('Colocar su código aquí.')
+		
+		var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
+		openDialog("dialog", uri, 650, 600);
+		
+	}
+	
+	//muestra un DIV+IFRAME con el formulario de CRUD
+	function showEditor(id)
+	{
+//		//alert('Colocar su código aquí.')
+		
+		var uri = "";
+		if (id==null)
+		 	uri = "${def:context}${def:actionroot}/editor/form";
+		else
+			uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
+			
+		openDialog("editor", uri, 650, 600);
+		
+	}
+			
+	function deleteRecord(id) {
+//		//alert('Colocar su código aquí.')
+	
+		alertBox('${lbl:b_delete_record_button}', '${lbl:b_delete_button}', '${lbl:b_cancel_button}', 'deleteRecordOK(' + id + ')')				
+	}
+		
+	//eliminar un registro
+	function deleteRecordOK(id) {
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/delete?id=" + id,
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+
+			function rel_cob_documento(id,estatus) {
+			if(estatus=="CO")
+			{
+				var uri = "${def:context}${def:actionroot}/smn_rel_cob_documento/form?id="+id;
+				openDialog("editor1", uri, 1150, 700);	
+			}
+			else
+			{
+				alertBox('${lbl:b_the_collection_relationship_is_not_concilled}','${lbl:b_to_accept}',null);
+			}
+		}
+
+		function relacion_imp(id2,estatus) {
+			if(estatus=="CO")
+			{
+				var uri = "${def:context}${def:actionroot}/smn_rel_cob_impuesto/form?id2="+id2;	
+				//alert(uri);				
+				openDialog("editor1", uri, 1150, 700);	
+			}
+			else
+			{
+				alertBox('${lbl:b_the_collection_relationship_is_not_concilled}','${lbl:b_to_accept}',null);
+			}
+		}
+
+		function relacion_desc(id2,estatus) {
+			if(estatus=="CO")
+			{
+				var uri = "${def:context}${def:actionroot}/smn_rel_cob_descuento/form?id2="+id2;	
+				//alert(uri);				
+				openDialog("editor1", uri, 1150, 700);	
+			}
+			else
+			{
+				alertBox('${lbl:b_the_collection_relationship_is_not_concilled}','${lbl:b_to_accept}',null);
+			}
+		}
+
+		function relacion_comi(id2,estatus) {
+			if(estatus=="CO")
+			{
+				var uri = "${def:context}${def:actionroot}/smn_rel_comisiones/form?id2="+id2;
+				//alert(uri);				
+				openDialog("editor1", uri, 1150, 700);
+			}
+			else
+			{
+				alertBox('${lbl:b_the_collection_relationship_is_not_concilled}','${lbl:b_to_accept}',null);
+			}
+		}
+		
+		function relSaldoCliente(id,estatus) {
+				var uri = "${def:context}${def:actionroot}/controlSaldoCliente?id="+id;	
+				//alert(uri);				
+				openDialog("editor1", uri, 800, 500);	
+		}
+</script>
+
+</html>

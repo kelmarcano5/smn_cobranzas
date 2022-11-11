@@ -1,0 +1,426 @@
+<!doctype html>
+<html>
+
+<head>
+
+		<link rel="stylesheet" type="text/css" href="${def:context}/dinamica_bkp.css" />
+		<link rel="stylesheet" type="text/css" href="${def:context}/main.css" />
+	
+	<!--biblioteca generica JS/Dinamica-->
+	<script type="text/javascript" src="${def:context}/action/script">
+	</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog" id="encabezado_tabla">
+	${lbl:b_det_retention_mov}
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.closeDialog(); parent.search();" title="${lbl:b_close_button}" style="float:right; cursor:pointer;">
+	${req:progress}
+</div>
+
+<!--formulario addnew/edit-->
+<form name="form1" onsubmit="return save()" style="width:500px;">
+
+	<!-- titulo -->
+	<h1 id="formTitle">${lbl:b_add_record}</h1>
+
+	<table>
+
+		<!--ancho de la columna de etiquetas-->
+		<col width="30%">
+
+		<!--campos-->
+		<tr>
+			<td>${lbl:b_movement_document_collection_detail}*</td>
+			<td>
+				<select name="smn_mov_documento_cob_det_id" id="smn_mov_documento_cob_det_id" onchange="chgCombo(smn_mov_documento_cob_det_id.options[smn_mov_documento_cob_det_id.selectedIndex].text,'smn_mov_documento_cob_det_id_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_mov_documento_cob_det_id_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	 
+					</smn_mov_documento_cob_det_id_rows>
+				</select>
+				<input id="smn_mov_documento_cob_det_id_name" name="smn_mov_documento_cob_det_id_name" type="hidden">
+			</td>
+		</tr>
+		<tr>
+				<td>${lbl:b_document_balance}</td>
+				<td>
+					<input id="saldo_documento" name="saldo_documento" type="text" maxlength="10" class="numeric">
+				</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_tax_code}</td>
+			<td>
+				<select name="smn_codigo_impuesto_id" id="smn_codigo_impuesto_id" onchange="chgCombo3(smn_codigo_impuesto_id.options[smn_codigo_impuesto_id.selectedIndex].text,'smn_codigo_impuesto_id_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_codigo_impuesto_id_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	 
+					</smn_codigo_impuesto_id_rows>
+				</select>
+				<input id="smn_codigo_impuesto_id_name" name="smn_codigo_impuesto_id_name" type="hidden">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_percentage}</td>
+			<td>
+				<input id="mdr_porcentaje" name="mdr_porcentaje" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_base}</td>
+			<td>
+				<input id="mdr_base" name="mdr_base" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_retentions_amount_ml}*</td>
+			<td>
+				<input id="mdr_monto_retenciones_ml" name="mdr_monto_retenciones_ml" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr id="nocoin">
+			<td>${lbl:b_currency}</td>
+			<td>
+				<select name="smn_moneda_rf" id="smn_moneda_rf" onchange="chgCombo(smn_moneda_rf.options[smn_moneda_rf.selectedIndex].text,'smn_moneda_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_moneda_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	 
+					</smn_moneda_rf_rows>
+				</select>
+				<input id="smn_moneda_rf_name" name="smn_moneda_rf_name" type="hidden">
+			</td>
+		</tr>
+		<tr id="norate">
+			<td>${lbl:b_rate}</td>
+			<td>
+				<select name="smn_tasa_rf" id="smn_tasa_rf" onchange="chgCombo4(smn_tasa_rf.options[smn_tasa_rf.selectedIndex].text,'smn_tasa_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_tasa_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	 
+					</smn_tasa_rf_rows>
+				</select>
+				<input id="smn_tasa_rf_name" name="smn_tasa_rf_name" type="hidden">
+			</td>
+		<tr id="noretma">
+			<td>${lbl:b_retentions_amount_ma}</td>
+			<td>
+				<input id="mdr_monto_retenciones_ma" name="mdr_monto_retenciones_ma" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+
+
+	</table>
+
+	<!--botones-->
+	<input id="grabar" type="submit" value="${lbl:b_save_button}" class="button">
+	<input id="limpiar" type="button" value="${lbl:b_clean_button}" onclick="addNew()" class="button">	
+	<input id="copiar" type="button" value="${lbl:b_copy_button}" onclick="getFormValuesToCopy('form1')" class="button">
+	<input id="pegar" type="button" value="${lbl:b_paste_button}" onclick="getFormValuesToPaste('form1')" class="button">
+	<input id="salir" type="button" value="${lbl:s_exit}" onclick="parent.closeDialog(); parent.search();" class="button">	
+	
+	<!-- PK-->
+<input type="hidden" name="id" value="">
+
+</form>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+	onload = function()
+	{ 
+		addNew();
+		//alert('${fld:id2}');
+		//alert('${fld:id4}');
+		document.getElementById("smn_mov_documento_cob_det_id").value = '${fld:id2}';
+		document.form1.smn_mov_documento_cob_det_id.disabled = true;
+
+		document.getElementById("saldo_documento").value = '${fld:id3}';
+		document.form1.saldo_documento.disabled=true;
+
+		document.form1.mdr_porcentaje.disabled = true;
+		document.form1.mdr_base.disabled = true;
+		if('${fld:id4}' == 'NO')
+		{
+			mostrarocultar();
+		}
+		document.form1.mdr_monto_retenciones_ma.disabled = true;
+
+
+		if (id!="")
+			edit(id);
+	} 
+	
+	function chgCombo(text,id)
+	{
+		document.getElementById(id).value = text;
+	}
+	
+	//configurar formulario para ingresar registro nuevo
+	function addNew()
+	{
+		document.getElementById("formTitle").innerHTML = "${lbl:b_add_record}";
+		document.getElementById("grabar").disabled=false;
+		clearForm("form1");
+		setFocusOnForm("form1");
+	}
+	
+	//retorna al estado previo que corresponde
+	//al estado actual de la pagina, cada llamada Ajax
+	//se encarga de definir cual es la funcion de goBack() que aplica
+	function goBack() 
+	{
+		_goBackFn()			
+	}
+	
+	//mostrar la actualizacion de un registro
+	function insert()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/insert", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+	
+	//restaurar el formulario en caso de error
+	function retryAddnewOrEdit() {
+		document.getElementById("grabar").disabled=false;
+		setFocusOnForm("form1");		
+	}
+	
+	var id = "${fld:id}"
+	
+	//grabar el formulario
+	function save()
+	{
+		//determina si es un insert o un update
+		if (document.form1.id.value=="")
+			return insert();
+		else
+			return update();
+	}
+	
+	//editar registro en formulario
+	function edit(id)
+	{
+			clearErrorMessages();
+
+			//llamada Ajax...
+			ajaxCall(httpMethod="GET", 
+							uri="${def:actionroot}/edit?id=" + id , 
+							divResponse=null, 
+							divProgress="status", 
+							formName=null, 
+							afterResponseFn=null, 
+							onErrorFn=null);	
+	}
+	
+	//actualizar registro en BD
+	function update()
+	{		
+			clearErrorMessages();
+			document.getElementById("grabar").disabled=true;
+			
+			//llamada Ajax...
+			return ajaxCall(httpMethod="POST", 
+							uri="${def:actionroot}/update", 
+							divResponse=null, 
+							divProgress="status", 
+							formName="form1", 
+							afterResponseFn=null, 
+							onErrorFn=retryAddnewOrEdit);	
+	}
+
+	//mostrar/ocultar combos
+	function mostrarocultar()
+	{
+		document.getElementById("nocoin").style.display = "none";
+		document.getElementById("norate").style.display = "none";
+		document.getElementById("noretma").style.display = "none";
+	}
+
+	var bdID;
+	function setID(id)
+	{
+		bdID = id;
+	}
+
+	//Author     : SIMONE
+	//Description: Set first element as selected value
+	//Return     : None
+	function setElementFirstIndex(id)
+	{
+		var combo = document.getElementById(id);
+		combo.selectedIndex = 0;
+	}
+
+	//Author     : SIMONE
+	//Description: Insert new value into combo box
+	//Return     : None
+	function insertComboBox(code, combo, description) {
+		var valueText = code;
+		if (description != null)
+		{
+			valueText = valueText + ' - ' + description;
+		}
+		//alert("Insert Combo: "+valueText);
+        combo.options[combo.options.length] = new Option(valueText);
+	}
+	
+	//Author     : SIMONE
+	//Description: Add new value to combo box
+	//Return     : None
+	function addValueToCombo(code, description, field) 
+	{
+	    var combo = document.getElementById(field);	    
+	    insertComboBox(code, combo, description);
+	}
+	
+	//Author     : SIMONE
+	//Description: Set selected index into combo box
+	//Return     : None
+	function setSelectedIndex(code, combo, description) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+			var valueText = code;
+			if (description != null)
+			{
+				valueText = valueText + ' - ' + description;
+			}
+	        if (combo.options[i].text == valueText) 
+	        {
+	        	combo.options[i].selected = true;
+	            return;
+	        }
+	    }
+	}
+	
+	//Author     : SIMONE
+	//Description: Get text valueof selected index
+	//Return     : Text associated to index
+	function getSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].text;
+	        }
+	    }
+	}
+	function getIDSelectedIndex(combo) 
+	{
+	    for (var i = 0; i < combo.options.length; i++) 
+	    {
+	        if (combo.options[i].selected == true) 
+	        {
+	            return combo.options[i].value;
+	        }
+	    }
+	}
+	
+
+	//Author     : SIMONE
+	//Description: Set value to combo box
+	//Parameters : code - it is code associated into each database table 
+	//             descripcion - it is description associated into each database table 
+	//             field - name combo field
+	//             id - identifier retrieved after transaction
+	//             linked - flag indicates 'true' when combos are linked and 'false' otherwise
+	//Return     : None
+	function setValueComboBox(code, description, field, linked)
+	{
+		//add value text to combo
+		addValueToCombo(code,description,field);
+
+		//get select object 
+		var combo = document.getElementById(field);
+		
+		//set element selected to field referenced
+		setSelectedIndex(code,combo, description);
+		
+		//set text value to combo field
+		var valueText = getSelectedIndex(combo);		
+		
+		//get hidden field in order to set any value
+		var combo = document.getElementById(field+'_name');
+		
+		//alert("Text: "+valueText+" - bdID: "+bdID);
+		
+		combo.text  = valueText;
+		combo.value = bdID;
+		
+		//enable linked fields
+		if (linked)
+		{
+			
+		}
+	}
+
+	var geo_id0 = null;
+	function chgCombo3(text,id)
+	{
+		//document.form1.smn_auxiliar_rf.disabled=false;
+
+		var combo = document.getElementById('smn_codigo_impuesto_id');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id0 = valueCombo.split("-").pop().trim();
+
+		//findLocation(geo_id0, '');
+
+		if (id!=null && id!="")
+		{
+			return ajaxCall(
+							httpMethod="GET",
+							uri="${def:actionroot}/getDescuento?id=" + geo_id0 + "&id3=" + '${fld:id3}',
+							divResponse=null,
+							divProgress="status",
+							formName="form1",
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);
+		}
+	}
+
+	var geo_id = null;
+	function chgCombo4(text,id)
+	{
+		//document.form1.smn_auxiliar_rf.disabled=false;
+
+		var combo = document.getElementById('smn_tasa_rf');
+		var valueCombo = getIDSelectedIndex(combo);
+		geo_id = valueCombo.split("-").pop().trim();
+		var valor = document.getElementById("mdr_monto_retenciones_ml").value;
+		//findLocation(geo_id0, '');
+
+		if (id!=null && id!="")
+		{
+			return ajaxCall(
+							httpMethod="GET",
+							uri="${def:actionroot}/getAlterna?id=" + geo_id + "&id3=" + valor,
+							divResponse=null,
+							divProgress="status",
+							formName="form1",
+							afterResponseFn=null, //function 'setElementFirstIndex' select first element of combo list
+							onErrorFn=null);
+		}
+
+	}
+
+	
+</script>	
+</body>
+</html>

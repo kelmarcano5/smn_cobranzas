@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelacioncobranzaretenciones.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="5" cellStep="0" name="${lbl:b_relationship_collection_retention}"/>
+	
+	<excel 
+		recordset='query-smnrelacioncobranzaretenciones.sql' 
+		sheetname='${lbl:b_relationship_collection_retention}' 
+		filename='${lbl:b_relationship_collection_retention}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_clave_aprobacion_pedido' label='${lbl:b_key_order_approval}' />
+		<col id='smn_relacion_cobranza_id' label='${lbl:b_colletion_relationship}' />
+		<col id='smn_codigo_retenciones_rf' label='${lbl:b_code_retentions}' />
+		<col id='rcr_monto_retenciones_ml' label='${lbl:b_withholding_amount_ml}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coin}' />
+		<col id='rcr_monto_retenciones_ma' label='${lbl:b_withholding_amount_ma}' />
+		<col id='rcr_idioma' label='${lbl:s_profile_lang}' />
+		<col id='rcr_usuario' label='${lbl:b_users}' />
+		<col id='rcr_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='rcr_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

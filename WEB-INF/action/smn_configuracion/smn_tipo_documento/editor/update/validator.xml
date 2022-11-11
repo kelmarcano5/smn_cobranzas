@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='tdo_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='tdo_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='tdo_tipo_movimiento' type='varchar' required='true' label='${lbl:b_movement_type}' maxlen='2'/>
+	<parameter id='tdo_estatus' type='varchar' required='false' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='tdo_vigencia' type='date' required='false' label='${lbl:b_effectivity_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_document_type}' maxlen='10'/>
+
+
+</validator>

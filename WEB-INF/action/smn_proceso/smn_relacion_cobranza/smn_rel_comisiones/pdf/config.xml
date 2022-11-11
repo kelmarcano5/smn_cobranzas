@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Generar reporte generico PDF
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelcomisiones.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>dinamica.PDFGenericReport</classname>
+	</output>
+	
+	<pdf-title>${lbl:b_commission_relations}</pdf-title>
+	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' />
+	<pdf-file-name>${lbl:b_commission_relations}.pdf</pdf-file-name>
+
+	<pdf-report 
+		pageSize="letter" 
+		rotate="false"
+		footer="false" 
+		header="true">
+		<record recordset='query-smnrelcomisiones.sql' width='100' spacingBefore='40'>
+			<col name='smn_relacion_cobranza_id' title='${lbl:b_collection_relations}' width='7' align='left' format='######' />
+			<col name='smn_reglas_comisiones_id' title='${lbl:b_commission_rules}' width='7' align='left' format='######' />
+			<col name='smn_cliente_rf' title='${lbl:b_cliente}' width='7' align='left' format='######' />
+			<col name='com_monto_relacion_ml' title='${lbl:b_relation_amount}' width='7' align='left' format='#,###,##0.00' />
+			<col name='smn_moneda_rf' title='${lbl:b_currency}' width='7' align='left' format='######' />
+			<col name='com_monto_relacion_ma' title='${lbl:b_com_amount_ma}' width='7' align='left' format='#,###,##0.00' />
+			<col name='com_porcentaje' title='${lbl:b_percentage}' width='7' align='left' format='#,###,##0.00' />
+			<col name='com_monto_comision_ml' title='${lbl:b_comission_amount_ml}' width='7' align='left' format='#,###,##0.00' />
+			<col name='com_monto_comision_ma' title='${lbl:b_comission_amount_ma}' width='7' align='left' format='#,###,##0.00' />
+			<col name='com_estatus_proceso' title='${lbl:b_process_status}' width='7' align='left' />
+			<col name='com_estatus_financiero' title='${lbl:b_financial_status}' width='7' align='left' />
+			<col name='com_motivo_rechazo' title='${lbl:b_rejection_reason}' width='7' align='left' />
+			<col name='com_fecha_registro' title='${lbl:b_store_date}' width='7' align='left' format='dd-MM-yyyy' />
+
+		</record>
+
+	</pdf-report>
+</config>

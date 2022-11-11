@@ -1,0 +1,83 @@
+<!--data grid-->
+<table class="datagrid" style="width:95%;">
+
+	<col width='3%'/>
+<!--<col width='3%'/>-->
+	<col width='3%'/> 
+	<col width='3%'/> 
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='12%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	<col width='3%'/>
+	
+	<!--toolbar-->
+	<tr>
+		<th colspan="19" id="encabezado_tabla">
+			${req:controls} 
+		</th>
+	</tr>
+
+	<!--encabezados-->
+	<tr>
+		<th></th>
+		<!-- <th></th>-->
+		<th></th>
+		<th></th> 
+		<th class='sortable' onclick='sortBy("smn_modulo_rf","query-smnrelacioncobranza.sql")'>${lbl:b_module}</th>
+		<th class='sortable' onclick='sortBy("smn_documento_id","query-smnrelacioncobranza.sql")'>${lbl:b_document}</th>
+		<th class='sortable' onclick='sortBy("smn_cliente_rf","query-smnrelacioncobranza.sql")'>${lbl:b_customer}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_bruto_cob_ml","query-smnrelacioncobranza.sql")'>${lbl:b_brut_amount_ml}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_bruto_cob_ma","query-smnrelacioncobranza.sql")'>${lbl:b_brut_amount_ma}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_neto_cob_ml","query-smnrelacioncobranza.sql")'>${lbl:b_payment_local_currency}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_neto_cob_ma","query-smnrelacioncobranza.sql")'>${lbl:b_alternate_currency_payment}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_documento_ml","query-smnrelacioncobranza.sql")'>${lbl:b_balance_doc_ml}</th>
+		<th class='sortable' onclick='sortBy("rco_monto_documento_ma","query-smnrelacioncobranza.sql")'>${lbl:b_balance_doc_ma}</th>
+		<th class='sortable' onclick='sortBy("smn_forma_pago_rf_combo","query-smnrelacioncobranza.sql")'>${lbl:b_key_form}</th>
+		<th class='sortable' onclick='sortBy("rco_estatus_proceso","query-smnrelacioncobranza.sql")'>${lbl:b_process_status}</th>
+		<th class='sortable' onclick='sortBy("rco_fecha_registro","query-smnrelacioncobranza.sql")'>${lbl:b_store_date}</th>
+		<th>RCD</th>
+		<th>CI</th>
+		<th>CD</th>
+		<th>CC</th>
+
+	</tr>
+
+	<!--data-->
+	<rows>
+	<tr>
+		<td><img src="${def:context}/images/search.png"  onclick="getDetail('${fld:smn_relacion_cobranza_id}')" title="${lbl:b_view_detail}"></td>
+	<!-- 	<td><img src="${def:context}/images/delete.png"  onclick="deleteRecord('${fld:smn_relacion_cobranza_id}')" title="${lbl:b_delete_button}"></td>-->
+		<td><img src="${def:context}/images/edit.png"  onclick="showEditor('${fld:smn_relacion_cobranza_id}')" title="${lbl:b_edit_button}"></td>
+		<td><img src="${def:context}/images/icongrid/Generar.png" onclick="relSaldoCliente('${fld:smn_relacion_cobranza_id}')" title="control saldo cliente"></td>
+		<td>${fld:smn_modulo_rf}</td>
+		<td>#${fld:smn_num_doc_orig} ${fld:smn_documento_id}</td>
+		<td>${fld:smn_cliente_rf}</td>
+		<td align='right'>${fld:rco_monto_bruto_cob_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:rco_monto_bruto_cob_ma@#,###,##0.00}</td>
+		<td align='right'>${fld:rco_monto_neto_cob_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:rco_monto_neto_cob_ma@#,###,##0.00}</td>
+		<td align='right'>${fld:rco_monto_documento_ml@#,###,##0.00}</td>
+		<td align='right'>${fld:rco_monto_documento_ma@#,###,##0.00}</td>
+		<td>${fld:smn_forma_pago_rf_combo}</td>
+		<td>${fld:rco_estatus_proceso_combo}</td>
+		<td>${fld:rco_fecha_registro@dd-MM-yyyy}</td>
+		<td><img src="${def:context}/images/icongrid/Comprobante-diario.png" onclick="rel_cob_documento('${fld:smn_relacion_cobranza_id}','${fld:rco_estatus_proceso}')" title="${lbl:b_rel_cob_documento}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_imp('${fld:smn_relacion_cobranza_id}','${fld:rco_estatus_proceso}')" title="${lbl:b_tax_collection_relationship}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_desc('${fld:smn_relacion_cobranza_id}','${fld:rco_estatus_proceso}')" title="${lbl:b_discount_collection_relations}"></td>
+		<td><img src="${def:context}/images/icongrid/Detalle-impuesto.png" onclick="relacion_comi('${fld:smn_relacion_cobranza_id}','${fld:rco_estatus_proceso}')" title="${lbl:b_commission_relations}"></td> 
+	</tr>
+	</rows>
+
+</table>

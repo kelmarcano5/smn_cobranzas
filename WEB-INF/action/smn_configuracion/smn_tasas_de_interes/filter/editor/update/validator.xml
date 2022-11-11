@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='tai_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='tai_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='tai_porcentaje' type='double' required='true' label='${lbl:b_percentage}' maxlen='10'/>
+	<parameter id='rol_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='rol_vigencia' type='date' required='true' label='${lbl:b_effectivity_date}' maxlen='10'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_interest_rates}' maxlen='10'/>
+
+
+</validator>

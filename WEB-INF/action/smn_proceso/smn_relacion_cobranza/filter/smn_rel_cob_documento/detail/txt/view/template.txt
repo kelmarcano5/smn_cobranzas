@@ -1,0 +1,3 @@
+<rows>
+smn_mov_documento_cob_det_id="${fld:smn_mov_documento_cob_det_id}"    smn_relacion_cobranza_id="${fld:smn_relacion_cobranza_id}"    
+</rows>

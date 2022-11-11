@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_entidad_rf' type='integer' required='true' label='${lbl:b_entity}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_branch_office}' maxlen='10'/>
+	<parameter id='rec_numero' type='integer' required='true' label='${lbl:b_number}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_client}' maxlen='10'/>
+	<parameter id='rec_fecha_generacion' type='date' required='true' label='${lbl:b_generation_date}' maxlen='10'/>
+	<parameter id='rec_fecha_entrega' type='date' required='false' label='${lbl:b_delivery_date}' maxlen='10'/>
+	<parameter id='rec_ejecutivo_recibe' type='varchar' required='false' label='${lbl:b_executive_reception}' maxlen='64'/>
+	<parameter id='rec_monto_ml' type='double' required='true' label='${lbl:b_amount_ml}' maxlen='10'/>
+	<parameter id='rec_monto_ma' type='double' required='true' label='${lbl:b_amount_ma}' maxlen='10'/>
+	<parameter id='rec_cantidad_documento' type='integer' required='false' label='${lbl:b_number_of_documents}' maxlen='10'/>
+	<parameter id='rec_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+
+
+</validator>

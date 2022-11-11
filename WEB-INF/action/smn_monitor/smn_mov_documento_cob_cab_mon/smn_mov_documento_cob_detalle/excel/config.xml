@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovdocumentocobdetalle.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="${lbl:b_movement_document_collection_detail}"/>
+	
+	<excel 
+		recordset='query-smnmovdocumentocobdetalle.sql' 
+		sheetname='${lbl:b_movement_document_collection_detail}' 
+		filename='${lbl:b_movement_document_collection_detail}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_mov_documento_cob_cab_id' label='${lbl:b_doc_mov_head_charg}' />
+		<col id='smn_tipo_documento_id' label='${lbl:b_document_type}' />
+		<col id='smn_documento_id' label='${lbl:b_document_type}' />
+		<col id='mdd_numero_documento' label='${lbl:b_document_number}' />
+		<col id='smn_cliente_rf' label='${lbl:b_customer}' />
+		<col id='smn_centro_costo_rf' label='${lbl:b_cost_centers}' />
+		<col id='mdd_monto_ml' label='${lbl:b_amount_ml}' />
+		<col id='smn_moneda_rf' label='${lbl:b_coin}' />
+		<col id='mdd_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='mdd_fecha_pago' label='${lbl:b_payment_date}' />
+		<col id='smn_tasa_rf' label='${lbl:b_rate}' />
+		<col id='mdd_diferencia_cambiario' label='${lbl:b_exchange_rate_difference}' />
+		<col id='mdd_idioma' label='${lbl:s_profile_lang}' />
+		<col id='mdd_usuario' label='${lbl:b_users}' />
+		<col id='mdd_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='mdd_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

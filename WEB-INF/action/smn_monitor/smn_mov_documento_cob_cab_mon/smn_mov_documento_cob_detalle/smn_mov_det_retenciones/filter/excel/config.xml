@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnmovdetretenciones.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="6" cellStep="0" name="${lbl:b_det_retention_mov}"/>
+	
+	<excel 
+		recordset='query-smnmovdetretenciones.sql' 
+		sheetname='${lbl:b_det_retention_mov}' 
+		filename='${lbl:b_det_retention_mov}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_mov_documento_cob_det_id' label='${lbl:b_movement_document_collection_detail}' />
+		<col id='smn_codigo_impuesto_id' label='${lbl:b_tax_code}' />
+		<col id='mdr_porcentaje' label='${lbl:b_percentage}' />
+		<col id='mdr_base' label='${lbl:b_base}' />
+		<col id='mdr_monto_retenciones_ml' label='${lbl:b_retentions_amount_ml}' />
+		<col id='smn_moneda_rf' label='${lbl:b_currency}' />
+		<col id='smn_tasa_rf' label='${lbl:b_rate}' />
+		<col id='mdr_monto_retenciones_ma' label='${lbl:b_retentions_amount_ma}' />
+		<col id='mdr_idioma' label='${lbl:s_profile_lang}' />
+		<col id='mdr_usuario' label='${lbl:b_users}' />
+		<col id='mdr_fecha_registro' label='${lbl:b_store_date}' />
+		<col id='mdr_hora' label='${lbl:s_loginhist_col2}' />
+
+	</excel>
+
+</config>

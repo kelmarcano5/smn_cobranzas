@@ -1,0 +1,30 @@
+INSERT INTO smn_comercial.smn_factura_complemento
+(
+	smn_factura_complemento_id,
+	smn_factura_id,
+	smn_pedido_cabecera_id,
+	smn_pedido_detalle_id,
+	smn_item_id,
+	smn_servicio_id,
+	fco_monto_dif_camb_item_ml,
+	fco_monto_dif_camb_impuesto_ml,
+	fid_idioma,
+	fid_usuario,
+	fid_fecha_registro,
+	fid_hora
+)
+VALUES
+(
+	nextval('smn_comercial.seq_smn_factura_complemento'),
+	${fld:smn_factura_cabecera_id},
+	${fld:smn_pedido_cabecera_id},
+	${fld:smn_pedido_detalle_id},
+	${fld:smn_item_id},
+	${fld:smn_servicio_id},
+	${fld:mdd_diferencia_cambiario},
+	${fld:fco_monto_dif_camb_impuesto_ml},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

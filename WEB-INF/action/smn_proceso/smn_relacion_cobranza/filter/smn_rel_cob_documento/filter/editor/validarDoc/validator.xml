@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/ajax" id='validator'>
+	<parameter id="smn_mov_documento_cob_cab_id" type="integer" required="false" label="ID ${lbl:b_doc_mov_head_charg}"/>
+	<parameter id="smn_relacion_cobranza_id" type="integer" required="false" label="ID ${lbl:b_colletion_relationship}"/>
+</validator>

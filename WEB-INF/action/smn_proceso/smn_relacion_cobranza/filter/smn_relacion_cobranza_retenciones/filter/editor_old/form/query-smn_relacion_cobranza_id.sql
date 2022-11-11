@@ -1,0 +1,1 @@
+select smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id as id, smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id as item from smn_cobranzas.smn_relacion_cobranza

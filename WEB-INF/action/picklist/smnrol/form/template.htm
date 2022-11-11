@@ -1,0 +1,409 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		
+		
+		
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.elements[0].focus();
+			document.getElementById("status").style.display='none';
+					document.form2.rol_vigencia2.onkeypress = keypressDate;
+
+					document.form1.rol_vigencia.onkeypress = keypressDate;
+
+			search();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.form1.elements[0].focus();			
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=showFilter, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//leer una pagina del grid
+		function viewPage()
+		{
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+
+		//retornar el item seleccionado a la pagina que llamo al picklist
+		function selectItem(id) {
+			var description = document.getElementById(id).innerHTML;
+			parent.selectSmnRolId(id, description);
+			document.form1.elements[0].value = '';
+			document.form1.elements[0].focus();
+		}
+		
+		//mostrar formulario para addnew
+		function addNew() {
+			document.getElementById("addnew").style.display="block";
+			document.getElementById("form").style.display="none";
+			document.getElementById("response").style.display="none";
+			document.form2.elements[0].focus();
+		}
+		
+		function cancelAddnew() {
+			document.getElementById("addnew").style.display="none";
+			document.getElementById("form").style.display="block";
+			document.getElementById("response").style.display="block";
+			document.form1.name.focus();
+		}
+		
+		//ejecutar consulta
+		function insert()
+		{
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/insert", 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form2", 
+								afterResponseFn=null, 
+								onErrorFn=addNew);
+		}		
+		
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	Seleccionar un registro
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.pickClose()" title="Cerrar" style="float:right; cursor:pointer;">
+	<img id="status" src="${def:context}/images/progbar.gif" style="display:inline; float:right;">
+</div>
+
+
+<!--formulario de filtro-->
+<form id="form" name="form1" onsubmit="return search()" style="width:90%; margin-top:10px;">
+	<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+		<tr>
+		<td>${lbl:b_user}</td>
+		<td>
+			<select name="smn_usuario_rf" id="smn_usuario_rf" onchange="chgCombo(smn_usuario_rf.options[smn_usuario_rf.selectedIndex].text,'smn_usuario_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_usuario_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_usuario_rf_rows>
+			</select> 
+			<input id="smn_usuario_rf_name" name="smn_usuario_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_profile}</td>
+		<td>
+			<select name="smn_perfil_rf" id="smn_perfil_rf" onchange="chgCombo(smn_perfil_rf.options[smn_perfil_rf.selectedIndex].text,'smn_perfil_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_perfil_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_perfil_rf_rows>
+			</select> 
+			<input id="smn_perfil_rf_name" name="smn_perfil_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary_class}</td>
+		<td>
+			<select name="smn_clase_auxiliar_rf" id="smn_clase_auxiliar_rf" onchange="chgCombo(smn_clase_auxiliar_rf.options[smn_clase_auxiliar_rf.selectedIndex].text,'smn_clase_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clase_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clase_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_clase_auxiliar_rf_name" name="smn_clase_auxiliar_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary}</td>
+		<td>
+			<select name="smn_auxiliar_rf" id="smn_auxiliar_rf" onchange="chgCombo(smn_auxiliar_rf.options[smn_auxiliar_rf.selectedIndex].text,'smn_auxiliar_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_auxiliar_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_auxiliar_rf_rows>
+			</select> 
+			<input id="smn_auxiliar_rf_name" name="smn_auxiliar_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_role_type}</td>
+		<td>
+			<select name="rol_tipo" id="rol_tipo">
+				<option value="SO">${lbl:b_applicant} </option>
+				<option value=" CO">${lbl:b_debt_collector} </option>
+				<option value=" AP">${lbl:b_approver}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_corporation}</td>
+		<td>
+			<select name="smn_corporacion_rf" id="smn_corporacion_rf" onchange="chgCombo(smn_corporacion_rf.options[smn_corporacion_rf.selectedIndex].text,'smn_corporacion_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_corporacion_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_corporacion_rf_rows>
+			</select> 
+			<input id="smn_corporacion_rf_name" name="smn_corporacion_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_entity}</td>
+		<td>
+			<select name="smn_entidad_rf" id="smn_entidad_rf" onchange="chgCombo(smn_entidad_rf.options[smn_entidad_rf.selectedIndex].text,'smn_entidad_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_entidad_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_entidad_rf_rows>
+			</select> 
+			<input id="smn_entidad_rf_name" name="smn_entidad_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_subsidiary}</td>
+		<td>
+			<select name="smn_sucursal_rf" id="smn_sucursal_rf" onchange="chgCombo(smn_sucursal_rf.options[smn_sucursal_rf.selectedIndex].text,'smn_sucursal_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_sucursal_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_sucursal_rf_rows>
+			</select> 
+			<input id="smn_sucursal_rf_name" name="smn_sucursal_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_structure_configuration}</td>
+		<td>
+			<select name="rol_posicion_estructura_rf" id="rol_posicion_estructura_rf" onchange="chgCombo(rol_posicion_estructura_rf.options[rol_posicion_estructura_rf.selectedIndex].text,'rol_posicion_estructura_rf_name');">
+				<option value="">[Cualquiera]</option>
+				<rol_posicion_estructura_rf_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</rol_posicion_estructura_rf_rows>
+			</select> 
+			<input id="rol_posicion_estructura_rf_name" name="rol_posicion_estructura_rf_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_status}</td>
+		<td>
+			<select name="rol_estatus" id="rol_estatus">
+				<option value="AC">${lbl:b_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_effectivity_date}</td>
+		<td>
+			<input id="rol_vigencia" name="rol_vigencia" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('rol_vigencia')">
+		</td>
+	</tr>
+
+	
+	</table>
+	<input type="submit" value="Buscar" class="button" style="font-size: 9pt">	
+	<input type="button" value="Añadir" class="button" style="font-size: 9pt" title="Añadir un nuevo item" onclick="addNew()">
+</form>
+
+<!--formulario para añadir nuevo registro-->
+<form id="addnew" name="form2" onsubmit="return insert()" style="display:none; margin-top:10px; width:90%">
+	<table>
+	<h1>Añadir registro</h1>
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+	<!--campos-->
+	
+	
+		<tr>
+		<td>${lbl:b_user}*</td>
+		<td>
+			<select name="smn_usuario_rf2" id="smn_usuario_rf2" onchange="chgCombo(smn_usuario_rf2.options[smn_usuario_rf2.selectedIndex].text,'smn_usuario_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_usuario_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_usuario_rf2_rows>
+			</select> 
+			<input id="smn_usuario_rf2_name" name="smn_usuario_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_profile}*</td>
+		<td>
+			<select name="smn_perfil_rf2" id="smn_perfil_rf2" onchange="chgCombo(smn_perfil_rf2.options[smn_perfil_rf2.selectedIndex].text,'smn_perfil_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_perfil_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_perfil_rf2_rows>
+			</select> 
+			<input id="smn_perfil_rf2_name" name="smn_perfil_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary_class}*</td>
+		<td>
+			<select name="smn_clase_auxiliar_rf2" id="smn_clase_auxiliar_rf2" onchange="chgCombo(smn_clase_auxiliar_rf2.options[smn_clase_auxiliar_rf2.selectedIndex].text,'smn_clase_auxiliar_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_clase_auxiliar_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_clase_auxiliar_rf2_rows>
+			</select> 
+			<input id="smn_clase_auxiliar_rf2_name" name="smn_clase_auxiliar_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_auxiliary}*</td>
+		<td>
+			<select name="smn_auxiliar_rf2" id="smn_auxiliar_rf2" onchange="chgCombo(smn_auxiliar_rf2.options[smn_auxiliar_rf2.selectedIndex].text,'smn_auxiliar_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_auxiliar_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_auxiliar_rf2_rows>
+			</select> 
+			<input id="smn_auxiliar_rf2_name" name="smn_auxiliar_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_role_type}*</td>
+		<td>
+			<select name="rol_tipo2" id="rol_tipo2">
+				<option value="SO">${lbl:b_applicant} </option>
+				<option value=" CO">${lbl:b_debt_collector} </option>
+				<option value=" AP">${lbl:b_approver}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_corporation}</td>
+		<td>
+			<select name="smn_corporacion_rf2" id="smn_corporacion_rf2" onchange="chgCombo(smn_corporacion_rf2.options[smn_corporacion_rf2.selectedIndex].text,'smn_corporacion_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_corporacion_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_corporacion_rf2_rows>
+			</select> 
+			<input id="smn_corporacion_rf2_name" name="smn_corporacion_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_entity}</td>
+		<td>
+			<select name="smn_entidad_rf2" id="smn_entidad_rf2" onchange="chgCombo(smn_entidad_rf2.options[smn_entidad_rf2.selectedIndex].text,'smn_entidad_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_entidad_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_entidad_rf2_rows>
+			</select> 
+			<input id="smn_entidad_rf2_name" name="smn_entidad_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_subsidiary}</td>
+		<td>
+			<select name="smn_sucursal_rf2" id="smn_sucursal_rf2" onchange="chgCombo(smn_sucursal_rf2.options[smn_sucursal_rf2.selectedIndex].text,'smn_sucursal_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_sucursal_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_sucursal_rf2_rows>
+			</select> 
+			<input id="smn_sucursal_rf2_name" name="smn_sucursal_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_structure_configuration}</td>
+		<td>
+			<select name="rol_posicion_estructura_rf2" id="rol_posicion_estructura_rf2" onchange="chgCombo(rol_posicion_estructura_rf2.options[rol_posicion_estructura_rf2.selectedIndex].text,'rol_posicion_estructura_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<rol_posicion_estructura_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</rol_posicion_estructura_rf2_rows>
+			</select> 
+			<input id="rol_posicion_estructura_rf2_name" name="rol_posicion_estructura_rf2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_status}*</td>
+		<td>
+			<select name="rol_estatus2" id="rol_estatus2">
+				<option value="AC">${lbl:b_active}</option>
+				<option value="IN">${lbl:b_inactive}</option>
+
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_effectivity_date}*</td>
+		<td>
+			<input id="rol_vigencia2" name="rol_vigencia2" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('rol_vigencia2')">
+		</td>
+	</tr>
+
+	</table>
+	<input type="submit" value="Grabar" class="button" style="font-size: 9pt">
+	<input 	type="button" value="Cancelar" class="button" style="font-size: 9pt" onclick="cancelAddnew()">
+</form>			
+
+<!--panel de respuesta AJAX-->
+<div id="response" style="display: none; width:100%; margin-top:15px;">
+</div>
+
+</body>
+
+</html>

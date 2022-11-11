@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<smn_relacion_cobranza_retenciones>
+	<detail>
+		<rows>		
+		<record rcr_fecha_registro="${fld:rcr_fecha_registro}"    rcr_monto_retenciones_ma="${fld:rcr_monto_retenciones_ma}"    smn_moneda_rf="${fld:smn_moneda_rf}"    rcr_monto_retenciones_ml="${fld:rcr_monto_retenciones_ml}"    smn_codigo_retenciones_rf="${fld:smn_codigo_retenciones_rf}"    smn_relacion_cobranza_id="${fld:smn_relacion_cobranza_id}"    smn_clave_aprobacion_pedido="${fld:smn_clave_aprobacion_pedido}"    />
+		</rows>
+	</detail>
+</smn_relacion_cobranza_retenciones>

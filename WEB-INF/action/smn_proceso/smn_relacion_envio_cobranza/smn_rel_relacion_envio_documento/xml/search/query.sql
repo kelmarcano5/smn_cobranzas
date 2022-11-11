@@ -1,0 +1,22 @@
+SELECT
+smn_cobranzas.smn_mov_documento_cob_cab.mdc_numero_factura,
+smn_cobranzas.smn_mov_documento_cob_cab.mdc_fecha_documento,
+smn_cobranzas.smn_mov_documento_cob_cab.mdc_fecha_vencimiento,
+smn_cobranzas.smn_mov_documento_cob_cab.mdc_monto_ml,
+smn_base.smn_auxiliar.aux_rif,
+smn_base.smn_auxiliar.aux_apellidos,
+smn_base.smn_auxiliar.aux_nombres,
+smn_base.smn_auxiliar.aux_nombres_relacionado,
+smn_base.smn_auxiliar.aux_apellido_relacionado,
+smn_base.smn_auxiliar.aux_num_oficial_relacionado,
+smn_base.smn_auxiliar.aux_titular_rf,
+smn_comercial.smn_pedido_cabecera.smn_pedido_cabecera_id
+FROM
+smn_cobranzas.smn_relacion_envio_cobranza
+INNER JOIN smn_cobranzas.smn_rel_relacion_envio_documento ON smn_cobranzas.smn_relacion_envio_cobranza.smn_relacion_envio_cobranza_id = smn_cobranzas.smn_rel_relacion_envio_documento.smn_relacion_envio_cobranza_id
+INNER JOIN smn_cobranzas.smn_mov_documento_cob_cab ON smn_cobranzas.smn_rel_relacion_envio_documento.smn_mov_documento_cob_cab_id = smn_cobranzas.smn_mov_documento_cob_cab.smn_mov_documento_cob_cab_id
+INNER JOIN smn_comercial.smn_pedido_cabecera ON smn_cobranzas.smn_mov_documento_cob_cab.mdc_numero_doc_origen = smn_comercial.smn_pedido_cabecera.pca_numero_pedido
+INNER JOIN smn_base.smn_auxiliar ON smn_comercial.smn_pedido_cabecera.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id
+
+WHERE
+smn_cobranzas.smn_relacion_envio_cobranza.smn_relacion_envio_cobranza_id = ${fld:id2}

@@ -1,0 +1,36 @@
+INSERT INTO smn_cobranzas.smn_rel_cob_impuesto
+(
+	smn_rel_cob_impuesto_id,
+	smn_relacion_cobranza_id,
+	smn_codigos_impuestos_rf,
+	rci_monto_base,
+	smn_porcentaje_impuesto_rf,
+	rci_sustraendo_rf,
+	rci_tipo_movimiento,
+	rci_monto_impuesto_ml,
+	smn_moneda,
+	smn_tasa,
+	rci_monto_impuesto_ma,
+	rci_idioma,
+	rci_usuario,
+	rci_fecha_registro,
+	rci_hora
+)
+VALUES
+(
+	${seq:currval@smn_cobranzas.seq_smn_rel_cob_impuesto},
+	${fld:smn_relacion_cobranza_id},
+	${fld:smn_codigos_impuestos_rf},
+	${fld:rci_monto_base},
+	${fld:smn_porcentaje_impuesto_rf},
+	${fld:rci_sustraendo_rf},
+	${fld:rci_tipo_movimiento},
+	${fld:rci_monto_impuesto_ml},
+	${fld:smn_moneda},
+	${fld:smn_tasa},
+	${fld:rci_monto_impuesto_ma},
+	'${def:locale}',
+	'${def:user}',
+	{d '${def:date}'},
+	'${def:time}'
+)

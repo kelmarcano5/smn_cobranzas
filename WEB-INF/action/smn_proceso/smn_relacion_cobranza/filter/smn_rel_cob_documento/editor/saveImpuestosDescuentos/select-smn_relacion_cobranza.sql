@@ -1,0 +1,7 @@
+SELECT
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_bruto_cob_ml,
+	smn_cobranzas.smn_relacion_cobranza.rco_monto_bruto_cob_ma
+FROM
+	smn_cobranzas.smn_relacion_cobranza
+WHERE
+	smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id=${fld:smn_relacion_cobranza_id}

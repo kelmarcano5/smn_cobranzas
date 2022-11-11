@@ -1,0 +1,2 @@
+ and
+ 	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_clave_aprobacion_pedido=${fld:smn_clave_aprobacion_pedido}

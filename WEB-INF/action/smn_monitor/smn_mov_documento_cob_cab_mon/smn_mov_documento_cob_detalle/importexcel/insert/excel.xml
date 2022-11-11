@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_tipo_documento_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdd_numero_documento' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_centro_costo_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdd_monto_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdd_monto_ma' type='double' required='false' maxlen='10'/>
+	<parameter id='mdd_fecha_pago' type='date' required='true' maxlen='10'/>
+	<parameter id='smn_tasa_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='mdd_diferencia_cambiario' type='double' required='false' maxlen='10'/>
+
+
+
+</validator>

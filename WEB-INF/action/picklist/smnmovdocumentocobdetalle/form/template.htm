@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="${def:context}/dinamica.css" />
+
+<!--biblioteca generica JS/Dinamica-->
+<script type="text/javascript" src="${def:context}/action/script">
+</script>
+
+<!--codigo de soporte del template-->
+<script type="text/javascript">
+
+		
+		
+		
+
+		//inicializacion de la pagina cuando carga
+		onload = function()
+		{ 
+			document.form1.elements[0].focus();
+			document.getElementById("status").style.display='none';
+					var txt_mdd_numero_documento2 = new NumericInput(document.form2.mdd_numero_documento2, 0);
+		var txt_smn_cliente_rf2 = new NumericInput(document.form2.smn_cliente_rf2, 0);
+		var txt_mdd_monto_ml2 = new NumericInput(document.form2.mdd_monto_ml2);
+		var txt_mdd_monto_ma2 = new NumericInput(document.form2.mdd_monto_ma2);
+		document.form2.mdd_fecha_pago2.onkeypress = keypressDate;
+		var txt_mdd_diferencia_cambiario2 = new NumericInput(document.form2.mdd_diferencia_cambiario2);
+
+					var txt_mdd_numero_documento = new NumericInput(document.form1.mdd_numero_documento, 0);
+		var txt_smn_cliente_rf = new NumericInput(document.form1.smn_cliente_rf, 0);
+
+			search();
+		} 
+	
+		//mostrar filtro de busqueda
+		function showFilter()
+		{
+			document.form1.elements[0].focus();			
+		}
+
+		//ejecutar consulta
+		function search()
+		{
+
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/search", 
+								divResponse="response", 
+								divProgress="status", 
+								formName="form1", 
+								afterResponseFn=showFilter, 
+								onErrorFn=showFilter);
+		
+		}
+	
+		//leer una pagina del grid
+		function viewPage()
+		{
+			var url = "${def:actionroot}/view";
+			gotoPage(url);
+		}
+
+		//retornar el item seleccionado a la pagina que llamo al picklist
+		function selectItem(id) {
+			var description = document.getElementById(id).innerHTML;
+			parent.selectSmnMovDocumentoCobDetId(id, description);
+			document.form1.elements[0].value = '';
+			document.form1.elements[0].focus();
+		}
+		
+		//mostrar formulario para addnew
+		function addNew() {
+			document.getElementById("addnew").style.display="block";
+			document.getElementById("form").style.display="none";
+			document.getElementById("response").style.display="none";
+			document.form2.elements[0].focus();
+		}
+		
+		function cancelAddnew() {
+			document.getElementById("addnew").style.display="none";
+			document.getElementById("form").style.display="block";
+			document.getElementById("response").style.display="block";
+			document.form1.name.focus();
+		}
+		
+		//ejecutar consulta
+		function insert()
+		{
+			//llamada Ajax...
+			return ajaxCall(	httpMethod="POST", 
+								uri="${def:actionroot}/insert", 
+								divResponse=null, 
+								divProgress="status", 
+								formName="form2", 
+								afterResponseFn=null, 
+								onErrorFn=addNew);
+		}		
+		
+</script>
+
+</head>
+
+<body>
+
+<!--banner-->
+<div class="bannerDialog">
+	Seleccionar un registro
+	<img src="${def:context}/images/close.png" class="button" onclick="parent.pickClose()" title="Cerrar" style="float:right; cursor:pointer;">
+	<img id="status" src="${def:context}/images/progbar.gif" style="display:inline; float:right;">
+</div>
+
+
+<!--formulario de filtro-->
+<form id="form" name="form1" onsubmit="return search()" style="width:90%; margin-top:10px;">
+	<table>
+
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+
+	<!--campos-->
+		<tr>
+		<td>${lbl:b_document_type}</td>
+		<td>
+			<select name="smn_tipo_documento_id" id="smn_tipo_documento_id" onchange="chgCombo(smn_tipo_documento_id.options[smn_tipo_documento_id.selectedIndex].text,'smn_tipo_documento_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tipo_documento_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tipo_documento_id_rows>
+			</select> 
+			<input id="smn_tipo_documento_id_name" name="smn_tipo_documento_id_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_document_type}</td>
+		<td>
+			<select name="smn_documento_id" id="smn_documento_id" onchange="chgCombo(smn_documento_id.options[smn_documento_id.selectedIndex].text,'smn_documento_id_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_id_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_id_rows>
+			</select> 
+			<input id="smn_documento_id_name" name="smn_documento_id_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_document_number}</td>
+			<td>
+				<input id="mdd_numero_documento" name="mdd_numero_documento" type="text" maxlength="10" ${class}>
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_customer}*</td>
+			<td>
+				<select name="smn_cliente_rf" id="smn_cliente_rf" onchange="chgCombo(smn_cliente_rf.options[smn_cliente_rf.selectedIndex].text,'smn_cliente_rf_name');">
+					<option value="">[Cualquiera]</option>
+					<smn_cliente_rf_rows>
+					<option value="${fld:id}">${fld:item}</option>
+	
+					</smn_cliente_rf_rows>
+				</select>
+				<input id="smn_cliente_rf_name" name="smn_cliente_rf_name" type="hidden">
+			</td>
+		</tr>
+
+	
+	</table>
+	<input type="submit" value="Buscar" class="button" style="font-size: 9pt">	
+	<input type="button" value="Añadir" class="button" style="font-size: 9pt" title="Añadir un nuevo item" onclick="addNew()">
+</form>
+
+<!--formulario para añadir nuevo registro-->
+<form id="addnew" name="form2" onsubmit="return insert()" style="display:none; margin-top:10px; width:90%">
+	<table>
+	<h1>Añadir registro</h1>
+	<!--ancho de la columna de etiquetas-->
+	<col width="30%">
+	<!--campos-->
+	
+	
+		<tr>
+		<td>${lbl:b_doc_mov_head_charg}*</td>
+		<td>
+			<select name="smn_mov_documento_cob_cab_id2" id="smn_mov_documento_cob_cab_id2" onchange="chgCombo(smn_mov_documento_cob_cab_id2.options[smn_mov_documento_cob_cab_id2.selectedIndex].text,'smn_mov_documento_cob_cab_id2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_mov_documento_cob_cab_id2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_mov_documento_cob_cab_id2_rows>
+			</select> 
+			<input id="smn_mov_documento_cob_cab_id2_name" name="smn_mov_documento_cob_cab_id2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_document_type}*</td>
+		<td>
+			<select name="smn_tipo_documento_id2" id="smn_tipo_documento_id2" onchange="chgCombo(smn_tipo_documento_id2.options[smn_tipo_documento_id2.selectedIndex].text,'smn_tipo_documento_id2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tipo_documento_id2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tipo_documento_id2_rows>
+			</select> 
+			<input id="smn_tipo_documento_id2_name" name="smn_tipo_documento_id2_name" type="hidden">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_document_type}*</td>
+		<td>
+			<select name="smn_documento_id2" id="smn_documento_id2" onchange="chgCombo(smn_documento_id2.options[smn_documento_id2.selectedIndex].text,'smn_documento_id2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_documento_id2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_documento_id2_rows>
+			</select> 
+			<input id="smn_documento_id2_name" name="smn_documento_id2_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_document_number}*</td>
+			<td>
+				<input id="mdd_numero_documento2" name="mdd_numero_documento2" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+		<tr>
+			<td>${lbl:b_customer}@{SELECT smn_comercial.smn_cliente.smn_cliente_id as id, smn_base.smn_auxiliar.aux_descripcion as item FROM smn_comercial.smn_cliente INNER JOIN smn_base.smn_auxiliar ON smn_comercial.smn_cliente.smn_auxiliar_rf = smn_base.smn_auxiliar.smn_auxiliar_id}*</td>
+			<td>
+				<input id="smn_cliente_rf2" name="smn_cliente_rf2" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_cost_centers}</td>
+		<td>
+			<select name="smn_centro_costo_rf2" id="smn_centro_costo_rf2" onchange="chgCombo(smn_centro_costo_rf2.options[smn_centro_costo_rf2.selectedIndex].text,'smn_centro_costo_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_centro_costo_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_centro_costo_rf2_rows>
+			</select> 
+			<input id="smn_centro_costo_rf2_name" name="smn_centro_costo_rf2_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_amount_ml}*</td>
+			<td>
+				<input id="mdd_monto_ml2" name="mdd_monto_ml2" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_coin}</td>
+		<td>
+			<select name="smn_moneda_rf2" id="smn_moneda_rf2" onchange="chgCombo(smn_moneda_rf2.options[smn_moneda_rf2.selectedIndex].text,'smn_moneda_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_moneda_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_moneda_rf2_rows>
+			</select> 
+			<input id="smn_moneda_rf2_name" name="smn_moneda_rf2_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_amount_ma}</td>
+			<td>
+				<input id="mdd_monto_ma2" name="mdd_monto_ma2" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+	<tr>
+		<td>${lbl:b_payment_date}*</td>
+		<td>
+			<input id="mdd_fecha_pago2" name="mdd_fecha_pago2" type="text" class="date" maxlength="10">
+			<img src="${def:context}/images/dropdown.png" title="Desplegar calendario" onclick="calendarOpen('mdd_fecha_pago2')">
+		</td>
+	</tr>
+	<tr>
+		<td>${lbl:b_rate}</td>
+		<td>
+			<select name="smn_tasa_rf2" id="smn_tasa_rf2" onchange="chgCombo(smn_tasa_rf2.options[smn_tasa_rf2.selectedIndex].text,'smn_tasa_rf2_name');">
+				<option value="">[Cualquiera]</option>
+				<smn_tasa_rf2_rows>
+				<option value="${fld:id}">${fld:item}</option>
+
+				</smn_tasa_rf2_rows>
+			</select> 
+			<input id="smn_tasa_rf2_name" name="smn_tasa_rf2_name" type="hidden">
+		</td>
+	</tr>
+		<tr>
+			<td>${lbl:b_exchange_rate_difference}</td>
+			<td>
+				<input id="mdd_diferencia_cambiario2" name="mdd_diferencia_cambiario2" type="text" maxlength="10" class="numeric">
+			</td>
+		</tr>
+
+	</table>
+	<input type="submit" value="Grabar" class="button" style="font-size: 9pt">
+	<input 	type="button" value="Cancelar" class="button" style="font-size: 9pt" onclick="cancelAddnew()">
+</form>			
+
+<!--panel de respuesta AJAX-->
+<div id="response" style="display: none; width:100%; margin-top:15px;">
+</div>
+
+</body>
+
+</html>

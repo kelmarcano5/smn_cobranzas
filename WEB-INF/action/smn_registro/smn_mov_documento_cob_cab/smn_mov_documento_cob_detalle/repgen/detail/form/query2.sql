@@ -1,0 +1,19 @@
+select
+		smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_det_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_cab_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_tipo_documento_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_documento_id,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_numero_documento,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_cliente_rf,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_centro_costo_rf,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_monto_ml,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_moneda_rf,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_monto_ma,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_fecha_pago,
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_tasa_rf,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_diferencia_cambiario,
+	smn_cobranzas.smn_mov_documento_cob_detalle.mdd_fecha_registro
+from
+	smn_cobranzas.smn_mov_documento_cob_detalle 
+where
+	smn_cobranzas.smn_mov_documento_cob_detalle.smn_mov_documento_cob_detalle_id = ${fld:id}

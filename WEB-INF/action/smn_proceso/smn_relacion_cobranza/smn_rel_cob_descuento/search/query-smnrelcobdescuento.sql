@@ -1,0 +1,16 @@
+select
+		smn_cobranzas.smn_rel_cob_descuento.smn_rel_cob_descuento_id,
+	smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id as smn_relacion_cobranza_id,
+	smn_base.smn_descuentos_retenciones.dyr_descripcion as smn_codigo_descuento_rf,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_monto_descuento_ml,
+	smn_base.smn_monedas.mon_nombre as smn_moneda_rf,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_monto_descuento_ma,
+	smn_cobranzas.smn_rel_cob_descuento.rcd_fecha_registro
+	
+from
+	smn_cobranzas.smn_rel_cob_descuento
+	inner join smn_base.smn_descuentos_retenciones on smn_base.smn_descuentos_retenciones.smn_descuentos_retenciones_id = smn_cobranzas.smn_rel_cob_descuento.smn_codigo_descuento_rf
+	inner join smn_cobranzas.smn_relacion_cobranza on smn_cobranzas.smn_relacion_cobranza.smn_relacion_cobranza_id = smn_cobranzas.smn_rel_cob_descuento.smn_relacion_cobranza_id
+	left outer join smn_base.smn_monedas on smn_base.smn_monedas.smn_monedas_id = smn_cobranzas.smn_rel_cob_descuento.smn_moneda_rf
+where
+	smn_cobranzas.smn_rel_cob_descuento.smn_relacion_cobranza_id=${fld:id2}

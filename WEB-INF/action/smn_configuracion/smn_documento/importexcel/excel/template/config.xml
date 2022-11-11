@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smndocumento.sql" source="session" scope="transaction" />
+		
+	</transaction>
+
+	<output>
+		<classname>dinamica.GenericExcelOutput</classname>
+	</output>
+		
+	<excel 
+		filename='${lbl:b_document}.xls' >
+		
+	<sheet recordset="query-table_stuck}.sql" sheetname="${lbl:b_document}">
+				<col id='smn_documento_general_rf' label='${lbl:b_general_document}' />
+		<col id='smn_tipo_documento_id' label='${lbl:document_type}' />
+		<col id='doc_codigo' label='${lbl:b_code}' />
+		<col id='doc_descripcion' label='${lbl:b_description}' />
+		<col id='doc_afec_documento' label='${lbl:b_document_afec}' />
+		<col id='doc_usa_moneda_alterna' label='${lbl:b_use_altern_coin}' />
+		<col id='doc_multiples_pagador' label='${lbl:b_payer_multi}' />
+		<col id='doc_estatus' label='${lbl:b_estatus}' />
+		<col id='doc_vigencia' label='${lbl:b_effectivity_date}' />
+		<col id='doc_fecha_registro' label='${lbl:b_store_date}' />
+
+	</sheet>
+	
+	</excel>
+
+</config>

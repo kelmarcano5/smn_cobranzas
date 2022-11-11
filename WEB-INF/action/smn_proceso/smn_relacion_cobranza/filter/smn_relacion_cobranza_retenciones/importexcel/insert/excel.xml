@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator maxErrors='20'>
+	<parameter id='smn_clave_aprobacion_pedido' type='integer' required='true' maxlen='10'/>
+	<parameter id='smn_relacion_cobranza_id' type='integer' required='false' maxlen='10'/>
+	<parameter id='smn_codigo_retenciones_rf' type='integer' required='true' maxlen='10'/>
+	<parameter id='rcr_monto_retenciones_ml' type='double' required='true' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' maxlen='10'/>
+	<parameter id='rcr_monto_retenciones_ma' type='double' required='false' maxlen='10'/>
+
+
+	<custom-validator
+		classname='dinamica.validators.DuplicatedKeyValidator'
+			on-error-label='${lbl:b_record_not_duplicated}.'
+			sql='buscarCodigo.sql'
+			id='smn_codigo_retenciones_rf'/>
+
+
+</validator>

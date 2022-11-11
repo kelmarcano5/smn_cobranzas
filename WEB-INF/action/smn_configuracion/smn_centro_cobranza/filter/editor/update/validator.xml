@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='cco_codigo' type='varchar' required='true' label='${lbl:b_code}' maxlen='16'/>
+	<parameter id='cco_descripcion' type='varchar' required='true' label='${lbl:b_description}' maxlen='64'/>
+	<parameter id='smn_rol_id' type='integer' required='true' label='${lbl:b_role}' maxlen='10'/>
+	<parameter id='smn_auxiliar_id' type='integer' required='true' label='${lbl:b_auxiliary}' maxlen='10'/>
+	<parameter id='rol_estatus' type='varchar' required='true' label='${lbl:b_status}' maxlen='2'/>
+	<parameter id='id' type='integer' required='true' label='${lbl:b_collection_center}' maxlen='10'/>
+
+
+</validator>

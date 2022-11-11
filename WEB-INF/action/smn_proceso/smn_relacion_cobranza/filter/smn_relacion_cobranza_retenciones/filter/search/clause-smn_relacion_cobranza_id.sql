@@ -1,0 +1,2 @@
+ and
+ 	smn_cobranzas.smn_relacion_cobranza_retenciones.smn_relacion_cobranza_id=${fld:smn_relacion_cobranza_id}

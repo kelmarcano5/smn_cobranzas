@@ -1,0 +1,1 @@
+select smn_cobranzas.smn_documento.doc_nota_credito_reverso as nota_reverso from smn_cobranzas.smn_documento where smn_cobranzas.smn_documento.smn_documento_id=${fld:id}

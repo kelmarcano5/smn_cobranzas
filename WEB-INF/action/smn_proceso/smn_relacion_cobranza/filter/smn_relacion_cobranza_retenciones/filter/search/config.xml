@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config>
+
+	<summary>
+		Ejecutar consulta y enrutar dependiendo de que un recordset
+		tenga o no registros
+	</summary>
+
+	<log>false</log>
+
+	<!--configura el control de paginacion-->
+	<set-request-attribute id="paging.recordset" value="query-smnrelacioncobranzaretenciones.sql" />
+	<set-request-attribute id="paging.pagesize" value="10" />
+
+	<!--soporte de auditoria-->
+	<audit>
+		<!--de donde saca los datos, por defecto es "_request"-->
+		<recordset></recordset>
+		<!--que campos extrae para el registro descriptivo-->
+		<cols>
+			<colname>smn_clave_aprobacion_pedido</colname>
+			<colname>smn_relacion_cobranza_id</colname>
+			<colname>smn_codigo_retenciones_rf</colname>
+			<colname>rcr_monto_retenciones_ml</colname>
+			<colname>smn_moneda_rf</colname>
+			<colname>rcr_monto_retenciones_ma</colname>
+			<colname>rcr_fecha_registro_ini</colname>
+			<colname>rcr_fecha_registro_fin</colname>
+		
+		</cols>
+		<table>smn_cobranzas.smn_relacion_cobranza_retenciones</table>
+		<oper>CONSULTA</oper>
+		<area>Consulta</area>
+		<!-- 
+ 			para auditoria de consulta permite obtener la cantidad de registro obtenidos
+ 			de la busqueda (opcional)
+ 		-->
+		<recordCount recordset="query-smnrelacioncobranzaretenciones.sql"/>
+	</audit>
+
+	<transaction>
+		<classname>dinamica.audit.AuditableSearch</classname>
+		<validator>true</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+	</transaction>
+	
+	<searchCols>smn_clave_aprobacion_pedido;smn_relacion_cobranza_id;smn_codigo_retenciones_rf;rcr_monto_retenciones_ml;smn_moneda_rf;rcr_monto_retenciones_ma;rcr_fecha_registro_ini;rcr_fecha_registro_fin;</searchCols>
+
+	<on-exit return-code="0" forward-to="/action/initview" />
+	<on-exit return-code="1" forward-to="${def:actionroot}/notfound" />
+
+</config>

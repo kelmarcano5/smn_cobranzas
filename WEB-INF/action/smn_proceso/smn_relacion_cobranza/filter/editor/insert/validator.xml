@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/ajax'>
+	<parameter id='smn_modulo_rf' type='integer' required='true' label='${lbl:b_module}' maxlen='10'/>
+	<parameter id='smn_doc_orig_rf' type='integer' required='true' label='${lbl:b_document_origen}' maxlen='10'/>
+	<parameter id='smn_num_doc_orig' type='integer' required='true' label='${lbl:b_number_document_origen}' maxlen='10'/>
+	<parameter id='smn_documento_id' type='integer' required='false' label='${lbl:b_document}' maxlen='10'/>
+	<parameter id='rco_numero_documento' type='integer' required='true' label='${lbl:b_number_document}' maxlen='10'/>
+	<parameter id='smn_cliente_rf' type='integer' required='true' label='${lbl:b_customer}' maxlen='10'/>
+	<parameter id='rco_monto_bruto_cob_ml' type='double' required='true' label='${lbl:b_brut_amount_ml}' maxlen='10'/>
+	<parameter id='smn_moneda_rf' type='integer' required='false' label='${lbl:b_coins}' maxlen='10'/>
+	<parameter id='rco_monto_bruto_cob_ma' type='double' required='false' label='${lbl:b_brut_amount_ma}' maxlen='10'/>
+	<parameter id='rco_monto_desc_ret_cob_ml' type='double' required='false' label='${lbl:b_discount_amount_ml}' maxlen='10'/>
+	<parameter id='rco_monto_desc_ret_cob_ma' type='double' required='false' label='${lbl:b_discount_amount_ma}' maxlen='10'/>
+	<parameter id='rco_monto_neto_cob_ml' type='double' required='false' label='${lbl:b_net_amount_ml}' maxlen='10'/>
+	<parameter id='rco_monto_neto_cob_ma' type='double' required='false' label='${lbl:b_net_amount_ma}' maxlen='10'/>
+	<parameter id='rco_estatus_proceso' type='varchar' required='true' label='${lbl:b_status_process}' maxlen='2'/>
+	<parameter id='smn_empresa_rf' type='integer' required='false' label='${lbl:b_entity_origen}' maxlen='10'/>
+	<parameter id='smn_sucursal_rf' type='integer' required='false' label='${lbl:b_subsidiary_origen}' maxlen='10'/>
+
+	
+			<parameter id='smn_mov_documento_cob_det_id' type='integer' required='true' label='Ítems'/>
+	<custom-validator classname='dinamica.validators.StringToRecordset' paramName='smn_mov_documento_cob_det_id' recordsetId='query-smn_mov_documento_cob_detalle.sql' separatorChar=';' colName='smn_mov_documento_cob_det_id' colType='integer'/>
+
+</validator>

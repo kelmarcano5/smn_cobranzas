@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<config nodb="true">
+
+	<summary>
+		Exportar documento excel directo al browser
+	</summary>
+
+	<log>false</log>
+
+	<transaction>
+		<classname>dinamica.GenericTransaction</classname>
+		<validator>false</validator>
+		<transaction>false</transaction>
+		<jdbc-log>false</jdbc-log>
+		<recordset id="query-smnrelacioncobranza.sql" source="session" scope="transaction" />
+	</transaction>
+
+	<output>
+		<classname>domain.ExcelReportOutput</classname>
+	</output>
+	
+	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
+	<title cellPosY="1" cellPosX="4" cellStep="0" name="${lbl:b_colletion_relationship}"/>
+	
+	<excel 
+		recordset='query-smnrelacioncobranza.sql' 
+		sheetname='${lbl:b_colletion_relationship}' 
+		filename='${lbl:b_colletion_relationship}.xls' 
+		date-format='dd-MM-yyyy'
+		header-background='true'>
+		<col id='smn_modulo_rf' label='${lbl:b_module}' />
+		<col id='smn_doc_orig_rf' label='${lbl:b_document_origen}' />
+		<col id='smn_num_doc_orig' label='${lbl:b_number_document_origen}' />
+		<col id='smn_documento_id' label='${lbl:b_document}' />
+		<col id='smn_cliente_rf' label='${lbl:b_customer}' />
+		<col id='rco_monto_bruto_cob_ml' label='${lbl:b_brut_amount_ml}' />
+		<col id='rco_estatus_proceso' label='${lbl:b_status_process}' />
+		<col id='rco_fecha_registro' label='${lbl:b_store_date}' />
+
+	</excel>
+
+</config>
