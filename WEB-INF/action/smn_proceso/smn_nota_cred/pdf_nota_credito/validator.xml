@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror="/action/error/validation/alert">
+	
+	<!-- <parameter id="mdc_numero_factura" type="integer" required="false" label="ID Factura" maxlen="10" /> -->
+	<parameter id="smn_mov_documento_cob_det_id" type="integer" required="false" label="b_cred_note" maxlen="10" />
+	
+</validator>

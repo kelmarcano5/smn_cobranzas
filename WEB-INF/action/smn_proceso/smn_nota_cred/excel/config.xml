@@ -20,31 +20,24 @@
 	</output>
 	
 	<excel-logo scale="60" url="/images/logo-simone-pdf.png"/>
-	<title cellPosY="1" cellPosX="8" cellStep="0" name="${lbl:b_doc_mov_head_charg}"/>
+	<title cellPosY="1" cellPosX="8" cellStep="0" name="${lbl:b_credit_note}"/>
 	
 	<excel 
 		recordset='query-smnmovdocumentocobcab.sql' 
-		sheetname='${lbl:b_doc_mov_head_charg}' 
-		filename='${lbl:b_doc_mov_head_charg}.xls' 
+		sheetname='${lbl:b_credit_note}' 
+		filename='${lbl:b_credit_note}.xls' 
 		date-format='dd-MM-yyyy'
 		header-background='true'>
-		<col id='smn_modulo_origen_rf' label='${lbl:b_origin_module}' />
-		<col id='smn_documento_rf' label='${lbl:b_document}' />
+		<col id='smn_cliente_rf_combo' label='${lbl:b_client}' />
+		<col id='smn_documento_id_combo' label='${lbl:b_document}' />
 		<col id='mdc_numero_doc_origen' label='${lbl:b_origin_doc_num}' />
-		<col id='smn_cliente_rf' label='${lbl:b_client}' />
-		<col id='mdc_fecha_documento' label='${lbl:b_document_date}' />
-		<col id='mdc_fecha_vencimiento' label='${lbl:b_thru_date}' />
-		<col id='mdc_monto_ml' label='${lbl:b_amount_ml}' />
-		<col id='smn_moneda_rf' label='${lbl:b_currency}' />
-		<col id='mdc_monto_ma' label='${lbl:b_amount_ma}' />
+		<col id='mdc_numero_factura' label='${lbl:b_bill_number}' />
 		<col id='mdc_saldo_doc_ml' label='${lbl:b_balance_doc_ml}' />
-		<col id='mdc_saldo_doc_ma' label='${lbl:b_balance_doc_ma}' />
-		<col id='mdc_estatus_proceso' label='${lbl:b_process_status}' />
-		<col id='mdc_estatus_financiero' label='${lbl:b_finance_status}' />
-		<col id='mdc_idioma' label='${lbl:s_profile_lang}' />
-		<col id='mdc_usuario' label='${lbl:b_users}' />
-		<col id='mdc_fecha_registro' label='${lbl:b_store_date}' />
-		<col id='mdc_hora' label='${lbl:s_loginhist_col2}' />
+		<col id='smn_tipo_documento_id_combo' label='${lbl:b_document_type}' />
+		<col id='mdd_numero_documento' label='${lbl:b_document_number}' />
+		<col id='mdd_monto_ml' label='${lbl:b_net_amount_ml}' />
+		<col id='mdd_estatus_combo' label='${lbl:b_status}' />
+		<col id='mdd_fecha_registro' label='${lbl:b_store_date}' />
 
 	</excel>
 

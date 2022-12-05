@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<validator onerror='/action/error/validation/alert'>
+	<parameter id="mdc_numero_factura" type="integer" required="true" label="ID ${lbl:b_bill_number}" maxlen="10"/>
+	<parameter id="mdd_motivo_nota_rf" type="integer" required="true" label="ID ${lbl:b_reason}" maxlen="10"/>
+	<parameter id="id2" type="integer" required="true" label="ID ${lbl:b_order_number}" maxlen="10"/>
+</validator>

@@ -138,7 +138,7 @@
 		//alert('Colocar su código aquí.')
 		
 		var uri = "${def:context}${def:actionroot}/detail/form?id=" + id;
-		openDialog("dialog", uri, 850, 550);
+		openDialog("dialog", uri, wdt, hgt);
 	}
 	
 	//muestra un DIV+IFRAME con el formulario de CRUD
@@ -152,7 +152,7 @@
 		else
 			uri = "${def:context}${def:actionroot}/editor/form?id=" + id;
 			
-		openDialog("editor", uri, 850, 330);
+		openDialog("editor", uri, wdt, hgt);
 	}
 	
 	

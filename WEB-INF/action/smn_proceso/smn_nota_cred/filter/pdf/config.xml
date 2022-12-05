@@ -20,47 +20,31 @@
 		<classname>dinamica.PDFGenericReport</classname>
 	</output>
 	
-	<pdf-title>${lbl:b_doc_mov_head_charg}</pdf-title>
+	<pdf-title>${lbl:b_credit_note}</pdf-title>
 	<pdf-logo url='/images/logo-simone-pdf.png' scale='100' align="left" />
-	<pdf-file-name>${lbl:b_doc_mov_head_charg}.pdf</pdf-file-name>
+	<pdf-file-name>${lbl:b_credit_note}.pdf</pdf-file-name>
 
 	<pdf-report pageSize="letter" rotate="false" footer="true" header="true">
 		<record recordset='filter.params' title='${lbl:b_filter_find}' noFilterMsg='-- ${lbl:b_all_message} --' width='55' spacingBefore='15'>
-			<col name='smn_modulo_origen_rf' title='${lbl:b_origin_module}'  align='left' />
-			<col name='smn_documento_rf' title='${lbl:b_document}'  format='######' align='left' />
-			<col name='mdc_numero_doc_origen' title='${lbl:b_origin_doc_num}'  format='######' align='left' />
-			<col name='smn_cliente_rf' title='${lbl:b_client}'  format='######' align='left' />
-			<col name='mdc_fecha_documento' title='${lbl:b_document_date}'  format='dd-MM-yyyy' align='left' />
-			<col name='mdc_fecha_vencimiento' title='${lbl:b_thru_date}'  format='dd-MM-yyyy' align='left' />
-			<col name='mdc_monto_ml' title='${lbl:b_amount_ml}'  format='#,###,##0.00' align='left' />
-			<col name='smn_moneda_rf' title='${lbl:b_currency}'  format='######' align='left' />
-			<col name='mdc_monto_ma' title='${lbl:b_amount_ma}'  format='#,###,##0.00' align='left' />
-			<col name='mdc_saldo_doc_ml' title='${lbl:b_balance_doc_ml}'  format='#,###,##0.00' align='left' />
-			<col name='mdc_saldo_doc_ma' title='${lbl:b_balance_doc_ma}'  format='#,###,##0.00' align='left' />
-			<col name='mdc_estatus_proceso' title='${lbl:b_process_status}'  align='left' />
-			<col name='mdc_estatus_financiero' title='${lbl:b_finance_status}'  align='left' />
-			<col name='mdc_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
-			<col name='mdc_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='smn_cliente_rf' title='${lbl:b_client}' width='7' align='left' />
+			<col name='smn_documento_id' title='${lbl:b_document}' width='7' align='left' format='######' />
+			<col name='mdc_numero_doc_origen' title='${lbl:b_origin_doc_num}' width='7' align='left' format='######' />
+			<col name='mdd_numero_documento' title='${lbl:b_document_number}' width='7' align='left' format='######' />
+			<col name='mdd_estatus' title='${lbl:b_status}' width='7' align='left' />
+			<col name='mdd_fecha_registro_ini' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
+			<col name='mdd_fecha_registro_fin' title='${lbl:b_store_date}'  format='dd-MM-yyyy' align='left' />
 
 		</record>
 		<record recordset='query-smnmovdocumentocobcab.sql' width='100' spacingBefore='10'>
-			<col name='smn_modulo_origen_rf' title='${lbl:b_origin_module}' width='5' align='left' />
-			<col name='smn_documento_rf' title='${lbl:b_document}' width='5' align='left' format='######' />
-			<col name='mdc_numero_doc_origen' title='${lbl:b_origin_doc_num}' width='5' align='left' format='######' />
-			<col name='smn_cliente_rf' title='${lbl:b_client}' width='5' align='left' format='######' />
-			<col name='mdc_fecha_documento' title='${lbl:b_document_date}' width='5' align='left' format='dd-MM-yyyy' />
-			<col name='mdc_fecha_vencimiento' title='${lbl:b_thru_date}' width='5' align='left' format='dd-MM-yyyy' />
-			<col name='mdc_monto_ml' title='${lbl:b_amount_ml}' width='5' align='left' format='#,###,##0.00' />
-			<col name='smn_moneda_rf' title='${lbl:b_currency}' width='5' align='left' format='######' />
-			<col name='mdc_monto_ma' title='${lbl:b_amount_ma}' width='5' align='left' format='#,###,##0.00' />
-			<col name='mdc_saldo_doc_ml' title='${lbl:b_balance_doc_ml}' width='5' align='left' format='#,###,##0.00' />
-			<col name='mdc_saldo_doc_ma' title='${lbl:b_balance_doc_ma}' width='5' align='left' format='#,###,##0.00' />
-			<col name='mdc_estatus_proceso' title='${lbl:b_process_status}' width='5' align='left' />
-			<col name='mdc_estatus_financiero' title='${lbl:b_finance_status}' width='5' align='left' />
-			<col name='mdc_idioma' title='${lbl:s_profile_lang}' width='5' align='left' />
-			<col name='mdc_usuario' title='${lbl:b_users}' width='5' align='left' />
-			<col name='mdc_fecha_registro' title='${lbl:b_store_date}' width='5' align='left' format='dd-MM-yyyy' />
-			<col name='mdc_hora' title='${lbl:s_loginhist_col2}' width='5' align='left' />
+			<col name='smn_cliente_rf_combo' title='${lbl:b_client}' width='7' align='left' />
+			<col name='smn_documento_id_combo' title='${lbl:b_document}' width='7' align='left' format='######' />
+			<col name='mdc_numero_doc_origen' title='${lbl:b_origin_doc_num}' width='7' align='left' format='######' />
+			<col name='mdc_saldo_doc_ml' title='${lbl:b_balance_doc_ml}' width='7' align='left' format='#,###,##0.00' />
+			<col name='smn_tipo_documento_id_combo' title='${lbl:b_document_type}' width='7' align='left' format='######' />
+			<col name='mdd_numero_documento' title='${lbl:b_document_number}' width='7' align='left' format='######' />
+			<col name='mdd_monto_ml' title='${lbl:b_net_amount_ml}' width='7' align='left' format='#,###,##0.00' />
+			<col name='mdd_estatus' title='${lbl:b_status}' width='7' align='left' />
+			<col name='mdd_fecha_registro' title='${lbl:b_store_date}' width='7' align='left' format='dd-MM-yyyy' />
 
 		</record>
 
