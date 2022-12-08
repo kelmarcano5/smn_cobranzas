@@ -2,6 +2,8 @@
 <validator onerror='/action/error/validation/ajax'>
 	<parameter id='smn_relacion_cobranza_id' type='integer' required='true' label='ID ${lbl:b_colletion_relationship}' maxlen='10'/>
 	<parameter id='smn_mov_documento_cob_cab_id' type='integer' required='true' label='ID ${lbl:b_doc_mov_head_charg}' maxlen='10'/>
+	<parameter id='smn_mov_documento_cob_det_id' type='integer' required='true' label='ID ${lbl:b_movement_document_collection_detail}' maxlen='10'/>
+	
 	<parameter id='rcd_monto_bruto_ml' type='double' required='false' label='${lbl:b_brut_amount_ml}' maxlen='20'/>
 	<parameter id='rcd_monto_bruto_ma' type='double' required='false' label='${lbl:b_brut_amount_ma}' maxlen='20'/>
 	<parameter id='rcd_monto_disminucion_ml' type='double' required='false' label='${lbl:b_decrease_amount_ml}' maxlen='20'/>

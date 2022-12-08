@@ -48,7 +48,7 @@
 			<td>${lbl:b_pending_documents}</td>
 			<td>
 				<smn_mov_documento_cob_cab_id_rows>
-					<input class="smn_mov_documento_cob_cab_id" id="check-${fld:id}" name="check-${fld:id}" type="checkbox" value="${fld:id}" style="width:10px"> #${fld:item} = ${fld:mdc_saldo_doc_ml@#,###,##0.00} -> ${fld:mdc_saldo_doc_ma@#,###,##0.00} <br>
+					<input class="smn_mov_documento_cob_cab_id" id="check-${fld:id}" name="check-${fld:id}" type="checkbox" value="${fld:id}-${fld:detalle_id}" style="width:10px"> #${fld:item} = ${fld:mdc_saldo_doc_ml@#,###,##0.00} -> ${fld:mdc_saldo_doc_ma@#,###,##0.00} <br>
 				</smn_mov_documento_cob_cab_id_rows>
 			</td>
 		</tr>
@@ -192,7 +192,10 @@
 		$("#porc_descuento").css("display","none");
 
 		$('.smn_mov_documento_cob_cab_id').each(function(){
-			documento_id=$(this).val();
+			valueCheck=$(this).val();
+			arrValueCheck=valueCheck.split("-");
+			documento_id=arrValueCheck[0];
+			// documento_id=$(this).val();
 
 			ajaxCall(httpMethod="GET", 
 					uri="${def:actionroot}/validarDoc?smn_mov_documento_cob_cab_id=" + documento_id + "&smn_relacion_cobranza_id=${fld:id2}", 
@@ -235,15 +238,20 @@
 		var contDoc = 0;
 		var cobranza_id = $('#smn_relacion_cobranza_id').val();
 		var documento_id;
+		var detalle_id;
+		var valueCheck;
 
 		$('.smn_mov_documento_cob_cab_id:checked').each(function() {
 			contDoc++;
-			documento_id=$(this).val();
+			valueCheck=$(this).val();
+			arrValueCheck=valueCheck.split("-");
+			documento_id=arrValueCheck[0];
+			detalle_id=arrValueCheck[1];
 
 			if(!$(this).is(':disabled'))
 			{
 				ajaxCall(httpMethod="GET", 
-						uri="${def:actionroot}/insert?smn_mov_documento_cob_cab_id="+documento_id+"&smn_relacion_cobranza_id="+cobranza_id, 
+						uri="${def:actionroot}/insert?smn_mov_documento_cob_cab_id="+documento_id+"&smn_relacion_cobranza_id="+cobranza_id+"&smn_mov_documento_cob_det_id="+detalle_id, 
 						divResponse=null, 
 						divProgress="status", 
 						formName="form1", 
@@ -405,7 +413,11 @@
  	}
 	
 	$(".smn_mov_documento_cob_cab_id").click(function() {
-		var id  = $(this).val();
+		// var id  = $(this).val();
+		var id;
+		valueCheck=$(this).val();
+		arrValueCheck=valueCheck.split("-");
+		id=arrValueCheck[0];
 		var id2 = $("#smn_relacion_cobranza_id").val();
 
 		ajaxCall(httpMethod="GET", 
