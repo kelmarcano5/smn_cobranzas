@@ -100,127 +100,129 @@ public class RegistrarImpuestosDescuentos extends GenericTransaction
 			bw.write(str);
 			bw.flush();
 			bw.newLine();
-			
-			for(int p=0; p<descuentos.length; p++)
-			{
-				inputParams.setValue("smn_descuentos_retenciones_id", Integer.parseInt(descuentos[p]));
-				
-				str = "Consultando descuento con ID "+Integer.parseInt(descuentos[p]);	
-				bw.write(str);
-				bw.flush();
-				bw.newLine();
-				
-				sql = getSQL(getResource("select-smn_descuentos_retenciones.sql"),inputParams);
-				Recordset rsDescuento = db.get(sql);
-				
-				rsDescuento.first();
-				
-				if(rsDescuento.getString("dyr_porcentaje_base")!=null)
-				{
-					inputParams.setValue("dyr_porcentaje_base", rsDescuento.getDouble("dyr_porcentaje_base"));
-					dyr_porcentaje_base = rsDescuento.getDouble("dyr_porcentaje_base");
-				}
-				else
-				{
-					inputParams.setValue("dyr_porcentaje_base",0);
-					dyr_porcentaje_base = 0;
-				}
-				
-				if(rsDescuento.getString("dyr_apli_cant_precio").equals("TL"))
-				{
-					inputParams.setValue("dyr_porcentaje_descuento", inputParams.getDouble("porc_descuento_libre"));
-					dyr_porcentaje_descuento = inputParams.getDouble("porc_descuento_libre");
-				}
-				else
-				{
-					if(rsDescuento.getString("dyr_porcentaje_descuento")!=null)
-					{
-						inputParams.setValue("dyr_porcentaje_descuento", rsDescuento.getDouble("dyr_porcentaje_descuento"));
-						dyr_porcentaje_descuento = rsDescuento.getDouble("dyr_porcentaje_descuento");
-					}
-					else
-					{
-						inputParams.setValue("dyr_porcentaje_descuento",0);
-						dyr_porcentaje_descuento = 0;
-					}
-				}	
-				
-				sql = getSQL(getResource("select-smn_relacion_cobranza.sql"),inputParams);
-				Recordset rsRelCob = db.get(sql);
-				
-				rsRelCob.first();
-				
-				if(rsRelCob.getString("rco_monto_bruto_cob_ml")!=null)
-					rco_monto_bruto_cob_ml=rsRelCob.getDouble("rco_monto_bruto_cob_ml");
-				else
-					rco_monto_bruto_cob_ml=0;
-				
-				if(rsRelCob.getString("rco_monto_bruto_cob_ma")!=null)
-					rco_monto_bruto_cob_ma=rsRelCob.getDouble("rco_monto_bruto_cob_ma");
-				else
-					rco_monto_bruto_cob_ma=0;
-					
-				if(inputParams.getDouble("rco_diferencial_ma")>0)
-				{
-					total_descuento_ml = (rco_monto_bruto_cob_ml*dyr_porcentaje_base)/100;
-					total_descuento_ml = (total_descuento_ml*dyr_porcentaje_descuento)/100;
-					
-					total_descuento_ma = (rco_monto_bruto_cob_ma*dyr_porcentaje_base)/100;
-					total_descuento_ma = (total_descuento_ma*dyr_porcentaje_descuento)/100;
-				}
-				else
-				{
-					total_descuento_ml = (rco_monto_base_ml*dyr_porcentaje_base)/100;
-					total_descuento_ml = (total_descuento_ml*dyr_porcentaje_descuento)/100;
-					
-					total_descuento_ma = (rco_monto_base_ma*dyr_porcentaje_base)/100;
-					total_descuento_ma = (total_descuento_ma*dyr_porcentaje_descuento)/100;
-				}
-				
-				sum_descuento_ml += total_descuento_ml;
-				sum_descuento_ma += total_descuento_ma;
-				
-				inputParams.setValue("total_descuento_ml_redondeo",total_descuento_ml);
-				inputParams.setValue("total_descuento_ma_redondeo",total_descuento_ma);					
-				
-				sql = getSQL(getResource("select-smn_rel_cob_descuento.sql"),inputParams);
-				Recordset rsDetalle_desc_ret = db.get(sql);
-				
-				if(rsDetalle_desc_ret.getRecordCount() > 0)
-				{
-					rsDetalle_desc_ret.first();
-					inputParams.setValue("smn_descuento_retencion_id", rsDetalle_desc_ret.getInt("smn_rel_cob_descuento_id"));
-					
-					str = "Actualizando cobranza descuento con ID "+rsDetalle_desc_ret.getInt("smn_rel_cob_descuento_id");	
-					bw.write(str);
-					bw.flush();
-					bw.newLine();
-					
-					sql = getSQL(getResource("update-smn_rel_cob_descuento.sql"),inputParams);
-					db.exec(sql);
-					
-					str = "*descuento cobranza actualizado correctamente*";	
-					bw.write(str);
-					bw.flush();
-					bw.newLine();
-				}
-				else
-				{
-					str = "Registrando descuento cobranza con ID "+Integer.parseInt(descuentos[p]);	
-					bw.write(str);
-					bw.flush();
-					bw.newLine();
-					
-					sql = getSQL(getResource("insert-smn_rel_cob_descuento.sql"),inputParams);
-					db.exec(sql);
-					
-					str = "*Descuento cobranza registrado correctamente*";	
-					bw.write(str);
-					bw.flush();
-					bw.newLine();
-				}
+            
+            if(descuentos.length > 0){
+                System.out.println("DESCUENTOLENG:::::" +descuentos.length);
+                for(int p=0; p<descuentos.length; p++)
+                {
+                    inputParams.setValue("smn_descuentos_retenciones_id", Integer.parseInt(descuentos[p]));
+                    
+                    str = "Consultando descuento con ID "+Integer.parseInt(descuentos[p]);	
+                    bw.write(str);
+                    bw.flush();
+                    bw.newLine();
+                    
+                    sql = getSQL(getResource("select-smn_descuentos_retenciones.sql"),inputParams);
+                    Recordset rsDescuento = db.get(sql);
+                    
+                    rsDescuento.first();
+                    
+                    if(rsDescuento.getString("dyr_porcentaje_base")!=null)
+                    {
+                        inputParams.setValue("dyr_porcentaje_base", rsDescuento.getDouble("dyr_porcentaje_base"));
+                        dyr_porcentaje_base = rsDescuento.getDouble("dyr_porcentaje_base");
+                    }
+                    else
+                    {
+                        inputParams.setValue("dyr_porcentaje_base",0);
+                        dyr_porcentaje_base = 0;
+                    }
+                    
+                    if(rsDescuento.getString("dyr_apli_cant_precio").equals("TL"))
+                    {
+                        inputParams.setValue("dyr_porcentaje_descuento", inputParams.getDouble("porc_descuento_libre"));
+                        dyr_porcentaje_descuento = inputParams.getDouble("porc_descuento_libre");
+                    }
+                    else
+                    {
+                        if(rsDescuento.getString("dyr_porcentaje_descuento")!=null)
+                        {
+                            inputParams.setValue("dyr_porcentaje_descuento", rsDescuento.getDouble("dyr_porcentaje_descuento"));
+                            dyr_porcentaje_descuento = rsDescuento.getDouble("dyr_porcentaje_descuento");
+                        }
+                        else
+                        {
+                            inputParams.setValue("dyr_porcentaje_descuento",0);
+                            dyr_porcentaje_descuento = 0;
+                        }
+                    }	
+                    
+                    sql = getSQL(getResource("select-smn_relacion_cobranza.sql"),inputParams);
+                    Recordset rsRelCob = db.get(sql);
+                    
+                    rsRelCob.first();
+                    
+                    if(rsRelCob.getString("rco_monto_bruto_cob_ml")!=null)
+                        rco_monto_bruto_cob_ml=rsRelCob.getDouble("rco_monto_bruto_cob_ml");
+                    else
+                        rco_monto_bruto_cob_ml=0;
+                    
+                    if(rsRelCob.getString("rco_monto_bruto_cob_ma")!=null)
+                        rco_monto_bruto_cob_ma=rsRelCob.getDouble("rco_monto_bruto_cob_ma");
+                    else
+                        rco_monto_bruto_cob_ma=0;
+                        
+                    if(inputParams.getDouble("rco_diferencial_ma")>0)
+                    {
+                        total_descuento_ml = (rco_monto_bruto_cob_ml*dyr_porcentaje_base)/100;
+                        total_descuento_ml = (total_descuento_ml*dyr_porcentaje_descuento)/100;
+                        
+                        total_descuento_ma = (rco_monto_bruto_cob_ma*dyr_porcentaje_base)/100;
+                        total_descuento_ma = (total_descuento_ma*dyr_porcentaje_descuento)/100;
+                    }
+                    else
+                    {
+                        total_descuento_ml = (rco_monto_base_ml*dyr_porcentaje_base)/100;
+                        total_descuento_ml = (total_descuento_ml*dyr_porcentaje_descuento)/100;
+                        
+                        total_descuento_ma = (rco_monto_base_ma*dyr_porcentaje_base)/100;
+                        total_descuento_ma = (total_descuento_ma*dyr_porcentaje_descuento)/100;
+                    }
+                    
+                    sum_descuento_ml += total_descuento_ml;
+                    sum_descuento_ma += total_descuento_ma;
+                    
+                    inputParams.setValue("total_descuento_ml_redondeo",total_descuento_ml);
+                    inputParams.setValue("total_descuento_ma_redondeo",total_descuento_ma);					
+                    
+                    sql = getSQL(getResource("select-smn_rel_cob_descuento.sql"),inputParams);
+                    Recordset rsDetalle_desc_ret = db.get(sql);
+                    
+                    if(rsDetalle_desc_ret.getRecordCount() > 0)
+                    {
+                        rsDetalle_desc_ret.first();
+                        inputParams.setValue("smn_descuento_retencion_id", rsDetalle_desc_ret.getInt("smn_rel_cob_descuento_id"));
+                        
+                        str = "Actualizando cobranza descuento con ID "+rsDetalle_desc_ret.getInt("smn_rel_cob_descuento_id");	
+                        bw.write(str);
+                        bw.flush();
+                        bw.newLine();
+                        
+                        sql = getSQL(getResource("update-smn_rel_cob_descuento.sql"),inputParams);
+                        db.exec(sql);
+                        
+                        str = "*descuento cobranza actualizado correctamente*";	
+                        bw.write(str);
+                        bw.flush();
+                        bw.newLine();
+                    }
+                    else
+                    {
+                        str = "Registrando descuento cobranza con ID "+Integer.parseInt(descuentos[p]);	
+                        bw.write(str);
+                        bw.flush();
+                        bw.newLine();
+                        
+                        sql = getSQL(getResource("insert-smn_rel_cob_descuento.sql"),inputParams);
+                        db.exec(sql);
+                        
+                        str = "*Descuento cobranza registrado correctamente*";	
+                        bw.write(str);
+                        bw.flush();
+                        bw.newLine();
+                    }
+                }
 			}
-			
 			monto_neto_ml = rco_monto_base_ml+sum_impuesto_ml-sum_descuento_ml;
 			monto_neto_ma = rco_monto_base_ma+sum_impuesto_ma-sum_descuento_ma;
 			

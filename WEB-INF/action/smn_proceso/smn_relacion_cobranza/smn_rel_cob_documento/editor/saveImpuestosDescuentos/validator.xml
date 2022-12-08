@@ -34,4 +34,5 @@
 	<parameter id='porc_descuento_libre' type='double' required='false' label='${lbl:b_calculation_percentage}' maxlen='20'/>
 	<parameter id='monto_descuento_libre' type='double' required='false' label='${lbl:b_free_discount_amount}' maxlen='20'/>
 	<parameter id='rco_diferencial_ma' type='double' required='false' label='diferencial_ma' maxlen='20'/>
+    <parameter id="abono" type="varchar" required="false" label="abono" maxlen="2"/>
 </validator>
