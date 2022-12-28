@@ -17,6 +17,7 @@ public class AprobarNotas extends GenericTransaction{
 		double mdc_saldo_doc_ma;
 		double mdd_monto_ml;
 		double mdd_monto_ma;
+		String ModControlFiscal="";
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		String jndiName = (String)getContext().getAttribute("dinamica.security.datasource");
@@ -127,27 +128,69 @@ public class AprobarNotas extends GenericTransaction{
 			bw.flush();
 			bw.newLine();
 			
-			sql = getSQL(getResource("update-smn_mov_documento_cob_cabecera.sql"), inputParams);
-			db.exec(sql);
-			
-			str = "Saldo del documento actualizado";	
-			bw.write(str);
-			bw.flush();
-			bw.newLine();
-			
-			str = "Actualizando estatus de la nota";	
-			bw.write(str);
-			bw.flush();
-			bw.newLine();
-			
-			sql = getSQL(getResource("update-smn_mov_documento_cob_detalle.sql"), inputParams);
-			db.exec(sql);
-			
-			str = "Estatus de la nota actualizado";	
-			bw.write(str);
-			bw.flush();
-			bw.newLine();
+			if(rsMovDocCobDet.getString("tdo_tipo_movimiento").equals("ND"))
+			{
+				sql = getSQL(getResource("update-smn_mov_documento_cob_cabecera.sql"), inputParams);
+				db.exec(sql);
+				
+				str = "Saldo del documento actualizado";	
+				bw.write(str);
+				bw.flush();
+				bw.newLine();
+				
+				str = "Actualizando estatus de la nota";	
+				bw.write(str);
+				bw.flush();
+				bw.newLine();
+				
+				sql = getSQL(getResource("update-smn_mov_documento_cob_detalle.sql"), inputParams);
+				db.exec(sql);
+				
+				str = "Estatus de la nota actualizado";	
+				bw.write(str);
+				bw.flush();
+				bw.newLine();
+			}
+			if(rsMovDocCobDet.getString("tdo_tipo_movimiento").equals("NC"))
+			{
+				sql = getSQL(getResource("select-doc_modulo_control_fiscal.sql"), inputParams);
+				Recordset rsDocModControlFiscal = db.get(sql);
+				
+				str = "Verificando módulo de control fiscal de la Nota de Crédito";	
+				bw.write(str);
+				bw.flush();
+				bw.newLine();
+				
+				rsDocModControlFiscal.first();
+				
+				if(rsDocModControlFiscal.getString("doc_modulo_control_fiscal")!=null)
+				{
+					ModControlFiscal=rsDocModControlFiscal.getString("doc_modulo_control_fiscal");
+				}
+				if (ModControlFiscal=="CME")
+				{
+					sql = getSQL(getResource("update-update-smn_mov_documento_cob_CME.sql"), inputParams);
+					db.exec(sql);
+					
+					str = "Nota de Credito Aprobada";	
+					bw.write(str);
+					bw.flush();
+					bw.newLine();
+				}else
+				{
+					sql = getSQL(getResource("update-update-smn_mov_documento_cob_COB.sql"), inputParams);
+					db.exec(sql);
+					
+					str = "Nota de Credito Aprobada";	
+					bw.write(str);
+					bw.flush();
+					bw.newLine();
+				}
+				
+			}
 		}
+		
+		
 		catch(Throwable e)
 		{
 			conn.rollback();
