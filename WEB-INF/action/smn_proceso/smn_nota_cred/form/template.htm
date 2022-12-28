@@ -8,6 +8,8 @@
 
 	<script type="text/javascript" src="${def:context}/action/script">
 	</script>
+	<script type="text/javascript" src="${def:context}/action/dinamica.js">
+	</script>
 
 	<!--codigo especifico de este modulo--> 
 	<script type="text/javascript">
@@ -141,7 +143,7 @@
 								onErrorFn=null);	
 		}
 		
-		function aprobar(userCreditNote,id, id2, monto_ml, monto_ma, estatus, doc_id,tipo_documento,mdd_numero_documento) {
+		function aprobar(userCreditNote,id, id2, mdc_saldo_doc_ml, mdc_saldo_doc_ma, estatus, doc_id,tipo_documento,mdd_numero_documento) {
 
 
 			if(estatus!="AP")
@@ -154,7 +156,7 @@
 				{
 					
 					ajaxCall(httpMethod="GET", 
-									uri="${def:actionroot}/aprobar?id=" + id + "&id2=" + id2 +"&monto_ml=" + monto_ml + "&monto_ma=" + monto_ma
+									uri="${def:actionroot}/aprobar?id=" + id + "&id2=" + id2 +"&mdc_saldo_doc_ml=" + mdc_saldo_doc_ml + "&mdc_saldo_doc_ma=" + mdc_saldo_doc_ma
 															+ "&estatus=" + estatus + "&doc_id=" + doc_id + "&tipo_documento=" + tipo_documento +"&mdd_numero_documento=" +mdd_numero_documento, 
 									divResponse=null, 
 									divProgress="status", 

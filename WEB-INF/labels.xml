@@ -7313,4 +7313,134 @@
 		<value language="pt">Pass</value>
 		<value language="it">Pass</value>
 	</label>
+
+	<label id="b_fiscal_control_collection_doc">
+		<value language="es">Documentos de Recaudación de Control Fiscal</value>
+		<value language="en">Fiscal Control Collection Documents</value>
+		<value language="fr">Documents de recouvrement du contrôle fiscal</value>
+		<value language="de">Dokumente zur Erhebung der Steuerkontrolle</value>
+		<value language="pt">Documentos de Cobrança de Controle Fiscal</value>
+		<value language="it">Documenti di riscossione del controllo fiscale</value>
+	</label>
+
+	<label id="b_fiscal_control_collection_doc_id">
+		<value language="es">Documentos de Recaudación de Control Fiscal</value>
+		<value language="en">Fiscal Control Collection Documents</value>
+		<value language="fr">Documents de recouvrement du contrôle fiscal</value>
+		<value language="de">Dokumente zur Erhebung der Steuerkontrolle</value>
+		<value language="pt">Documentos de Cobrança de Controle Fiscal</value>
+		<value language="it">Documenti di riscossione del controllo fiscale</value>
+	</label>
+
+	<label id="b_collection_document">
+		<value language="es">Documento Cobranza</value>
+		<value language="en">Collection Document</value>
+		<value language="fr">Documents de recouvrement</value>
+		<value language="de">Sammlungsdokument</value>
+		<value language="pt">Documento de Coleta</value>
+		<value language="it">Documento di Cobranza</value>
+	</label>
+
+	<label id="b_reversed_document">
+		<value language="es">Documento Reversado</value>
+		<value language="en">Reversed Document</value>
+		<value language="fr">Document inversé</value>
+		<value language="de">Umgekehrtes Dokument</value>
+		<value language="pt">Documento Revertido</value>
+		<value language="it">Documento invertito</value>
+	</label>
+
+	<label id="b_tax_control_number">
+		<value language="es">Número Control Fiscal</value>
+		<value language="en">Tax Control Number</value>
+		<value language="fr">Numéro de contrôle fiscal</value>
+		<value language="de">Steuerkontrollnummer</value>
+		<value language="pt">Número de Controle Fiscal</value>
+		<value language="it">Codice Fiscale</value>
+	</label>
+
+	<label id="b_document_code">
+		<value language="es">Codigo Documento</value>
+		<value language="en">Document code</value>
+		<value language="fr">Code du document</value>
+		<value language="de">Dokumentcode</value>
+		<value language="pt">Código do documento</value>
+		<value language="it">Codice documento</value>
+	</label>
+
+	<label id="b_cancellation_reason">
+		<value language="es">Motivo Anulacion</value>
+		<value language="en">Cancellation Reason</value>
+		<value language="fr">Motif d'annulation</value>
+		<value language="de">Stornierungsgrund</value>
+		<value language="pt">Motivo Do Cancelamento</value>
+		<value language="it">Motivo Di Cancellazione</value>
+	</label>
+
+	<label id="b_reason">
+		<value language="es">Motivo</value>
+		<value language="en">Reason</value>
+		<value language="fr">Motif</value>
+		<value language="de">Stornierungsgrund</value>
+		<value language="pt">Motivo</value>
+		<value language="it">Motivo</value>
+	</label>
+
+	<label id="b_affects_document">
+		<value language="es">Afecta Documento Comercial</value>
+		<value language="en">Affects Commercial Document</value>
+		<value language="fr">Affecte le document commercial</value>
+		<value language="de">Betrifft Handelsdokument</value>
+		<value language="pt">Afeta o Documento Comercial</value>
+		<value language="it">Influisce sul documento commerciale</value>
+    </label>
+    <label id="b_reverse">
+		<value language="es">Reverso</value>
+		<value language="en">sens inverse</value>
+		<value language="fr">sens inverse</value>
+		<value language="de">sens invers</value>
+		<value language="pt">Documento Revertido</value>
+		<value language="it">Documento invertito</value>
+	</label>
+    <label id="b_bill_number">
+		<value language="es">Número Factura</value>
+		<value language="en">Bill number</value>
+		<value language="fr">Numéro de facture</value>
+		<value language="de">Rechnungsnummer</value>
+		<value language="pt">Número da conta</value>
+		<value language="it">Numero di fattura</value>
+    </label>
+    <label id="b_approval_date">
+		<value language="es">Fecha Aprobacion</value>
+		<value language="en">Approval date</value>
+		<value language="fr">Date d'approbation</value>
+		<value language="de">Datum der Genehmigung</value>
+		<value language="pt">Data de aprovação</value>
+		<value language="it">Data di generazione</value>
+	</label>
+	<label id="b_print">
+		<value language="es">Imprimir</value>
+		<value language="en">Print</value>
+		<value language="fr">Date d'approbation</value>
+		<value language="de">Datum der Genehmigung</value>
+		<value language="pt">Data de aprovação</value>
+		<value language="it">Data di generazione</value>
+	</label>
+	<label id="b_approval">
+		<value language="es">Aprovacion</value>
+		<value language="en">Approval</value>
+		<value language="fr">Approbation</value>
+		<value language="de">Die Genehmigung</value>
+		<value language="pt">Aprovação</value>
+		<value language="it">Approvazione</value>
+	</label>
+	<label id="b_order_number">
+		<value language="es">Numero de Orden</value>
+		<value language="en">Order Number</value>
+		<value language="fr">Numéro de commande</value>
+		<value language="de">Bestellnummer</value>
+		<value language="pt">Número do pedido</value>
+		<value language="it">Numero d'ordine</value>
+	</label>
+
 </labels>
