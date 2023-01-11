@@ -167,12 +167,18 @@ public class AprobarNotas extends GenericTransaction{
 				{
 					ModControlFiscal=rsDocModControlFiscal.getString("doc_modulo_control_fiscal");
 				}
-				if (ModControlFiscal=="CME")
+				
+				str = "El modulo de control fiscal es " +ModControlFiscal;	
+				bw.write(str);
+				bw.flush();
+				bw.newLine();
+				
+				if (ModControlFiscal.equals("CME"))
 				{
 					sql = getSQL(getResource("update-smn_mov_documento_cob_CME.sql"), inputParams);
 					db.exec(sql);
 					
-					str = "Nota de Credito Aprobada";	
+					str = "Nota de Credito Aprobada CME";	
 					bw.write(str);
 					bw.flush();
 					bw.newLine();
@@ -181,7 +187,7 @@ public class AprobarNotas extends GenericTransaction{
 					sql = getSQL(getResource("update-smn_mov_documento_cob_COB.sql"), inputParams);
 					db.exec(sql);
 					
-					str = "Nota de Credito Aprobada";	
+					str = "Nota de Credito Aprobada COB";	
 					bw.write(str);
 					bw.flush();
 					bw.newLine();

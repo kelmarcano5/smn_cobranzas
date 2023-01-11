@@ -14,8 +14,7 @@ UPDATE smn_cobranzas.smn_mov_documento_cob_detalle SET
 	mdd_fecha_registro={d '${def:date}'},
 	mdd_hora='${def:time}',
 	mdd_control_fiscal=(SELECT (cfd_ultimo_numero_fiscal_usado+1) 
-							FROM smn_comercial.smn_control_fiscal_documento
-							WHERE smn_documento_id'${fld:doc_id}') 
+							FROM smn_comercial.smn_control_fiscal_documento) 
 WHERE 
 	smn_mov_documento_cob_det_id=${fld:id};
 
@@ -23,5 +22,5 @@ WHERE
 UPDATE smn_comercial.smn_control_fiscal_documento SET
 	cfd_ultimo_numero_fiscal_usado=cfd_ultimo_numero_fiscal_usado+1	
 
-WHERE smn_documento_id='${fld:doc_id}' 
+-- WHERE smn_documento_id='${fld:doc_id}' 
 

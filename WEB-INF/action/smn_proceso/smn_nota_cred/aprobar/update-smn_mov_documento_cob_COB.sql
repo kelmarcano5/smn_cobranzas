@@ -14,8 +14,7 @@ UPDATE smn_cobranzas.smn_mov_documento_cob_detalle SET
 	mdd_fecha_registro={d '${def:date}'},
 	mdd_hora='${def:time}',
 	mdd_control_fiscal=(SELECT (smn_numero_control_fiscal+1) 
-							FROM smn_cobranzas.smn_control_fiscal_doc_cobranzas
-							WHERE smn_documento_id='${fld:doc_id}') 
+							FROM smn_cobranzas.smn_control_fiscal_doc_cobranzas) 
 WHERE 
 	smn_mov_documento_cob_det_id=${fld:id};
 
@@ -23,5 +22,5 @@ WHERE
 UPDATE smn_cobranzas.smn_control_fiscal_doc_cobranzas SET
 	smn_numero_control_fiscaL=smn_numero_control_fiscal+1	
 
-WHERE smn_documento_id='${fld:doc_id}' 
+-- WHERE smn_documento_id='${fld:doc_id}' 
 
